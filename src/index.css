@@ -3,6 +3,9 @@ header  {
     color: whitesmoke;
 
 }
+.custom-margin {
+    margin-bottom: 15px;
+}
 .custom-navbar {
     margin-left: auto;
 }
