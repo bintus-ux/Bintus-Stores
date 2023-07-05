@@ -5,10 +5,10 @@ const Header = () => {
   return (
     <>
       <Navbar bg='light' expand='lg' collapseOnSelect>
-        <Container>
+        <Container className='navContainer'>
           <Navbar.Brand href='/'>
             <img
-              className='px-3 py-3 mx-5'
+              className='px-1 py-4 mx-2'
               src='logo bsss.jpg'
               width='250'
               height='200'

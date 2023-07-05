@@ -3,14 +3,36 @@ header  {
     color: whitesmoke;
 
 }
+.navContainer {
+    margin-bottom: -45px;
+    margin-top: -25px;
+}
 .custom-margin {
-    margin-bottom: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 1000px;
+    margin: auto;
+    border: solid 1px rgb(167, 80, 80);
+    row-gap: 30px;
+    column-gap: 30px;
+
+    /* margin-bottom: 25px;
+    margin-left: -15px;
+    width: 1000px; */
+    
 }
 .custom-navbar {
     margin-left: auto;
 }
 main {
     min-height: 80vh;
+}
+hr {
+    width: 10%;
+    text-align: center;
+    margin-left: 560px;
+    margin-bottom: 100px;
+    border: 1px solid black;
 }
 .slide-image {
     height: 700px;
@@ -21,11 +43,20 @@ margin-bottom: 30px;
 margin-top: 30px;
 }
 .text-header2 {
-margin-left: 500px;
-margin-bottom: 30px;
-margin-top: 30px;
+margin: 100px 0 0 520px;
 }
 .component-images {
-    height: 275px;
+    height: 300px;
     width: 300px;
+    margin: auto;
+    cursor: pointer;
+}
+.text-light {
+    cursor: pointer;
+}
+img.darker {
+    transition: all 0.2s ease-in-out;
+}
+img.darker:hover {
+    filter: brightness(50%);
 }

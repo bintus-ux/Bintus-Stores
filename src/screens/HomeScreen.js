@@ -10,8 +10,10 @@ const HomeScreen = () => {
     <>
       <Container fluid>
         <h1 className='text-header'>Welcome to Bintus Stores</h1>
+        <hr />
         <Slideshow products_0={products_0} />
         <h2 className='text-header2'>Categories</h2>
+        <hr />
         <Row>
           <CategoryItems categoryItem={categoryItem} />
 
