@@ -3,6 +3,11 @@ header  {
     color: whitesmoke;
 
 }
+@media (max-width: 600px) {
+    .img-fit {
+      width: 150px;
+    }
+  }
 .navContainer {
     margin-bottom: -45px;
     margin-top: -25px;
