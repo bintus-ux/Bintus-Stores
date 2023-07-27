@@ -1,4 +1,5 @@
 import React from 'react'
+import { Route, Routes } from 'react-router-dom'
 import Header from './components/Header'
 import NavBar from './components/NavBar'
 import Footer from './components/Footer'
@@ -12,7 +13,9 @@ const App = () => {
       <NavBar />
       <main className='py-3'>
         <Container>
-          <HomeScreen />
+          <Routes>
+            <Route path='/' element={<HomeScreen />} exact />
+          </Routes>
         </Container>
       </main>
       <Footer />
