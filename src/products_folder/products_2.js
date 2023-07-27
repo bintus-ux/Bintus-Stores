@@ -33,6 +33,6 @@ export const categoryItem = [
   },
   {
     text: 'Shorts',
-    image: '/tees_images/IMG_0898.JPG',
+    image: '/shorts_images/IMG_1616.JPG',
   },
 ]
