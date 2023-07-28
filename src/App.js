@@ -5,8 +5,7 @@ import NavBar from './components/NavBar'
 import Footer from './components/Footer'
 import { Container } from 'react-bootstrap'
 import HomeScreen from './screens/HomeScreen'
-import CategoryItems from './components/CategoryItems'
-
+import CategoryScreen from './screens/CategoryScreen'
 const App = () => {
   return (
     <>
@@ -16,6 +15,8 @@ const App = () => {
         <Container>
           <Routes>
             <Route path='/' element={<HomeScreen />} exact />
+            {/* <Route path='/categories/:id' element={<CategoryItems />} /> */}
+            <Route path='/categories' element={<CategoryScreen />} />
           </Routes>
         </Container>
       </main>

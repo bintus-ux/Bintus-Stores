@@ -15,7 +15,11 @@ const HomeScreen = () => {
         <h2 className='text-header2'>Categories</h2>
         <hr />
         <Row>
-          <CategoryItems categoryItem={categoryItem} />
+          <div className='custom-margin'>
+            {categoryItem.map((category) => (
+              <CategoryItems category={category} />
+            ))}
+          </div>
 
           {/* <Col xs={6} md={4} className='position-relative'>
             <Image
