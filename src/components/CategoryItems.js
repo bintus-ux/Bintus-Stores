@@ -1,5 +1,6 @@
 import React from 'react'
 import { Carousel, Col, Row, Image, Container } from 'react-bootstrap'
+import { categoryItem } from '../products_folder/products_2'
 
 const CategoryItems = ({ categoryItem }) => {
   return (

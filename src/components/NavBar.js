@@ -114,7 +114,7 @@ const Header = () => {
               />
             </Navbar.Brand>
           </LinkContainer>
-          <Nav>
+          <Nav className='d-flex flex-row'>
             <Nav.Link href='/profile'>
               <i className='fa-solid fa-user px-3'></i>
             </Nav.Link>

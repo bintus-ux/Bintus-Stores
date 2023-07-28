@@ -5,6 +5,7 @@ import NavBar from './components/NavBar'
 import Footer from './components/Footer'
 import { Container } from 'react-bootstrap'
 import HomeScreen from './screens/HomeScreen'
+import CategoryItems from './components/CategoryItems'
 
 const App = () => {
   return (

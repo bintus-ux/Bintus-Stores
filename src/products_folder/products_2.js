@@ -13,15 +13,15 @@ export const categoryItem = [
   },
   {
     text: 'Shirts',
-    image: '/tshirt_images/IMG_0764.JPG',
+    image: '/tshirt_images/IMG_1637.JPG',
   },
   {
     text: 'Caps',
-    image: '/cap_images/IMG_0773.JPG',
+    image: '/cap_images/IMG_1621.JPG',
   },
   {
     text: 'Footwear',
-    image: '/footwear_images/IMG_0817.JPG',
+    image: '/footwear_images/IMG_1623.JPG',
   },
   {
     text: 'Sweatshirts & Jackets',
@@ -29,7 +29,7 @@ export const categoryItem = [
   },
   {
     text: 'Pants',
-    image: '/trousers_images/IMG_0856.JPG',
+    image: '/trousers_images/IMG_1627.JPG',
   },
   {
     text: 'Shorts',
