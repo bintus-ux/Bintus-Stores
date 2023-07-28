@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 const CategoryItems = ({ categoryItem }) => {
   return (
     <>
-      <div xs={6} md={4} className='position-relative'>
+      <div xs={6} md={4} className='position-relative row'>
         <Link to={`/categoryItem/${categoryItem._id}`}>
           <Image
             src={categoryItem.image}

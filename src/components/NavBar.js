@@ -67,7 +67,7 @@ const Header = () => {
                 <LinkContainer to='/'>
                   <Nav.Link className='nav-link'>Home</Nav.Link>
                 </LinkContainer>
-                <LinkContainer to='/categories'>
+                <LinkContainer to='/catalog'>
                   <Nav.Link className='nav-link'>Shop Now!</Nav.Link>
                 </LinkContainer>
                 <LinkContainer to='/size-chart'>

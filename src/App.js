@@ -6,6 +6,8 @@ import Footer from './components/Footer'
 import { Container } from 'react-bootstrap'
 import HomeScreen from './screens/HomeScreen'
 import CategoryScreen from './screens/CategoryScreen'
+import CatalogScreen from './screens/CatalogScreen'
+
 const App = () => {
   return (
     <>
@@ -15,6 +17,7 @@ const App = () => {
         <Container>
           <Routes>
             <Route path='/' element={<HomeScreen />} exact />
+            <Route path='/catalog' element={<CatalogScreen />} exact />
             {/* <Route path='/categories/:id' element={<CategoryItems />} /> */}
             <Route path='/categoryItem/:id' element={<CategoryScreen />} />
           </Routes>
