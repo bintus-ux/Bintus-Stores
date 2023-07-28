@@ -1,3 +1,6 @@
+html {
+    scroll-behavior: smooth;
+}
 header  {
     background-color: black;
     color: whitesmoke;
@@ -7,6 +10,18 @@ header  {
     .img-fit {
       width: 150px;
     }
+  }
+  .active {
+    background-color: lightslategray;
+    color: black;
+    font-size: x-large;
+    outline: coral;
+  }
+  .nav-link {
+    cursor: pointer;
+  }
+  .nav-link:hover {
+    font-size: x-large;
   }
   .animated-icon1, .animated-icon2, .animated-icon3 {
     width: 30px;

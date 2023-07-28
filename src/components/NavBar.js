@@ -48,23 +48,37 @@ const Header = () => {
           </Navbar.Collapse>
         </Container>
       </Navbar> */}
-      <Navbar expand='false' className='bg-body-tertiary mb-3'>
+      <Navbar expand='false' bg='light'>
         <Container fluid>
-          <Navbar.Brand href='#'>Navbar Offcanvas</Navbar.Brand>
           <Navbar.Toggle aria-controls='offcanvasNavbar-expand-false' />
           <Navbar.Offcanvas
             id='offcanvasNavbar-expand-false'
             aria-labelledby='offcanvasNavbarLabel-expand-false'
-            placement='end'>
+            placement='start'>
             <Offcanvas.Header closeButton>
-              <Offcanvas.Title id='offcanvasNavbarLabel-expand-false'>
-                Offcanvas
+              <Offcanvas.Title
+                id='offcanvasNavbarLabel-expand-false'
+                style={{ fontSize: '20px' }}>
+                Bintus Stores
               </Offcanvas.Title>
             </Offcanvas.Header>
             <Offcanvas.Body>
               <Nav className='justify-content-end flex-grow-1 pe-3'>
-                <Nav.Link href='#action1'>Home</Nav.Link>
-                <Nav.Link href='#action2'>Link</Nav.Link>
+                <LinkContainer to='/'>
+                  <Nav.Link className='nav-link'>Home</Nav.Link>
+                </LinkContainer>
+                <LinkContainer to='/categories'>
+                  <Nav.Link className='nav-link'>Shop Now!</Nav.Link>
+                </LinkContainer>
+                <LinkContainer to='/size-chart'>
+                  <Nav.Link className='nav-link'>Size Chart</Nav.Link>
+                </LinkContainer>
+                <LinkContainer to='/faq'>
+                  <Nav.Link className='nav-link'>FAQ</Nav.Link>
+                </LinkContainer>
+                <LinkContainer to='/about'>
+                  <Nav.Link className='nav-link'>About Bintus Stores</Nav.Link>
+                </LinkContainer>
                 <NavDropdown
                   title='Dropdown'
                   id={`offcanvasNavbarDropdown-expand-$'false`}>
@@ -89,6 +103,25 @@ const Header = () => {
               </Form>
             </Offcanvas.Body>
           </Navbar.Offcanvas>
+          <LinkContainer to='/'>
+            <Navbar.Brand>
+              <img
+                className='img-responsive img-fit'
+                src='logo bsss.jpg'
+                width='250'
+                height='200'
+                alt='Bintus Store'
+              />
+            </Navbar.Brand>
+          </LinkContainer>
+          <Nav>
+            <Nav.Link href='/profile'>
+              <i className='fa-solid fa-user px-3'></i>
+            </Nav.Link>
+            <Nav.Link href='/cart'>
+              <i className='fa-sharp fa-solid fa-cart-shopping px-3'></i>
+            </Nav.Link>
+          </Nav>
         </Container>
       </Navbar>
     </>
