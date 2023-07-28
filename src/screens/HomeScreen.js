@@ -3,8 +3,7 @@ import { Container, Row, Col, Image } from 'react-bootstrap'
 import { products_0 } from '../products_folder/products'
 import Slideshow from '../components/Slideshow'
 import CategoryItems from '../components/CategoryItems'
-import { categoryItem } from '../products_folder/products_2'
-
+import categoryItems from '../products_folder/categoryItems'
 const HomeScreen = () => {
   return (
     <>
@@ -16,8 +15,11 @@ const HomeScreen = () => {
         <hr />
         <Row>
           <div className='custom-margin'>
-            {categoryItem.map((category) => (
-              <CategoryItems category={category} />
+            {categoryItems.map((categoryItem) => (
+              <CategoryItems
+                key={categoryItem._id}
+                categoryItem={categoryItem}
+              />
             ))}
           </div>
 

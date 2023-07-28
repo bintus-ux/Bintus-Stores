@@ -69,7 +69,6 @@ header  {
     flex-wrap: wrap;
     width: 1000px;
     margin: auto;
-    border: solid 1px rgb(167, 80, 80);
     row-gap: 30px;
     column-gap: 30px;
 

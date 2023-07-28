@@ -1,4 +1,4 @@
-export const categoryItem = [
+const categoryItems = [
   {
     _id: 1,
     text: 'Hoodies',
@@ -45,3 +45,5 @@ export const categoryItem = [
     image: '/shorts_images/IMG_1616.JPG',
   },
 ]
+
+export default categoryItems

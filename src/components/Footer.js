@@ -31,7 +31,7 @@ const Footer = () => {
           </Col>
         </Row>
         <Row>
-          <Col class='col-md-2 col-lg-2 col-xl-2 mx-auto mb-4'>
+          <Col className='col-md-2 col-lg-2 col-xl-2 mx-auto mb-4'>
             <p>Search</p>
             <p>
               <a href='#!'>Size Chart</a>
@@ -43,7 +43,7 @@ const Footer = () => {
               <a href='#!'>Contact Us</a>
             </p>
           </Col>
-          <Col class='col-md-2 col-lg-2 col-xl-2 mx-auto mb-4'>
+          <Col className='col-md-2 col-lg-2 col-xl-2 mx-auto mb-4'>
             <p>
               <a href='#!'>About Us</a>
             </p>

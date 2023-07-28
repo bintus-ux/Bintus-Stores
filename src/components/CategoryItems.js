@@ -2,19 +2,24 @@ import React from 'react'
 import { Carousel, Col, Row, Image, Container } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
-const CategoryItems = ({ category }) => {
+const CategoryItems = ({ categoryItem }) => {
   return (
     <>
       <div xs={6} md={4} className='position-relative'>
-        <Link to={`/category/${category._id}`}>
+        <Link to={`/categoryItem/${categoryItem._id}`}>
           <Image
-            src={category.image}
+            src={categoryItem.image}
             className='img-fluid component-images darker'
           />
-          <div className='position-absolute top-50 start-50 translate-middle text-center'>
-            <h3 className='text-light'>{category.text}</h3>
-          </div>
         </Link>
+
+        <div className='position-absolute top-50 start-50 translate-middle text-center'>
+          <Link
+            to={`/categoryItem/${categoryItem._id}`}
+            style={{ textDecoration: 'none' }}>
+            <h3 className='text-light'>{categoryItem.text}</h3>
+          </Link>
+        </div>
       </div>
     </>
   )

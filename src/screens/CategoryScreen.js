@@ -1,7 +1,15 @@
 import React from 'react'
+import { useParams } from 'react-router-dom'
+import categoryItems from '../products_folder/categoryItems'
 
 const CategoryScreen = () => {
-  return <div>Categories</div>
+  let { id } = useParams()
+  const productCategory = categoryItems.find(
+    (categoryItem) => categoryItem._id == id
+  )
+  console.log(productCategory)
+
+  return <div>{productCategory.text}</div>
 }
 
 export default CategoryScreen
