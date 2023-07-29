@@ -7,6 +7,7 @@ import { Container } from 'react-bootstrap'
 import HomeScreen from './screens/HomeScreen'
 import CategoryScreen from './screens/CategoryScreen'
 import CatalogScreen from './screens/CatalogScreen'
+import FootwearScreen from './screens/FootwearScreen'
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
             <Route path='/catalog' element={<CatalogScreen />} exact />
             {/* <Route path='/categories/:id' element={<CategoryItems />} /> */}
             <Route path='/categoryItem/:id' element={<CategoryScreen />} />
+            <Route path='/categoryItem/footwear' element={<FootwearScreen />} />
           </Routes>
         </Container>
       </main>

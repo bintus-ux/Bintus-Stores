@@ -15,6 +15,7 @@ const CatalogScreen = () => {
           <div className='custom-margin'>
             {categoryItems.map((categoryItem) => (
               <div
+                key={categoryItem._id}
                 xs={6}
                 md={4}
                 className='position-relative row justify-content-center'
