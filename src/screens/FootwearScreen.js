@@ -9,7 +9,7 @@ const FootwearScreen = () => {
       <Row>
         <div className='custom-margin'>
           {footwearItems.map((footwearItem) => (
-            <div xs={6} md={4} key={footwearItem._id}>
+            <div xs={6} md={4} key={footwearItem._id} className='text-center'>
               <Link to={`/footwear/${footwearItem._id}`}>
                 <Image
                   src={footwearItem.image}
