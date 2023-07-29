@@ -1,5 +1,6 @@
 html {
     scroll-behavior: smooth;
+    box-sizing: border-box;
 }
 header  {
     background-color: black;
@@ -67,7 +68,6 @@ header  {
 .custom-margin {
     display: flex;
     flex-wrap: wrap;
-    width: 1000px;
     margin: auto;
     row-gap: 30px;
     column-gap: 30px;
