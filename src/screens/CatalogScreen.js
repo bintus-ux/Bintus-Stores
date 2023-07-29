@@ -17,22 +17,26 @@ const CatalogScreen = () => {
               <div
                 xs={6}
                 md={4}
-                className='position-relative row justify-content-end'>
-                <div>
-                  <Link to={`/categoryItem/${categoryItem._id}`}>
-                    <Image
-                      src={categoryItem.image}
-                      className='img-fluid component-images darker'
-                    />
-                  </Link>
+                className='position-relative row justify-content-end'
+                style={
+                  categoryItem._id % 2 === 0
+                    ? { order: 0, flexBasis: '250px', flexGrow: '2' }
+                    : { order: 0, flexBasis: 'auto' }
+                }>
+                <Link to={`/categoryItem/${categoryItem._id}`}>
+                  <Image
+                    src={categoryItem.image}
+                    className='img-fluid darker'
+                    width='100%'
+                  />
+                </Link>
 
-                  <div className='position-absolute top-50 start-50 translate-middle text-center'>
-                    <Link
-                      to={`/categoryItem/${categoryItem._id}`}
-                      style={{ textDecoration: 'none' }}>
-                      <h3 className='text-light'>{categoryItem.text}</h3>
-                    </Link>
-                  </div>
+                <div className='position-absolute top-50 start-50 translate-middle text-center'>
+                  <Link
+                    to={`/categoryItem/${categoryItem._id}`}
+                    style={{ textDecoration: 'none' }}>
+                    <h3 className='text-light'>{categoryItem.text}</h3>
+                  </Link>
                 </div>
               </div>
             ))}
