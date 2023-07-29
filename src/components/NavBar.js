@@ -65,19 +65,21 @@ const Header = () => {
             <Offcanvas.Body>
               <Nav className='justify-content-end flex-grow-1 pe-3'>
                 <LinkContainer to='/'>
-                  <Nav.Link className='nav-link'>Home</Nav.Link>
+                  <Nav.Link className='nav-link py-2'>Home</Nav.Link>
                 </LinkContainer>
                 <LinkContainer to='/catalog'>
-                  <Nav.Link className='nav-link'>Shop Now!</Nav.Link>
+                  <Nav.Link className='nav-link py-2'>Shop Now!</Nav.Link>
                 </LinkContainer>
                 <LinkContainer to='/size-chart'>
-                  <Nav.Link className='nav-link'>Size Chart</Nav.Link>
+                  <Nav.Link className='nav-link py-2'>Size Chart</Nav.Link>
                 </LinkContainer>
                 <LinkContainer to='/faq'>
-                  <Nav.Link className='nav-link'>FAQ</Nav.Link>
+                  <Nav.Link className='nav-link py-2'>FAQ</Nav.Link>
                 </LinkContainer>
                 <LinkContainer to='/about'>
-                  <Nav.Link className='nav-link'>About Bintus Stores</Nav.Link>
+                  <Nav.Link className='nav-link py-2'>
+                    About Bintus Stores
+                  </Nav.Link>
                 </LinkContainer>
                 <NavDropdown
                   title='Dropdown'

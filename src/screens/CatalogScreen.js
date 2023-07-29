@@ -12,7 +12,7 @@ const CatalogScreen = () => {
         </div>
         <hr />
         <Row>
-          <div className='custom-margin' style={{ border: '2px solid red' }}>
+          <div className='custom-margin'>
             {categoryItems.map((categoryItem) => (
               <div
                 xs={6}

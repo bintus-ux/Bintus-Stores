@@ -13,16 +13,16 @@ header  {
     }
   }
   .active {
-    background-color: lightslategray;
+    background-color: rgb(187, 193, 200);
     color: black;
-    font-size: x-large;
-    outline: coral;
+    font-size: large;
   }
   .nav-link {
     cursor: pointer;
+    color: gray
   }
   .nav-link:hover {
-    font-size: x-large;
+    font-size: large;
   }
   .animated-icon1, .animated-icon2, .animated-icon3 {
     width: 30px;
@@ -68,6 +68,9 @@ header  {
 .custom-margin {
     display: flex;
     flex-wrap: wrap;
+    /* border: #e65100 2px solid; */
+    justify-content: center;
+    overflow: hidden;
     margin: auto;
     row-gap: 30px;
     column-gap: 30px;
