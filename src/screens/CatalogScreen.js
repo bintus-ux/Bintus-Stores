@@ -31,7 +31,7 @@ const CatalogScreen = () => {
                         flexBasis: 'auto',
                       }
                 }>
-                <Link to={`/categoryItem/${categoryItem._id}`}>
+                <Link to={`/categoryItem/${categoryItem.text}`}>
                   <Image
                     src={categoryItem.image}
                     className='img-fluid darker'
@@ -40,9 +40,9 @@ const CatalogScreen = () => {
                 </Link>
 
                 <div className='position-absolute top-50 start-50 translate-middle text-center'>
-                  <Link to={`/categoryItem/${categoryItem._id}`}>
+                  <Link to={`/categoryItem/${categoryItem.text}`}>
                     <h3
-                      className='text-light text'
+                      className='text-light text '
                       style={{ textDecoration: 'none' }}>
                       {categoryItem.text}
                     </h3>

@@ -7,7 +7,7 @@ const KnitwearScreen = () => {
   return (
     <>
       <div>
-        <h2 className='text-center text-capitalize font-italic'>Catalog</h2>
+        <h2 className='text-center text-capitalize font-italic'>Knitwears</h2>
       </div>
       <hr />
       <Row>

@@ -7,7 +7,7 @@ const FootwearScreen = () => {
   return (
     <>
       <div>
-        <h2 className='text-center text-capitalize font-italic'>Catalog</h2>
+        <h2 className='text-center text-capitalize font-italic'>Footwears</h2>
       </div>
       <hr />
       <Row>
@@ -23,8 +23,12 @@ const FootwearScreen = () => {
               </Link>
 
               <div>
-                <Link to={`/footwear/${footwearItem._id}`}>
-                  <h3 style={{ color: 'black' }}>{footwearItem.name}</h3>
+                <Link
+                  to={`/footwear/${footwearItem._id}`}
+                  style={{ textDecoration: 'none' }}>
+                  <h3 style={{ color: 'black' }} className='text-capitalize'>
+                    {footwearItem.name}
+                  </h3>
                   <h3 style={{ color: 'black' }}>- ₦{footwearItem.price}</h3>
                 </Link>
               </div>

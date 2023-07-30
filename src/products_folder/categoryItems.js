@@ -11,13 +11,13 @@ const categoryItems = [
   },
   {
     _id: 3,
-    text: 'Knitwear',
+    text: 'Knitwears',
     image: '/knitwear_images/IMG_1964.JPG',
   },
   {
     _id: 4,
     text: 'Shirts',
-    image: '/tshirt_images/IMG_1637.JPG',
+    image: '/shirts_images/IMG_1637.JPG',
   },
   {
     _id: 5,
@@ -26,7 +26,7 @@ const categoryItems = [
   },
   {
     _id: 6,
-    text: 'Footwear',
+    text: 'Footwears',
     image: '/footwear_images/IMG_1623.JPG',
   },
   {

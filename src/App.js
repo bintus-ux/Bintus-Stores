@@ -22,8 +22,14 @@ const App = () => {
             <Route path='/catalog' element={<CatalogScreen />} exact />
             {/* <Route path='/categories/:id' element={<CategoryItems />} /> */}
             <Route path='/categoryItem/:id' element={<CategoryScreen />} />
-            <Route path='/categoryItem/footwear' element={<FootwearScreen />} />
-            <Route path='/categoryItem/knitwear' element={<KnitwearScreen />} />
+            <Route
+              path='/categoryItem/footwears'
+              element={<FootwearScreen />}
+            />
+            <Route
+              path='/categoryItem/knitwears'
+              element={<KnitwearScreen />}
+            />
           </Routes>
         </Container>
       </main>
