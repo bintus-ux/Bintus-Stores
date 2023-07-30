@@ -7,7 +7,7 @@ const categoryItems = [
   {
     _id: 2,
     text: 'Tees',
-    image: '/tees_images/IMG_0898.JPG',
+    image: '/tee_images/IMG_0898.JPG',
   },
   {
     _id: 3,
