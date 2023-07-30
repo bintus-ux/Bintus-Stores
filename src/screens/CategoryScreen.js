@@ -9,7 +9,7 @@ const CategoryScreen = () => {
   )
   console.log(productCategory)
 
-  return <div>{productCategory.text}</div>
+  return <div></div>
 }
 
 export default CategoryScreen

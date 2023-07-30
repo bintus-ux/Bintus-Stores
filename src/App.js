@@ -8,6 +8,7 @@ import HomeScreen from './screens/HomeScreen'
 import CategoryScreen from './screens/CategoryScreen'
 import CatalogScreen from './screens/CatalogScreen'
 import FootwearScreen from './screens/FootwearScreen'
+import KnitwearScreen from './screens/KnitwearScreen'
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
             {/* <Route path='/categories/:id' element={<CategoryItems />} /> */}
             <Route path='/categoryItem/:id' element={<CategoryScreen />} />
             <Route path='/categoryItem/footwear' element={<FootwearScreen />} />
+            <Route path='/categoryItem/knitwear' element={<KnitwearScreen />} />
           </Routes>
         </Container>
       </main>

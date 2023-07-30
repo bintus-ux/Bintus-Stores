@@ -11,8 +11,8 @@ const categoryItems = [
   },
   {
     _id: 3,
-    text: 'Hoodies',
-    image: '/tees_images/IMG_0898.JPG',
+    text: 'Knitwear',
+    image: '/knitwear_images/IMG_1964.JPG',
   },
   {
     _id: 4,

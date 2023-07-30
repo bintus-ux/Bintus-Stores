@@ -40,10 +40,12 @@ const CatalogScreen = () => {
                 </Link>
 
                 <div className='position-absolute top-50 start-50 translate-middle text-center'>
-                  <Link
-                    to={`/categoryItem/${categoryItem._id}`}
-                    style={{ textDecoration: 'none' }}>
-                    <h3 className='text-light'>{categoryItem.text}</h3>
+                  <Link to={`/categoryItem/${categoryItem._id}`}>
+                    <h3
+                      className='text-light text'
+                      style={{ textDecoration: 'none' }}>
+                      {categoryItem.text}
+                    </h3>
                   </Link>
                 </div>
               </div>
