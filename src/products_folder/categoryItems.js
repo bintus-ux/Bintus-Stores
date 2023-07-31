@@ -37,7 +37,7 @@ const categoryItems = [
   {
     _id: 8,
     text: 'Pants',
-    image: '/trousers_images/IMG_1627.JPG',
+    image: '/pant_images/IMG_1627.JPG',
   },
   {
     _id: 9,
