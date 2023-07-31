@@ -11,27 +11,61 @@ const PantsScreen = () => {
         <div>
           <h2 className='text-capitalize font-italic'>Pants</h2>
         </div>
-        <Dropdown>
+        <select
+          class='selectpicker'
+          aria-label='.form-select-lg example'
+          data-width='100%'>
+          <option selected>Date, old to new</option>
+          <option selected>Date, new to old</option>
+          <option value='1'>Featured</option>
+          <option value='2'> Alphabetically, A-Z</option>
+          <option value='3'>Alphabetically, Z-A</option>
+          <option value='3'>Price, low to high</option>
+          <option value='3'>Price, high to low</option>
+          <option value='3'>Date, old to new</option>
+          <option value='3'>Date, new to old</option>
+        </select>
+        {/* <Dropdown>
           <Dropdown.Toggle variant='dark' id='dropdown-basic'>
             Date, old to new
           </Dropdown.Toggle>
 
           <Dropdown.Menu>
-            <Link to={'/categoryItem/pants/ascending_order'}>
-              <Dropdown.Item href='#/action-1'>Featured</Dropdown.Item>
-            </Link>
-            <Link to={'/categoryItem/pants/descending_order'}>
-              <Dropdown.Item href='#/action-2'>
-                Alphabetically, A-Z
-              </Dropdown.Item>
-            </Link>
-            <Dropdown.Item href='#/action-2'>Alphabetically, Z-A</Dropdown.Item>
-            <Dropdown.Item href='#/action-3'>Price, low to high</Dropdown.Item>
-            <Dropdown.Item href='#/action-3'>Price, high to low</Dropdown.Item>
-            <Dropdown.Item href='#/action-3'>Date, old to new</Dropdown.Item>
-            <Dropdown.Item href='#/action-3'>Date, new to old</Dropdown.Item>
+            <Dropdown.Item as={Link} to='/categoryItem/pants/featured_order'>
+              Featured
+            </Dropdown.Item>
+            <Dropdown.Item
+              as={Link}
+              to='/categoryItem/pants/title-ascending_order'>
+              Alphabetically, A-Z
+            </Dropdown.Item>
+            <Dropdown.Item
+              as={Link}
+              to='/categoryItem/pants/title-descending_order'>
+              Alphabetically, Z-A
+            </Dropdown.Item>
+            <Dropdown.Item
+              as={Link}
+              to='/categoryItem/pants/price-ascending_order'>
+              Price, low to high
+            </Dropdown.Item>
+            <Dropdown.Item
+              as={Link}
+              to='/categoryItem/pants/price-descending_order'>
+              Price, high to low
+            </Dropdown.Item>
+            <Dropdown.Item
+              as={Link}
+              to='/categoryItem/pants/created-ascending_order'>
+              Date, old to new
+            </Dropdown.Item>
+            <Dropdown.Item
+              as={Link}
+              to='/categoryItem/pants/created-descending_order'>
+              Date, new to old
+            </Dropdown.Item>
           </Dropdown.Menu>
-        </Dropdown>
+        </Dropdown> */}
       </div>
       <Row>
         <div className='custom-margin'>

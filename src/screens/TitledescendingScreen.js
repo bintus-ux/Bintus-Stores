@@ -4,23 +4,15 @@ import { pantsItems } from '../products_folder/products'
 import { Link } from 'react-router-dom'
 import { Container, Row, Col, Image } from 'react-bootstrap'
 
-const CategoryScreen = () => {
-  const location = useLocation()
-  console.log(location)
-  const ascending_order = pantsItems.sort((a, b) =>
-    a.name.localeCompare(b.name)
-  )
+const TitledescendingScreen = () => {
   const descending_order = pantsItems.sort((a, b) =>
     b.name.localeCompare(a.name)
   )
   return (
     <>
-      {location.pathname == '/categoryItem/pants/ascending_order'
-        ? 'true'
-        : 'false'}
-      {/* <Row>
+      <Row>
         <div className='custom-margin'>
-          {ascending_order.map((productItem) => (
+          {descending_order.map((productItem) => (
             <div xs={6} md={4} key={productItem._id} className='text-center'>
               <Link to={`/categoryItem/product/${productItem._id}`}>
                 <Image
@@ -43,9 +35,9 @@ const CategoryScreen = () => {
             </div>
           ))}
         </div>
-      </Row> */}
+      </Row>
     </>
   )
 }
 
-export default CategoryScreen
+export default TitledescendingScreen

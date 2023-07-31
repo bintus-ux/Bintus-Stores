@@ -5,7 +5,8 @@ import NavBar from './components/NavBar'
 import Footer from './components/Footer'
 import { Container } from 'react-bootstrap'
 import HomeScreen from './screens/HomeScreen'
-import CategoryScreen from './screens/CategoryScreen'
+import TitleascendingScreen from './screens/TitleascendingScreen'
+import TitledescendingScreen from './screens/TitledescendingScreen'
 import CatalogScreen from './screens/CatalogScreen'
 import FootwearScreen from './screens/FootwearScreen'
 import KnitwearScreen from './screens/KnitwearScreen'
@@ -39,14 +40,6 @@ const App = () => {
             <Route path='/categoryItem/tees' element={<TeesScreen />} />
             <Route path='/categoryItem/tshirts' element={<TshirtScreen />} />
             <Route path='/categoryItem/pants' element={<PantsScreen />} />
-            <Route
-              path='/categoryItem/pants/ascending_order'
-              element={<CategoryScreen />}
-            />
-            <Route
-              path='/categoryItem/pants/descending_order'
-              element={<CategoryScreen />}
-            />
           </Routes>
         </Container>
       </main>
