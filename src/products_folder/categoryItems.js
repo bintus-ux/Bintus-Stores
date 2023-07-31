@@ -2,7 +2,7 @@ const categoryItems = [
   {
     _id: 1,
     text: 'Hoodies',
-    image: '/hoodies_images/IMG_0842.JPG',
+    image: '/hoodies_images/IMG_1622.JPG',
   },
   {
     _id: 2,
@@ -16,8 +16,8 @@ const categoryItems = [
   },
   {
     _id: 4,
-    text: 'Shirts',
-    image: '/shirts_images/IMG_1637.JPG',
+    text: 'Tshirts',
+    image: '/tshirt_images/IMG_1628.JPG',
   },
   {
     _id: 5,
@@ -42,7 +42,7 @@ const categoryItems = [
   {
     _id: 9,
     text: 'Shorts',
-    image: '/shorts_images/IMG_1616.JPG',
+    image: '/shorts_images/IMG_1619.JPG',
   },
 ]
 

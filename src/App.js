@@ -12,6 +12,7 @@ import KnitwearScreen from './screens/KnitwearScreen'
 import HoodiesScreen from './screens/HoodiesScreen'
 import CapScreen from './screens/CapScreen'
 import TeesScreen from './screens/TeesScreen'
+import TshirtScreen from './screens/TshirtScreen'
 
 const App = () => {
   return (
@@ -36,6 +37,7 @@ const App = () => {
             <Route path='/categoryItem/hoodies' element={<HoodiesScreen />} />
             <Route path='/categoryItem/caps' element={<CapScreen />} />
             <Route path='/categoryItem/tees' element={<TeesScreen />} />
+            <Route path='/categoryItem/tshirts' element={<TshirtScreen />} />
           </Routes>
         </Container>
       </main>

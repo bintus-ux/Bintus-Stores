@@ -1,0 +1,43 @@
+import React from 'react'
+import { tshirtItems } from '../products_folder/products'
+import { Link } from 'react-router-dom'
+import { Container, Row, Col, Image } from 'react-bootstrap'
+
+const TshirtScreen = () => {
+  return (
+    <>
+      <div>
+        <h2 className='text-center text-capitalize font-italic'>Tshirt</h2>
+      </div>
+      <hr />
+      <Row>
+        <div className='custom-margin'>
+          {tshirtItems.map((tshirtItem) => (
+            <div xs={6} md={4} key={tshirtItem._id} className='text-center'>
+              <Link to={`/tshirt/${tshirtItem._id}`}>
+                <Image
+                  src={tshirtItem.image}
+                  className='img-fluid component-images darker'
+                  style={{ height: '450px', width: 'auto' }}
+                />
+              </Link>
+
+              <div>
+                <Link
+                  to={`/tshirt/${tshirtItem._id}`}
+                  style={{ textDecoration: 'none' }}>
+                  <h3 style={{ color: 'black' }} className='text-capitalize'>
+                    {tshirtItem.name}
+                  </h3>
+                  <h3 style={{ color: 'black' }}>- ₦{tshirtItem.price}</h3>
+                </Link>
+              </div>
+            </div>
+          ))}
+        </div>
+      </Row>
+    </>
+  )
+}
+
+export default TshirtScreen
