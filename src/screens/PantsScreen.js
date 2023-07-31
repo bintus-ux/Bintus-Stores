@@ -17,8 +17,14 @@ const PantsScreen = () => {
           </Dropdown.Toggle>
 
           <Dropdown.Menu>
-            <Dropdown.Item href='#/action-1'>Featured</Dropdown.Item>
-            <Dropdown.Item href='#/action-2'>Alphabetically, A-Z</Dropdown.Item>
+            <Link to={'/categoryItem/pants/ascending_order'}>
+              <Dropdown.Item href='#/action-1'>Featured</Dropdown.Item>
+            </Link>
+            <Link to={'/categoryItem/pants/descending_order'}>
+              <Dropdown.Item href='#/action-2'>
+                Alphabetically, A-Z
+              </Dropdown.Item>
+            </Link>
             <Dropdown.Item href='#/action-2'>Alphabetically, Z-A</Dropdown.Item>
             <Dropdown.Item href='#/action-3'>Price, low to high</Dropdown.Item>
             <Dropdown.Item href='#/action-3'>Price, high to low</Dropdown.Item>

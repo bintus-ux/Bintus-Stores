@@ -26,7 +26,6 @@ const App = () => {
             <Route path='/' element={<HomeScreen />} exact />
             <Route path='/catalog' element={<CatalogScreen />} exact />
             {/* <Route path='/categories/:id' element={<CategoryItems />} /> */}
-            <Route path='/categoryItem/:id' element={<CategoryScreen />} />
             <Route
               path='/categoryItem/footwears'
               element={<FootwearScreen />}
@@ -40,6 +39,14 @@ const App = () => {
             <Route path='/categoryItem/tees' element={<TeesScreen />} />
             <Route path='/categoryItem/tshirts' element={<TshirtScreen />} />
             <Route path='/categoryItem/pants' element={<PantsScreen />} />
+            <Route
+              path='/categoryItem/pants/ascending_order'
+              element={<CategoryScreen />}
+            />
+            <Route
+              path='/categoryItem/pants/descending_order'
+              element={<CategoryScreen />}
+            />
           </Routes>
         </Container>
       </main>
