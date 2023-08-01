@@ -7,12 +7,28 @@ import categoryItems from '../products_folder/categoryItems'
 const HomeScreen = () => {
   return (
     <>
+      <div className='container my-5'>
+        <div className='row'>
+          <div className='col-12'>
+            <h2 className='display-4 text-center text-capitalize font-italic'>
+              Welcome To Bintus Stores
+            </h2>
+            <hr className='border border-primary ' />
+          </div>
+        </div>
+      </div>
       <Container fluid>
-        <h1 className='text-header'>Welcome to Bintus Stores</h1>
-        <hr />
         <Slideshow products_0={products_0} />
-        <h2 className='text-header2'>Categories</h2>
-        <hr />
+        <div className='container my-5'>
+          <div className='row'>
+            <div className='col-12'>
+              <h2 className='display-4 text-center text-capitalize font-italic'>
+                Categories
+              </h2>
+              <hr className='border border-primary ' />
+            </div>
+          </div>
+        </div>
         <Row>
           <div className='custom-margin'>
             {categoryItems.map((categoryItem) => (

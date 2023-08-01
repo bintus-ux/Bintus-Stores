@@ -6,15 +6,24 @@ import { Container, Row, Col, Image } from 'react-bootstrap'
 const HoodiesScreen = () => {
   return (
     <>
-      <div>
-        <h2 className='text-center text-capitalize font-italic'>Hoodies</h2>
+      <Link className='btn btn-light my-3' to='/'>
+        Go Back
+      </Link>
+      <div className='container my-5'>
+        <div className='row'>
+          <div className='col-12'>
+            <h2 className='display-4 text-center text-capitalize font-italic'>
+              Hoodies
+            </h2>
+            <hr className='border border-primary ' />
+          </div>
+        </div>
       </div>
-      <hr />
       <Row>
         <div className='custom-margin'>
           {hoodiesItems.map((hoodiesItem) => (
             <div xs={6} md={4} key={hoodiesItem._id} className='text-center'>
-              <Link to={`/hoodies/${hoodiesItem._id}`}>
+              <Link to={`/categoryItem/hoodies/${hoodiesItem._id}`}>
                 <Image
                   src={hoodiesItem.image}
                   className='img-fluid component-images darker'
@@ -24,7 +33,7 @@ const HoodiesScreen = () => {
 
               <div>
                 <Link
-                  to={`/hoodies/${hoodiesItem._id}`}
+                  to={`/categoryItem/hoodies/${hoodiesItem._id}`}
                   style={{ textDecoration: 'none' }}>
                   <h3 style={{ color: 'black' }} className='text-capitalize'>
                     {hoodiesItem.name}

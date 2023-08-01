@@ -86,11 +86,8 @@ main {
     min-height: 80vh;
 }
 hr {
-    width: 10%;
-    text-align: center;
-    margin-left: 560px;
-    margin-bottom: 100px;
-    border: 1px solid black;
+  width: 7%;
+  margin: 0 auto;
 }
 .slide-image {
     height: 700px;

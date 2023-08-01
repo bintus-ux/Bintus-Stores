@@ -5,8 +5,6 @@ import NavBar from './components/NavBar'
 import Footer from './components/Footer'
 import { Container } from 'react-bootstrap'
 import HomeScreen from './screens/HomeScreen'
-import TitleascendingScreen from './screens/TitleascendingScreen'
-import TitledescendingScreen from './screens/TitledescendingScreen'
 import CatalogScreen from './screens/CatalogScreen'
 import FootwearScreen from './screens/FootwearScreen'
 import KnitwearScreen from './screens/KnitwearScreen'
@@ -15,6 +13,7 @@ import CapScreen from './screens/CapScreen'
 import TeesScreen from './screens/TeesScreen'
 import TshirtScreen from './screens/TshirtScreen'
 import PantsScreen from './screens/PantsScreen'
+import ItemScreen from './screens/ItemScreen'
 
 const App = () => {
   return (
@@ -36,6 +35,7 @@ const App = () => {
               element={<KnitwearScreen />}
             />
             <Route path='/categoryItem/hoodies' element={<HoodiesScreen />} />
+            <Route path='/categoryItem/hoodies/:id' element={<ItemScreen />} />
             <Route path='/categoryItem/caps' element={<CapScreen />} />
             <Route path='/categoryItem/tees' element={<TeesScreen />} />
             <Route path='/categoryItem/tshirts' element={<TshirtScreen />} />

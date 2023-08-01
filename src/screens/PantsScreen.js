@@ -25,11 +25,20 @@ const PantsScreen = () => {
 
   return (
     <>
-      <div className='text-center my-5'>
-        <div>
-          <h2 className='text-capitalize font-italic'>Pants</h2>
+      <Link className='btn btn-light my-3' to='/'>
+        Go Back
+      </Link>
+      <div className='container my-5'>
+        <div className='row'>
+          <div className='col-12'>
+            <h2 className='display-4 text-center text-capitalize font-italic'>
+              Caps
+            </h2>
+            <hr className='border border-primary ' />
+          </div>
         </div>
-        {/* <select
+      </div>
+      {/* <select
           class='selectpicker'
           name='sort_by'
           aria-label='.form-select-lg example'
@@ -45,6 +54,7 @@ const PantsScreen = () => {
           <option value='created-ascending'>Date, old to new</option>
           <option value='created-descending'>Date, new to old</option>
         </select> */}
+      <div className='text-center my-5'>
         <Dropdown>
           <Dropdown.Toggle variant='dark' id='dropdown-basic'>
             Date, old to new

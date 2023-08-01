@@ -6,11 +6,20 @@ import { Link } from 'react-router-dom'
 const CatalogScreen = () => {
   return (
     <>
-      <Container fluid>
-        <div>
-          <h2 className='text-center text-capitalize font-italic'>Catalog</h2>
+      <Link className='btn btn-light my-3' to='/'>
+        Go Back
+      </Link>
+      <div className='container my-5'>
+        <div className='row'>
+          <div className='col-12'>
+            <h2 className='display-4 text-center text-capitalize font-italic'>
+              Catalog
+            </h2>
+            <hr className='border border-primary ' />
+          </div>
         </div>
-        <hr />
+      </div>
+      <Container fluid>
         <Row>
           <div className='custom-margin'>
             {categoryItems.map((categoryItem) => (
