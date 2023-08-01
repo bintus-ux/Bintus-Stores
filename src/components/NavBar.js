@@ -43,15 +43,12 @@ const Header = () => {
                   </Nav.Link>
                 </LinkContainer>
                 <NavDropdown
-                  title='Dropdown'
+                  title='Account'
                   id={`offcanvasNavbarDropdown-expand-$'false`}>
-                  <NavDropdown.Item href='#action3'>Action</NavDropdown.Item>
-                  <NavDropdown.Item href='#action4'>
-                    Another action
-                  </NavDropdown.Item>
+                  <NavDropdown.Item href='#action3'>Log in</NavDropdown.Item>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item href='#action5'>
-                    Something else here
+                  <NavDropdown.Item href='#action4'>
+                    Create Account
                   </NavDropdown.Item>
                 </NavDropdown>
               </Nav>
