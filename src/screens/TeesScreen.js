@@ -23,7 +23,7 @@ const TeesScreen = () => {
         <div className='custom-margin'>
           {teesItems.map((teesItem) => (
             <div xs={6} md={4} key={teesItem._id} className='text-center'>
-              <Link to={`/tees/${teesItem._id}`}>
+              <Link to={`/categoryItem/${teesItem.category}/${teesItem._id}`}>
                 <Image
                   src={teesItem.image}
                   className='img-fluid component-images darker'
@@ -33,7 +33,7 @@ const TeesScreen = () => {
 
               <div>
                 <Link
-                  to={`/tees/${teesItem._id}`}
+                  to={`/categoryItem/${teesItem.category}/${teesItem._id}`}
                   style={{ textDecoration: 'none' }}>
                   <h3 style={{ color: 'black' }} className='text-teesitalize'>
                     {teesItem.name}

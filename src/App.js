@@ -31,15 +31,27 @@ const App = () => {
               element={<FootwearScreen />}
             />
             <Route
+              path='/categoryItem/footwears/:id'
+              element={<ItemScreen />}
+            />
+            <Route
               path='/categoryItem/knitwears'
               element={<KnitwearScreen />}
+            />
+            <Route
+              path='/categoryItem/knitwears/:id'
+              element={<ItemScreen />}
             />
             <Route path='/categoryItem/hoodies' element={<HoodiesScreen />} />
             <Route path='/categoryItem/hoodies/:id' element={<ItemScreen />} />
             <Route path='/categoryItem/caps' element={<CapScreen />} />
+            <Route path='/categoryItem/caps/:id' element={<ItemScreen />} />
             <Route path='/categoryItem/tees' element={<TeesScreen />} />
+            <Route path='/categoryItem/tees/:id' element={<ItemScreen />} />
             <Route path='/categoryItem/tshirts' element={<TshirtScreen />} />
+            <Route path='/categoryItem/tshirts/:id' element={<ItemScreen />} />
             <Route path='/categoryItem/pants' element={<PantsScreen />} />
+            <Route path='/categoryItem/pants/:id' element={<ItemScreen />} />
           </Routes>
         </Container>
       </main>

@@ -101,7 +101,7 @@ const PantsScreen = () => {
         <div className='custom-margin'>
           {pantsItems.map((pantsItem) => (
             <div xs={6} md={4} key={pantsItem._id} className='text-center'>
-              <Link to={`/pants/${pantsItem._id}`}>
+              <Link to={`/categoryItem/${pantsItem.category}/${pantsItem._id}`}>
                 <Image
                   src={pantsItem.image}
                   className='img-fluid component-images darker'
@@ -111,7 +111,7 @@ const PantsScreen = () => {
 
               <div>
                 <Link
-                  to={`/pants/${pantsItem._id}`}
+                  to={`/categoryItem/${pantsItem.category}/${pantsItem._id}`}
                   style={{ textDecoration: 'none' }}>
                   <h3 style={{ color: 'black' }} className='text-capitalize'>
                     {pantsItem.name}

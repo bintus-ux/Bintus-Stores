@@ -23,7 +23,8 @@ const FootwearScreen = () => {
         <div className='custom-margin'>
           {footwearItems.map((footwearItem) => (
             <div xs={6} md={4} key={footwearItem._id} className='text-center'>
-              <Link to={`/footwear/${footwearItem._id}`}>
+              <Link
+                to={`/categoryItem/${footwearItem.category}/${footwearItem._id}`}>
                 <Image
                   src={footwearItem.image}
                   className='img-fluid component-images darker'
@@ -33,7 +34,7 @@ const FootwearScreen = () => {
 
               <div>
                 <Link
-                  to={`/footwear/${footwearItem._id}`}
+                  to={`/categoryItem/${footwearItem.category}/${footwearItem._id}`}
                   style={{ textDecoration: 'none' }}>
                   <h3 style={{ color: 'black' }} className='text-capitalize'>
                     {footwearItem.name}

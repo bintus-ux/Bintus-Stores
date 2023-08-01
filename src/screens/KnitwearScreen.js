@@ -23,7 +23,8 @@ const KnitwearScreen = () => {
         <div className='custom-margin'>
           {knitwearItems.map((knitwearItem) => (
             <div xs={6} md={4} key={knitwearItem._id} className='text-center'>
-              <Link to={`/knitwear/${knitwearItem._id}`}>
+              <Link
+                to={`/categoryItem/${knitwearItem.category}/${knitwearItem._id}`}>
                 <Image
                   src={knitwearItem.image}
                   className='img-fluid component-images darker'
@@ -33,7 +34,7 @@ const KnitwearScreen = () => {
 
               <div>
                 <Link
-                  to={`/knitwear/${knitwearItem._id}`}
+                  to={`/categoryItem/${knitwearItem.category}/${knitwearItem._id}`}
                   style={{ textDecoration: 'none' }}>
                   <h3 style={{ color: 'black' }} className='text-capitalize'>
                     {knitwearItem.name}
