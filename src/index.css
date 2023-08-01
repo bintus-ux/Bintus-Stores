@@ -68,7 +68,6 @@ header  {
 .custom-margin {
     display: flex;
     flex-wrap: wrap;
-    border: #e65100 2px solid;
     justify-content: center;
     overflow: hidden;
     margin: auto;

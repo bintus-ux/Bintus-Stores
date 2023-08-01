@@ -1,31 +1,51 @@
-import React from 'react'
-import Dropdown from 'react-bootstrap/Dropdown'
+import React, { useState } from 'react'
+import { Dropdown } from 'react-bootstrap'
 import { pantsItems } from '../products_folder/products'
 import { Link } from 'react-router-dom'
 import { Container, Row, Col, Image } from 'react-bootstrap'
 
 const PantsScreen = () => {
+  const [pantsItem, setPantsItem] = useState([...pantsItems])
+  const [sortingOption, setSortingOption] = useState('asc') // default: ascending
+
+  const handleSortingOptionChange = (e) => {
+    setSortingOption(e.target.value)
+  }
+
+  // function to sort the data based on the selected sorting option
+  const sortPantsItem = () => {
+    const sortedPantsItem = [...pantsItem]
+    if (sortingOption === 'asc') {
+      sortedPantsItem.sort()
+    } else if (sortingOption === 'desc') {
+      sortedPantsItem.sort().reverse()
+    }
+    setPantsItem(sortedPantsItem)
+  }
+
   return (
     <>
       <div className='text-center my-5'>
         <div>
           <h2 className='text-capitalize font-italic'>Pants</h2>
         </div>
-        <select
+        {/* <select
           class='selectpicker'
+          name='sort_by'
           aria-label='.form-select-lg example'
-          data-width='100%'>
-          <option selected>Date, old to new</option>
-          <option selected>Date, new to old</option>
-          <option value='1'>Featured</option>
-          <option value='2'> Alphabetically, A-Z</option>
-          <option value='3'>Alphabetically, Z-A</option>
-          <option value='3'>Price, low to high</option>
-          <option value='3'>Price, high to low</option>
-          <option value='3'>Date, old to new</option>
-          <option value='3'>Date, new to old</option>
-        </select>
-        {/* <Dropdown>
+          data-width='100%'
+          onChange={handleSortingOptionChange}
+          value={sortingOption}>
+          <option value='manual'>Featured</option>
+          <option value='best-selling'>Best selling</option>
+          <option value='asc'> Alphabetically, A-Z</option>
+          <option value='desc'>Alphabetically, Z-A</option>
+          <option value='price-ascending'>Price, low to high</option>
+          <option value='price-descending'>Price, high to low</option>
+          <option value='created-ascending'>Date, old to new</option>
+          <option value='created-descending'>Date, new to old</option>
+        </select> */}
+        <Dropdown>
           <Dropdown.Toggle variant='dark' id='dropdown-basic'>
             Date, old to new
           </Dropdown.Toggle>
@@ -65,7 +85,7 @@ const PantsScreen = () => {
               Date, new to old
             </Dropdown.Item>
           </Dropdown.Menu>
-        </Dropdown> */}
+        </Dropdown>
       </div>
       <Row>
         <div className='custom-margin'>
