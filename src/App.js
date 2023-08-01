@@ -44,8 +44,8 @@ const App = () => {
             />
             <Route path='/categoryItem/hoodies' element={<HoodiesScreen />} />
             <Route path='/categoryItem/hoodies/:id' element={<ItemScreen />} />
-            <Route path='/categoryItem/caps' element={<CapScreen />} />
-            <Route path='/categoryItem/caps/:id' element={<ItemScreen />} />
+            <Route path='/categoryItem/Caps' element={<CapScreen />} />
+            <Route path='/categoryItem/Caps/:id' element={<ItemScreen />} />
             <Route path='/categoryItem/tees' element={<TeesScreen />} />
             <Route path='/categoryItem/tees/:id' element={<ItemScreen />} />
             <Route path='/categoryItem/tshirts' element={<TshirtScreen />} />
