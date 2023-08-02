@@ -24,7 +24,7 @@ const FootwearScreen = () => {
           {footwearItems.map((footwearItem) => (
             <div xs={6} md={4} key={footwearItem._id} className='text-center'>
               <Link
-                to={`/categoryItem/${footwearItem.category}/${footwearItem._id}`}>
+                to={`/categoryItem/${footwearItem.category}/${footwearItem.linkName}`}>
                 <Image
                   src={footwearItem.image}
                   className='img-fluid component-images darker'
@@ -34,7 +34,7 @@ const FootwearScreen = () => {
 
               <div>
                 <Link
-                  to={`/categoryItem/${footwearItem.category}/${footwearItem._id}`}
+                  to={`/categoryItem/${footwearItem.category}/${footwearItem.linkName}`}
                   style={{ textDecoration: 'none' }}>
                   <h3 style={{ color: 'black' }} className='text-capitalize'>
                     {footwearItem.name}

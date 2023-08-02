@@ -23,7 +23,8 @@ const CapScreen = () => {
         <div className='custom-margin'>
           {capItems.map((capItem) => (
             <div xs={6} md={4} key={capItem._id} className='text-center'>
-              <Link to={`/categoryItem/${capItem.category}/${capItem._id}`}>
+              <Link
+                to={`/categoryItem/${capItem.category}/${capItem.linkName}`}>
                 <Image
                   src={capItem.image}
                   className='img-fluid component-images darker'
@@ -33,7 +34,7 @@ const CapScreen = () => {
 
               <div>
                 <Link
-                  to={`/categoryItem/${capItem.category}/${capItem._id}`}
+                  to={`/categoryItem/${capItem.category}/${capItem.linkName}`}
                   style={{ textDecoration: 'none' }}>
                   <h3 style={{ color: 'black' }} className='text-capitalize'>
                     {capItem.name}
