@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import {
   Row,
   Col,
@@ -15,14 +15,15 @@ import {
 import { useParams } from 'react-router-dom'
 import { capItems } from '../products_folder/products'
 const ItemScreen = () => {
+  const navigate = useNavigate()
   const { id } = useParams()
   const cap = capItems.find((p) => p._id === id)
 
   return (
     <>
-      <Link className='btn btn-light my-3' to='/'>
+      <button className='btn btn-light my-3' onClick={() => navigate(-1)}>
         Go Back
-      </Link>
+      </button>
       <Row>
         <Col md={6}>
           <Image src={cap.image} alt={cap.name} fluid />
