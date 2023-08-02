@@ -70,7 +70,7 @@ const Header = () => {
                 src='logo bsss.jpg'
                 width='250'
                 height='200'
-                alt='Bintus Store'
+                alt='Bintus Store logo'
               />
             </Navbar.Brand>
           </LinkContainer>

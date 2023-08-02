@@ -109,6 +109,9 @@ margin: 100px 0 0 520px;
 .text-light {
     cursor: pointer;
 }
+.btn-xl {
+  width: 100%;
+}
 img.darker {
     transition: all 0.2s ease-in-out;
 }

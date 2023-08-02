@@ -24,7 +24,7 @@ const TshirtScreen = () => {
           {tshirtItems.map((tshirtItem) => (
             <div xs={6} md={4} key={tshirtItem._id} className='text-center'>
               <Link
-                to={`/categoryItem/${tshirtItem.category}/${tshirtItem._id}`}>
+                to={`/categoryItem/${tshirtItem.category}/${tshirtItem.linkName}`}>
                 <Image
                   src={tshirtItem.image}
                   className='img-fluid component-images darker'
@@ -34,7 +34,7 @@ const TshirtScreen = () => {
 
               <div>
                 <Link
-                  to={`/categoryItem/${tshirtItem.category}/${tshirtItem._id}`}
+                  to={`/categoryItem/${tshirtItem.category}/${tshirtItem.linkName}`}
                   style={{ textDecoration: 'none' }}>
                   <h3 style={{ color: 'black' }} className='text-capitalize'>
                     {tshirtItem.name}
