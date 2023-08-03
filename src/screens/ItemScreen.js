@@ -18,6 +18,7 @@ import {
   teesItems,
   footwearItems,
   tshirtItems,
+  newArrivals,
 } from '../products_folder/products'
 const ItemScreen = () => {
   const navigate = useNavigate()
@@ -26,6 +27,7 @@ const ItemScreen = () => {
   const tees = teesItems.find((p) => p.linkName === id)
   const footwear = footwearItems.find((p) => p.linkName === id)
   const tshirts = tshirtItems.find((p) => p.linkName === id)
+  const newItems = newArrivals.find((p) => p.linkName === id)
 
   return (
     <>
@@ -184,6 +186,69 @@ const ItemScreen = () => {
             <hr />
           </Col>
         </Row>
+      ) : newItems ? (
+        <>
+          <Row>
+            <Col md={6}>
+              <Image src={newItems.image} alt={newItems.name} fluid />
+            </Col>
+            <Col md={6} className='text-center'>
+              <ListGroup variant='flush'>
+                <ListGroupItem>
+                  <h3>{newItems.name}</h3>
+                </ListGroupItem>
+                <ListGroupItem>
+                  <h3>₦ {newItems.price}</h3>
+                </ListGroupItem>
+                <ListGroupItem>
+                  <p>{newItems.info}</p>
+                </ListGroupItem>
+                <ListGroupItem>
+                  <Button
+                    className='btn-block btn-xl'
+                    type='button'
+                    disabled={newItems.countInStock === 0}>
+                    Add To Cart
+                  </Button>
+                </ListGroupItem>
+                <ListGroupItem>
+                  <Button
+                    className='btn-block btn-light btn-xl'
+                    type='button'
+                    disabled={newItems.countInStock === 0}>
+                    Buy Now!
+                  </Button>
+                </ListGroupItem>
+              </ListGroup>
+              <hr />
+            </Col>
+          </Row>
+          <Row>
+            <Col md={12} className='text-center my-4'>
+              <h3>Customer Reviews</h3>
+            </Col>
+          </Row>
+          <Row>
+            <Col md={6} className='text-center'>
+              <i style={{ color: 'red' }} className='far fa-star'></i>
+              <i style={{ color: 'red' }} className='far fa-star'></i>
+              <i style={{ color: 'red' }} className='far fa-star'></i>
+              <i style={{ color: 'red' }} className='far fa-star'></i>
+              <i style={{ color: 'red' }} className='far fa-star'></i>
+              <p>Be the first to write a review!</p>
+            </Col>
+            <Col md={6}>
+              <Button className='btn-block btn-light btn-xl' type='button'>
+                Write a review!!
+              </Button>
+            </Col>
+          </Row>
+          <Row>
+            <Col md={12} className='text-center my-4'>
+              <h3>You may also like</h3>
+            </Col>
+          </Row>
+        </>
       ) : (
         ''
       )}
@@ -192,7 +257,7 @@ const ItemScreen = () => {
           <button
             className='btn btn-light btn-md my-3'
             onClick={() => navigate(-1)}>
-            <i className='fa-solid fa-circle-left mx-2'></i>Back to Cap Items
+            <i className='fa-solid fa-circle-left mx-2'></i>Back to Item Catalog
           </button>
         </Col>
       </Row>

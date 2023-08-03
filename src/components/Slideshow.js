@@ -6,7 +6,7 @@ const Slideshow = ({ products_0 }) => {
     <>
       <Carousel>
         {products_0.map((product) => (
-          <Carousel.Item>
+          <Carousel.Item key={product._id}>
             <Image
               className='slide-image w-100'
               src={product.image}
