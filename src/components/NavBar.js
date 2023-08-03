@@ -20,7 +20,7 @@ const Header = () => {
               <Offcanvas.Title
                 id='offcanvasNavbarLabel-expand-false'
                 style={{ fontSize: '20px' }}>
-                Bintus Stores
+                Bintus Store
               </Offcanvas.Title>
             </Offcanvas.Header>
             <Offcanvas.Body>
@@ -39,7 +39,7 @@ const Header = () => {
                 </LinkContainer>
                 <LinkContainer to='/about'>
                   <Nav.Link className='nav-link py-2'>
-                    About Bintus Stores
+                    About Bintus Store
                   </Nav.Link>
                 </LinkContainer>
                 <NavDropdown

@@ -11,7 +11,7 @@ const HomeScreen = () => {
         <div className='row'>
           <div className='col-12'>
             <h2 className='display-4 text-center text-capitalize font-italic'>
-              Welcome To Bintus Stores
+              Welcome To Bintus Store
             </h2>
             <hr className='border border-primary ' />
           </div>

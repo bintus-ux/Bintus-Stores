@@ -76,17 +76,22 @@ const ItemScreen = () => {
           </Row>
           <Row>
             <Col md={6} className='text-center'>
-              <i style={{ color: 'red' }} className='fas fa-star'></i>
-              <i style={{ color: 'red' }} className='fas fa-star'></i>
-              <i style={{ color: 'red' }} className='fas fa-star'></i>
-              <i style={{ color: 'red' }} className='fas fa-star'></i>
-              <i style={{ color: 'red' }} className='fas fa-star'></i>
+              <i style={{ color: 'red' }} className='far fa-star'></i>
+              <i style={{ color: 'red' }} className='far fa-star'></i>
+              <i style={{ color: 'red' }} className='far fa-star'></i>
+              <i style={{ color: 'red' }} className='far fa-star'></i>
+              <i style={{ color: 'red' }} className='far fa-star'></i>
               <p>Be the first to write a review!</p>
             </Col>
             <Col md={6}>
               <Button className='btn-block btn-light btn-xl' type='button'>
                 Write a review!!
               </Button>
+            </Col>
+          </Row>
+          <Row>
+            <Col md={12} className='text-center my-4'>
+              <h3>You may also like</h3>
             </Col>
           </Row>
         </>
@@ -177,6 +182,15 @@ const ItemScreen = () => {
       ) : (
         ''
       )}
+      <Row>
+        <Col md={12} className='text-center my-4'>
+          <button
+            className='btn btn-light btn-md my-3'
+            onClick={() => navigate(-1)}>
+            <i className='fa-solid fa-circle-left mx-2'></i>Back to Cap Items
+          </button>
+        </Col>
+      </Row>
     </>
   )
 }
