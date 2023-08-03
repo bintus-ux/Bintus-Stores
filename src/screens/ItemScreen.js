@@ -33,6 +33,7 @@ const ItemScreen = () => {
         Go Back
       </button>
       {cap ? (
+        // Mapping Per cap ids
         <>
           <Row>
             <Col md={6}>
@@ -96,6 +97,8 @@ const ItemScreen = () => {
           </Row>
         </>
       ) : tees ? (
+        // Mapping Per tees ids
+
         <Row>
           <Col md={6}>
             <Image src={tees.image} alt={tees.name} fluid />
@@ -124,6 +127,7 @@ const ItemScreen = () => {
           </Col>
         </Row>
       ) : footwear ? (
+        // Mapping Per footwear ids
         <Row>
           <Col md={6}>
             <Image src={footwear.image} alt={footwear.name} fluid />
@@ -152,6 +156,7 @@ const ItemScreen = () => {
           </Col>
         </Row>
       ) : tshirts ? (
+        // Mapping Per tshirt ids
         <Row>
           <Col md={6}>
             <Image src={tshirts.image} alt={tshirts.name} fluid />
