@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom'
 import { Container, Row, Col, Image } from 'react-bootstrap'
 
 const FootwearScreen = () => {
-  const isFound = footwearItems.some((cap) => {
-    if (cap._id) {
+  const isFound = footwearItems.some((footwear) => {
+    if (footwear._id) {
       return true
     }
     return false
@@ -37,11 +37,29 @@ const FootwearScreen = () => {
                   className='text-center'>
                   <Link
                     to={`/categoryItem/${footwearItem.category}/${footwearItem.linkName}`}>
-                    <Image
-                      src={footwearItem.image}
-                      className='img-fluid component-images darker'
-                      style={{ height: '450px', width: 'auto' }}
-                    />
+                    {footwearItem.countInStock === 0 ? (
+                      <>
+                        <div className='row justify-content-left'>
+                          <div className='circle d-flex align-items-center justify-content-center'>
+                            <p className='circle-text position-absolute'>
+                              Sold
+                              <br /> Out
+                            </p>
+                          </div>
+                        </div>
+                        <Image
+                          src={footwearItem.image}
+                          className='img-fluid component-images lighter'
+                          style={{ height: '450px', width: 'auto' }}
+                        />
+                      </>
+                    ) : (
+                      <Image
+                        src={footwearItem.image}
+                        className='img-fluid component-images darker'
+                        style={{ height: '450px', width: 'auto' }}
+                      />
+                    )}
                   </Link>
 
                   <div>

@@ -52,11 +52,29 @@ const HomeScreen = () => {
           {newArrivals.map((newArrival) => (
             <div xs={6} md={4} key={newArrival._id} className='text-center'>
               <Link to={`/${newArrival.category}/${newArrival.linkName}`}>
-                <Image
-                  src={newArrival.image}
-                  className='img-fluid component-images darker'
-                  style={{ height: '450px', width: 'auto' }}
-                />
+                {newArrival.countInStock === 0 ? (
+                  <>
+                    <div className='row justify-content-left'>
+                      <div className='circle d-flex align-items-center justify-content-center'>
+                        <p className='circle-text position-absolute'>
+                          Sold
+                          <br /> Out
+                        </p>
+                      </div>
+                    </div>
+                    <Image
+                      src={newArrival.image}
+                      className='img-fluid component-images lighter'
+                      style={{ height: '450px', width: 'auto' }}
+                    />
+                  </>
+                ) : (
+                  <Image
+                    src={newArrival.image}
+                    className='img-fluid component-images darker'
+                    style={{ height: '450px', width: 'auto' }}
+                  />
+                )}
               </Link>
 
               <div>
@@ -138,19 +156,6 @@ const HomeScreen = () => {
             </div>
           </div>
         </div>
-      </div>
-      <div className='container mt-5'>
-        <div className='row justify-content-center'>
-          <div className='circle d-flex align-items-center justify-content-center'>
-            <span className='circle-text'>Hello</span>
-          </div>
-        </div>
-      </div>
-      <div className='w-25 grid-product__sold-out'>
-        <p>
-          Sold
-          <br /> Out
-        </p>
       </div>
     </Container>
   )

@@ -14,6 +14,7 @@ import TeesScreen from './screens/TeesScreen'
 import TshirtScreen from './screens/TshirtScreen'
 import PantsScreen from './screens/PantsScreen'
 import ShortScreen from './screens/ShortScreen'
+import SetsScreen from './screens/SetsScreen'
 import ItemScreen from './screens/ItemScreen'
 
 const App = () => {
@@ -54,6 +55,8 @@ const App = () => {
             <Route path='/categoryItem/shorts' element={<ShortScreen />} />
             <Route path='/categoryItem/pants' element={<PantsScreen />} />
             <Route path='/categoryItem/pants/:id' element={<ItemScreen />} />
+            <Route path='/categoryItem/sets' element={<SetsScreen />} />
+            <Route path='/categoryItem/sets/:id' element={<ItemScreen />} />
             <Route path='/New-Arrivals/:id' element={<ItemScreen />} />
           </Routes>
         </Container>

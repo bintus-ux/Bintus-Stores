@@ -31,8 +31,8 @@ const categoryItems = [
   },
   {
     _id: 7,
-    text: 'Sweatshirts & Jackets',
-    image: '/sweatshirt_images/IMG_0924.JPG',
+    text: 'Sets',
+    image: '/sets_images/IMG_2093.JPG',
   },
   {
     _id: 8,

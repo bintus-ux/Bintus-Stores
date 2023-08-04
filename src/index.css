@@ -115,16 +115,19 @@ margin: 100px 0 0 520px;
 img.darker {
     transition: all 0.2s ease-in-out;
 }
+img.lighter {
+opacity: 50%;}
 img.darker:hover {
-    filter: brightness(50%);
+    filter: brightness(0.7);
 }
 .circle {
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
+  padding: 12px 8px 1px 9px;
   border-radius: 50%;
-  background-color: #007bff; /* Replace with your desired color */
-  color: #fff; /* Text color */
-  font-size: 24px; /* Text font size */
+  border: 1px solid #1f2021;
+  color: #000; /* Text color */
+  font-size: 12px; /* Text font size */
 }
 .circle-text {
   text-align: center;

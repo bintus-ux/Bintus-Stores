@@ -1,15 +1,16 @@
 import React from 'react'
-import { knitwearItems } from '../products_folder/products'
+import { setsItems } from '../products_folder/products'
 import { Link } from 'react-router-dom'
 import { Container, Row, Col, Image } from 'react-bootstrap'
 
-const KnitwearScreen = () => {
-  const isFound = knitwearItems.some((knitwear) => {
-    if (knitwear._id) {
+const SetsScreen = () => {
+  const isFound = setsItems.some((set) => {
+    if (set._id) {
       return true
     }
     return false
   })
+
   return (
     <>
       <Link className='btn btn-light my-3' to='/'>
@@ -21,7 +22,7 @@ const KnitwearScreen = () => {
             <div className='row'>
               <div className='col-12'>
                 <h2 className='display-4 text-center text-capitalize font-italic'>
-                  Knitwears
+                  Sets
                 </h2>
                 <hr className='border border-primary ' />
               </div>
@@ -29,15 +30,11 @@ const KnitwearScreen = () => {
           </div>
           <Row>
             <div className='custom-margin'>
-              {knitwearItems.map((knitwearItem) => (
-                <div
-                  xs={6}
-                  md={4}
-                  key={knitwearItem._id}
-                  className='text-center'>
+              {setsItems.map((setsItem) => (
+                <div xs={6} md={4} key={setsItem._id} className='text-center'>
                   <Link
-                    to={`/categoryItem/${knitwearItem.category}/${knitwearItem.linkName}`}>
-                    {knitwearItem.countInStock === 0 ? (
+                    to={`/categoryItem/${setsItem.category}/${setsItem.linkName}`}>
+                    {setsItem.countInStock === 0 ? (
                       <>
                         <div className='row justify-content-left'>
                           <div className='circle d-flex align-items-center justify-content-center'>
@@ -48,14 +45,14 @@ const KnitwearScreen = () => {
                           </div>
                         </div>
                         <Image
-                          src={knitwearItem.image}
+                          src={setsItem.image}
                           className='img-fluid component-images lighter'
                           style={{ height: '450px', width: 'auto' }}
                         />
                       </>
                     ) : (
                       <Image
-                        src={knitwearItem.image}
+                        src={setsItem.image}
                         className='img-fluid component-images darker'
                         style={{ height: '450px', width: 'auto' }}
                       />
@@ -64,16 +61,14 @@ const KnitwearScreen = () => {
 
                   <div>
                     <Link
-                      to={`/categoryItem/${knitwearItem.category}/${knitwearItem.linkName}`}
+                      to={`/categoryItem/${setsItem.category}/${setsItem.linkName}`}
                       style={{ textDecoration: 'none' }}>
                       <h3
                         style={{ color: 'black' }}
                         className='text-capitalize'>
-                        {knitwearItem.name}
+                        {setsItem.name}
                       </h3>
-                      <h3 style={{ color: 'black' }}>
-                        - ₦{knitwearItem.price}
-                      </h3>
+                      <h3 style={{ color: 'black' }}>- ₦{setsItem.price}</h3>
                     </Link>
                   </div>
                 </div>
@@ -86,7 +81,7 @@ const KnitwearScreen = () => {
           <div className='row'>
             <div className='col-12'>
               <p className='display-4 text-center font-italic'>
-                Sorry, there are no available items in this collection
+                Sorry, there are no available items in this collection.
               </p>
             </div>
           </div>
@@ -96,4 +91,4 @@ const KnitwearScreen = () => {
   )
 }
 
-export default KnitwearScreen
+export default SetsScreen

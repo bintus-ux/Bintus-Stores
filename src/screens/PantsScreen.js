@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom'
 import { Container, Row, Col, Image } from 'react-bootstrap'
 
 const PantsScreen = () => {
-  const isFound = pantsItems.some((cap) => {
-    if (cap._id) {
+  const isFound = pantsItems.some((pant) => {
+    if (pant._id) {
       return true
     }
     return false
@@ -95,17 +95,35 @@ const PantsScreen = () => {
               {pantsItems.map((pantsItem) => (
                 <div xs={6} md={4} key={pantsItem._id} className='text-center'>
                   <Link
-                    to={`/categoryItem/${pantsItem.category}/${pantsItem._id}`}>
-                    <Image
-                      src={pantsItem.image}
-                      className='img-fluid component-images darker'
-                      style={{ height: '450px', width: 'auto' }}
-                    />
+                    to={`/categoryItem/${pantsItem.category}/${pantsItem.linkName}`}>
+                    {pantsItem.countInStock === 0 ? (
+                      <>
+                        <div className='row justify-content-left'>
+                          <div className='circle d-flex align-items-center justify-content-center'>
+                            <p className='circle-text position-absolute'>
+                              Sold
+                              <br /> Out
+                            </p>
+                          </div>
+                        </div>
+                        <Image
+                          src={pantsItem.image}
+                          className='img-fluid component-images lighter'
+                          style={{ height: '450px', width: 'auto' }}
+                        />
+                      </>
+                    ) : (
+                      <Image
+                        src={pantsItem.image}
+                        className='img-fluid component-images darker'
+                        style={{ height: '450px', width: 'auto' }}
+                      />
+                    )}
                   </Link>
 
                   <div>
                     <Link
-                      to={`/categoryItem/${pantsItem.category}/${pantsItem._id}`}
+                      to={`/categoryItem/${pantsItem.category}/${pantsItem.linkName}`}
                       style={{ textDecoration: 'none' }}>
                       <h3
                         style={{ color: 'black' }}
