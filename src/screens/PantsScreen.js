@@ -5,30 +5,19 @@ import { Link } from 'react-router-dom'
 import { Container, Row, Col, Image } from 'react-bootstrap'
 
 const PantsScreen = () => {
-  const [pantsItem, setPantsItem] = useState([...pantsItems])
-  const [sortingOption, setSortingOption] = useState('asc') // default: ascending
-
-  const handleSortingOptionChange = (e) => {
-    setSortingOption(e.target.value)
-  }
-
-  // function to sort the data based on the selected sorting option
-  const sortPantsItem = () => {
-    const sortedPantsItem = [...pantsItem]
-    if (sortingOption === 'asc') {
-      sortedPantsItem.sort()
-    } else if (sortingOption === 'desc') {
-      sortedPantsItem.sort().reverse()
+  const isFound = pantsItems.some((cap) => {
+    if (cap._id) {
+      return true
     }
-    setPantsItem(sortedPantsItem)
-  }
+    return false
+  })
 
   return (
     <>
       <Link className='btn btn-light my-3' to='/'>
         Go Back
       </Link>
-      {pantsItem._id ? (
+      {isFound ? (
         <>
           <div className='container my-5'>
             <div className='row'>
@@ -135,8 +124,8 @@ const PantsScreen = () => {
         <div className='container my-5'>
           <div className='row'>
             <div className='col-12'>
-              <p className='display-4 text-center text-capitalize font-italic'>
-                Sorry, there no available items in this collection
+              <p className='display-4 text-center font-italic'>
+                Sorry, there are no available items in this collection.
               </p>
             </div>
           </div>

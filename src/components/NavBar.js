@@ -1,6 +1,7 @@
 import React from 'react'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
+import { Link } from 'react-router-dom'
 import { LinkContainer } from 'react-router-bootstrap'
 import Offcanvas from 'react-bootstrap/Offcanvas'
 
@@ -63,7 +64,7 @@ const Header = () => {
               </Form>
             </Offcanvas.Body>
           </Navbar.Offcanvas>
-          <LinkContainer to='/'>
+          <Link to='/'>
             <Navbar.Brand>
               <img
                 className='img-responsive img-fit'
@@ -73,7 +74,7 @@ const Header = () => {
                 alt='Bintus Store logo'
               />
             </Navbar.Brand>
-          </LinkContainer>
+          </Link>
           <Nav className='d-flex flex-row'>
             <Nav.Link href='/profile'>
               <i className='fa-solid fa-user px-3'></i>

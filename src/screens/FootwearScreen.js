@@ -4,12 +4,18 @@ import { Link } from 'react-router-dom'
 import { Container, Row, Col, Image } from 'react-bootstrap'
 
 const FootwearScreen = () => {
+  const isFound = footwearItems.some((cap) => {
+    if (cap._id) {
+      return true
+    }
+    return false
+  })
   return (
     <>
       <Link className='btn btn-light my-3' to='/'>
         Go Back
       </Link>
-      {footwearItems._id ? (
+      {isFound ? (
         <>
           <div className='container my-5'>
             <div className='row'>
@@ -61,8 +67,8 @@ const FootwearScreen = () => {
         <div className='container my-5'>
           <div className='row'>
             <div className='col-12'>
-              <p className='display-4 text-center text-capitalize font-italic'>
-                Sorry, there no available items in this collection
+              <p className='display-4 text-center font-italic'>
+                Sorry, there are no available items in this collection.
               </p>
             </div>
           </div>
