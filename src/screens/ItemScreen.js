@@ -243,30 +243,34 @@ const ItemScreen = () => {
             </Col>
             <Col md={6} className='text-center'>
               <ListGroup variant='flush'>
-                <ListGroupItem>
+                <ListGroupItem style={{ border: 'none' }}>
                   <h3>{tshirts.name}</h3>
                 </ListGroupItem>
-                <ListGroupItem>
+                <ListGroupItem style={{ border: 'none' }}>
                   <h3>₦ {tshirts.price}</h3>
                 </ListGroupItem>
-                <ListGroupItem>
+                <ListGroupItem style={{ border: 'none' }}>
                   <p>{tshirts.info}</p>
                 </ListGroupItem>
-                <ListGroupItem>
+                <ListGroupItem style={{ border: 'none' }}>
                   <Button
                     className='btn-block btn-xl'
                     type='button'
+                    style={{ border: 'none' }}
                     disabled={tshirts.countInStock === 0}>
                     Add To Cart
                   </Button>
                 </ListGroupItem>
-                <ListGroupItem>
+                <ListGroupItem style={{ border: 'none' }}>
                   <Button
                     className='btn-block btn-light btn-xl'
                     type='button'
                     disabled={tshirts.countInStock === 0}>
                     Buy Now!
                   </Button>
+                </ListGroupItem>
+                <ListGroupItem>
+                  <p>{tshirts.description}</p>
                 </ListGroupItem>
               </ListGroup>
               <hr />
