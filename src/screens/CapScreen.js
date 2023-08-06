@@ -1,9 +1,20 @@
-import React from 'react'
-import { capItems } from '../products_folder/products'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Container, Row, Col, Image } from 'react-bootstrap'
+import { Row, Image } from 'react-bootstrap'
+import axios from 'axios'
 
 const CapScreen = () => {
+  const [capItems, setCapItems] = useState([])
+
+  useEffect(() => {
+    const fetchCapItems = async () => {
+      const { data } = await axios.get('/api/categoryItems/caps')
+
+      setCapItems(data)
+    }
+
+    fetchCapItems()
+  }, [])
   const isFound = capItems.some((cap) => {
     if (cap._id) {
       return true

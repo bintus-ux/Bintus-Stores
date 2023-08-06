@@ -1,9 +1,21 @@
-import React from 'react'
-import { teesItems } from '../products_folder/products'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Container, Row, Col, Image } from 'react-bootstrap'
+import { Row, Image } from 'react-bootstrap'
+import axios from 'axios'
 
 const TeesScreen = () => {
+  const [teesItems, setTeesItems] = useState([])
+
+  useEffect(() => {
+    const fetchTeesItems = async () => {
+      const { data } = await axios.get('/api/categoryItems/tees')
+
+      setTeesItems(data)
+    }
+
+    fetchTeesItems()
+  }, [])
+
   const isFound = teesItems.some((tees) => {
     if (tees._id) {
       return true

@@ -1,12 +1,25 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Container, Row, Col, Image } from 'react-bootstrap'
 import { products_0 } from '../products_folder/products'
 import { newArrivals } from '../products_folder/products'
 import Slideshow from '../components/Slideshow'
 import CategoryItems from '../components/CategoryItems'
-import categoryItems from '../products_folder/categoryItems'
+import axios from 'axios'
+
 const HomeScreen = () => {
+  const [categoryItems, setCategoryItems] = useState([])
+
+  useEffect(() => {
+    const fetchCategoryItems = async () => {
+      const { data } = await axios.get('/api/categoryItems')
+
+      setCategoryItems(data)
+    }
+
+    fetchCategoryItems()
+  }, [])
+
   return (
     <Container fluid>
       <div className='my-5'>
