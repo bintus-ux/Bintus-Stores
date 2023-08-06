@@ -5,31 +5,25 @@ import {
   Col,
   Image,
   ListGroup,
-  Card,
   Button,
   ListGroupItem,
-  Form,
-  FormControl,
-  FormGroup,
-  FormLabel,
 } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
-import {
-  teesItems,
-  footwearItems,
-  tshirtItems,
-  knitwearItems,
-  newArrivals,
-  hoodiesItems,
-  setsItems,
-  pantsItems,
-} from '../products_folder/products'
+import { tshirtItems, newArrivals } from '../products_folder/products'
 import axios from 'axios'
 
 const ItemScreen = () => {
   const navigate = useNavigate()
   const { id } = useParams()
   const [cap, setCap] = useState({})
+  const [tee, setTee] = useState({})
+  const [knitwear, setKnitwear] = useState({})
+  const [footwear, setFootwear] = useState({})
+  const [hoodie, setHoodie] = useState({})
+  const [pant, setPant] = useState({})
+  const [set, setSet] = useState({})
+  const [short, setShort] = useState({})
+  const [tshirt, setTshirt] = useState({})
 
   useEffect(() => {
     const fetchCap = async () => {
@@ -40,14 +34,81 @@ const ItemScreen = () => {
 
     fetchCap()
   }, [])
-  const tees = teesItems.find((p) => p.linkName === id)
-  const footwear = footwearItems.find((p) => p.linkName === id)
-  const tshirts = tshirtItems.find((p) => p.linkName === id)
+
+  useEffect(() => {
+    const fetchTee = async () => {
+      const { data } = await axios.get(`/api/categoryItems/tees/${id}`)
+
+      setTee(data)
+    }
+
+    fetchTee()
+  }, [])
+
+  useEffect(() => {
+    const fetchKnitwear = async () => {
+      const { data } = await axios.get(`/api/categoryItems/knitwears/${id}`)
+
+      setKnitwear(data)
+    }
+
+    fetchKnitwear()
+  }, [])
+  useEffect(() => {
+    const fetchFootwear = async () => {
+      const { data } = await axios.get(`/api/categoryItems/footwears/${id}`)
+
+      setFootwear(data)
+    }
+
+    fetchFootwear()
+  }, [])
+  useEffect(() => {
+    const fetchHoodie = async () => {
+      const { data } = await axios.get(`/api/categoryItems/hoodies/${id}`)
+
+      setHoodie(data)
+    }
+
+    fetchHoodie()
+  }, [])
+  useEffect(() => {
+    const fetchPant = async () => {
+      const { data } = await axios.get(`/api/categoryItems/pants/${id}`)
+
+      setPant(data)
+    }
+
+    fetchPant()
+  }, [])
+  useEffect(() => {
+    const fetchSet = async () => {
+      const { data } = await axios.get(`/api/categoryItems/sets/${id}`)
+
+      setSet(data)
+    }
+
+    fetchSet()
+  }, [])
+  useEffect(() => {
+    const fetchShort = async () => {
+      const { data } = await axios.get(`/api/categoryItems/shorts/${id}`)
+
+      setShort(data)
+    }
+
+    fetchShort()
+  }, [])
+  useEffect(() => {
+    const fetchTshirt = async () => {
+      const { data } = await axios.get(`/api/categoryItems/tshirts/${id}`)
+
+      setTshirt(data)
+    }
+
+    fetchTshirt()
+  }, [])
   const newItems = newArrivals.find((p) => p.linkName === id)
-  const knitwear = knitwearItems.find((p) => p.linkName === id)
-  const hoodiesItem = hoodiesItems.find((p) => p.linkName === id)
-  const setsItem = setsItems.find((p) => p.linkName === id)
-  const pantsItem = pantsItems.find((p) => p.linkName === id)
 
   return (
     <>
@@ -124,35 +185,35 @@ const ItemScreen = () => {
             </Col>
           </Row>
         </>
-      ) : tees ? (
-        // Mapping Per tees ids
+      ) : tee ? (
+        // Mapping Per tee ids
         <>
           <Row>
             <Col md={6}>
-              <Image src={tees.image} alt={tees.name} fluid />
+              <Image src={tee.image} alt={tee.name} fluid />
             </Col>
             <Col md={6}>
               <ListGroup variant='flush'>
                 <ListGroupItem
                   className='text-center'
                   style={{ border: 'none' }}>
-                  <h3>{tees.name}</h3>
+                  <h3>{tee.name}</h3>
                 </ListGroupItem>
                 <ListGroupItem
                   className='text-center'
                   style={{ border: 'none' }}>
-                  <h3>₦ {tees.price}</h3>
+                  <h3>₦ {tee.price}</h3>
                 </ListGroupItem>
                 <ListGroupItem
                   className='text-center'
                   style={{ border: 'none' }}>
-                  <p>{tees.info}</p>
+                  <p>{tee.info}</p>
                 </ListGroupItem>
                 <ListGroupItem style={{ border: 'none' }}>
                   <Button
                     className='btn-block btn-xl'
                     type='button'
-                    disabled={tees.countInStock === 0}>
+                    disabled={tee.countInStock === 0}>
                     Add To Cart
                   </Button>
                 </ListGroupItem>
@@ -160,18 +221,18 @@ const ItemScreen = () => {
                   <Button
                     className='btn-block btn-light btn-xl'
                     type='button'
-                    disabled={tees.countInStock === 0}>
+                    disabled={tee.countInStock === 0}>
                     Buy Now!
                   </Button>
                 </ListGroupItem>
                 <ListGroupItem className='mt-5' style={{ border: 'none' }}>
-                  <p>{tees.desc_texture}</p>
+                  <p>{tee.desc_texture}</p>
                 </ListGroupItem>
                 <ListGroupItem style={{ border: 'none' }}>
-                  <p>{tees.desc_weight}</p>
+                  <p>{tee.desc_weight}</p>
                 </ListGroupItem>
                 <ListGroupItem style={{ border: 'none' }}>
-                  <p>{tees.desc_info}</p>
+                  <p>{tee.desc_info}</p>
                 </ListGroupItem>
               </ListGroup>
               <hr />
@@ -273,36 +334,36 @@ const ItemScreen = () => {
             </Col>
           </Row>
         </>
-      ) : tshirts ? (
+      ) : tshirt ? (
         // Mapping Per tshirt ids
         <>
           <Row>
             <Col md={6}>
-              <Image src={tshirts.image} alt={tshirts.name} fluid />
+              <Image src={tshirt.image} alt={tshirt.name} fluid />
             </Col>
             <Col md={6}>
               <ListGroup variant='flush'>
                 <ListGroupItem
                   className='text-center'
                   style={{ border: 'none' }}>
-                  <h3>{tshirts.name}</h3>
+                  <h3>{tshirt.name}</h3>
                 </ListGroupItem>
                 <ListGroupItem
                   className='text-center'
                   style={{ border: 'none' }}>
-                  <h3>₦ {tshirts.price}</h3>
+                  <h3>₦ {tshirt.price}</h3>
                 </ListGroupItem>
                 <ListGroupItem
                   className='text-center'
                   style={{ border: 'none' }}>
-                  <p>{tshirts.info}</p>
+                  <p>{tshirt.info}</p>
                 </ListGroupItem>
                 <ListGroupItem style={{ border: 'none' }}>
                   <Button
                     className='btn-block btn-xl'
                     type='button'
                     style={{ border: 'none' }}
-                    disabled={tshirts.countInStock === 0}>
+                    disabled={tshirt.countInStock === 0}>
                     Add To Cart
                   </Button>
                 </ListGroupItem>
@@ -310,12 +371,12 @@ const ItemScreen = () => {
                   <Button
                     className='btn-block btn-light btn-xl'
                     type='button'
-                    disabled={tshirts.countInStock === 0}>
+                    disabled={tshirt.countInStock === 0}>
                     Buy Now!
                   </Button>
                 </ListGroupItem>
                 <ListGroupItem>
-                  <p>{tshirts.description}</p>
+                  <p>{tshirt.description}</p>
                 </ListGroupItem>
               </ListGroup>
               <hr />
@@ -490,35 +551,35 @@ const ItemScreen = () => {
             </Col>
           </Row>
         </>
-      ) : hoodiesItem ? (
+      ) : hoodie ? (
         // Mapping Per hoodies ids
         <>
           <Row>
             <Col md={6}>
-              <Image src={hoodiesItem.image} alt={hoodiesItem.name} fluid />
+              <Image src={hoodie.image} alt={hoodie.name} fluid />
             </Col>
             <Col md={6}>
               <ListGroup variant='flush'>
                 <ListGroupItem
                   className='text-center'
                   style={{ border: 'none' }}>
-                  <h3>{hoodiesItem.name}</h3>
+                  <h3>{hoodie.name}</h3>
                 </ListGroupItem>
                 <ListGroupItem
                   className='text-center'
                   style={{ border: 'none' }}>
-                  <h3>₦ {hoodiesItem.price}</h3>
+                  <h3>₦ {hoodie.price}</h3>
                 </ListGroupItem>
                 <ListGroupItem
                   className='text-center'
                   style={{ border: 'none' }}>
-                  <p>{hoodiesItem.info}</p>
+                  <p>{hoodie.info}</p>
                 </ListGroupItem>
                 <ListGroupItem style={{ border: 'none' }}>
                   <Button
                     className='btn-block btn-xl'
                     type='button'
-                    disabled={hoodiesItem.countInStock === 0}>
+                    disabled={hoodie.countInStock === 0}>
                     Add To Cart
                   </Button>
                 </ListGroupItem>
@@ -526,18 +587,18 @@ const ItemScreen = () => {
                   <Button
                     className='btn-block btn-light btn-xl'
                     type='button'
-                    disabled={hoodiesItem.countInStock === 0}>
+                    disabled={hoodie.countInStock === 0}>
                     Buy Now!
                   </Button>
                 </ListGroupItem>
                 <ListGroupItem className='mt-5' style={{ border: 'none' }}>
-                  <p>{hoodiesItem.desc_1}</p>
+                  <p>{hoodie.desc_1}</p>
                 </ListGroupItem>
                 <ListGroupItem style={{ border: 'none' }}>
-                  <p>{hoodiesItem.desc_2}</p>
+                  <p>{hoodie.desc_2}</p>
                 </ListGroupItem>
                 <ListGroupItem style={{ border: 'none' }}>
-                  <p>{hoodiesItem.desc_3}</p>
+                  <p>{hoodie.desc_3}</p>
                 </ListGroupItem>
               </ListGroup>
               <hr />
@@ -569,35 +630,35 @@ const ItemScreen = () => {
             </Col>
           </Row>
         </>
-      ) : setsItem ? (
+      ) : set ? (
         // Mapping Per set ids
         <>
           <Row>
             <Col md={6}>
-              <Image src={setsItem.image} alt={setsItem.name} fluid />
+              <Image src={set.image} alt={set.name} fluid />
             </Col>
             <Col md={6}>
               <ListGroup variant='flush'>
                 <ListGroupItem
                   className='text-center'
                   style={{ border: 'none' }}>
-                  <h3>{setsItem.name}</h3>
+                  <h3>{set.name}</h3>
                 </ListGroupItem>
                 <ListGroupItem
                   className='text-center'
                   style={{ border: 'none' }}>
-                  <h3>₦ {setsItem.price}</h3>
+                  <h3>₦ {set.price}</h3>
                 </ListGroupItem>
                 <ListGroupItem
                   className='text-center'
                   style={{ border: 'none' }}>
-                  <p>{setsItem.info}</p>
+                  <p>{set.info}</p>
                 </ListGroupItem>
                 <ListGroupItem style={{ border: 'none' }}>
                   <Button
                     className='btn-block btn-xl'
                     type='button'
-                    disabled={setsItem.countInStock === 0}>
+                    disabled={set.countInStock === 0}>
                     Add To Cart
                   </Button>
                 </ListGroupItem>
@@ -605,12 +666,12 @@ const ItemScreen = () => {
                   <Button
                     className='btn-block btn-light btn-xl'
                     type='button'
-                    disabled={setsItem.countInStock === 0}>
+                    disabled={set.countInStock === 0}>
                     Buy Now!
                   </Button>
                 </ListGroupItem>
                 <ListGroupItem style={{ border: 'none' }}>
-                  <p>{setsItem.description}</p>
+                  <p>{set.description}</p>
                 </ListGroupItem>
               </ListGroup>
               <hr />
@@ -642,34 +703,34 @@ const ItemScreen = () => {
             </Col>
           </Row>
         </>
-      ) : pantsItem ? (
+      ) : pant ? (
         <>
           <Row>
             <Col md={6}>
-              <Image src={pantsItem.image} alt={pantsItem.name} fluid />
+              <Image src={pant.image} alt={pant.name} fluid />
             </Col>
             <Col md={6}>
               <ListGroup variant='flush'>
                 <ListGroupItem
                   className='text-center'
                   style={{ border: 'none' }}>
-                  <h3>{pantsItem.name}</h3>
+                  <h3>{pant.name}</h3>
                 </ListGroupItem>
                 <ListGroupItem
                   className='text-center'
                   style={{ border: 'none' }}>
-                  <h3>₦ {pantsItem.price}</h3>
+                  <h3>₦ {pant.price}</h3>
                 </ListGroupItem>
                 <ListGroupItem
                   className='text-center'
                   style={{ border: 'none' }}>
-                  <p>{pantsItem.info}</p>
+                  <p>{pant.info}</p>
                 </ListGroupItem>
                 <ListGroupItem style={{ border: 'none' }}>
                   <Button
                     className='btn-block btn-xl'
                     type='button'
-                    disabled={pantsItem.countInStock === 0}>
+                    disabled={pant.countInStock === 0}>
                     Add To Cart
                   </Button>
                 </ListGroupItem>
@@ -677,7 +738,76 @@ const ItemScreen = () => {
                   <Button
                     className='btn-block btn-light btn-xl'
                     type='button'
-                    disabled={pantsItem.countInStock === 0}>
+                    disabled={pant.countInStock === 0}>
+                    Buy Now!
+                  </Button>
+                </ListGroupItem>
+              </ListGroup>
+              <hr />
+            </Col>
+          </Row>
+          <Row>
+            <Col md={12} className='text-center my-4'>
+              <h3>Customer Reviews</h3>
+            </Col>
+          </Row>
+          <Row>
+            <Col md={6} className='text-center'>
+              <i style={{ color: 'red' }} className='far fa-star'></i>
+              <i style={{ color: 'red' }} className='far fa-star'></i>
+              <i style={{ color: 'red' }} className='far fa-star'></i>
+              <i style={{ color: 'red' }} className='far fa-star'></i>
+              <i style={{ color: 'red' }} className='far fa-star'></i>
+              <p>Be the first to write a review!</p>
+            </Col>
+            <Col md={6}>
+              <Button className='btn-block btn-light btn-xl' type='button'>
+                Leave a review!!
+              </Button>
+            </Col>
+          </Row>
+          <Row>
+            <Col md={12} className='text-center my-4'>
+              <h3>You may also like</h3>
+            </Col>
+          </Row>
+        </>
+      ) : short ? (
+        <>
+          <Row>
+            <Col md={6}>
+              <Image src={short.image} alt={short.name} fluid />
+            </Col>
+            <Col md={6}>
+              <ListGroup variant='flush'>
+                <ListGroupItem
+                  className='text-center'
+                  style={{ border: 'none' }}>
+                  <h3>{short.name}</h3>
+                </ListGroupItem>
+                <ListGroupItem
+                  className='text-center'
+                  style={{ border: 'none' }}>
+                  <h3>₦ {short.price}</h3>
+                </ListGroupItem>
+                <ListGroupItem
+                  className='text-center'
+                  style={{ border: 'none' }}>
+                  <p>{short.info}</p>
+                </ListGroupItem>
+                <ListGroupItem style={{ border: 'none' }}>
+                  <Button
+                    className='btn-block btn-xl'
+                    type='button'
+                    disabled={short.countInStock === 0}>
+                    Add To Cart
+                  </Button>
+                </ListGroupItem>
+                <ListGroupItem style={{ border: 'none' }}>
+                  <Button
+                    className='btn-block btn-light btn-xl'
+                    type='button'
+                    disabled={short.countInStock === 0}>
                     Buy Now!
                   </Button>
                 </ListGroupItem>

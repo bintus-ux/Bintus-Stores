@@ -1,9 +1,20 @@
-import React from 'react'
-import { hoodiesItems } from '../products_folder/products'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Container, Row, Col, Image } from 'react-bootstrap'
+import axios from 'axios'
 
 const HoodiesScreen = () => {
+  const [hoodiesItems, setHoodiesItems] = useState([])
+
+  useEffect(() => {
+    const fetchHoodiesItems = async () => {
+      const { data } = await axios.get('/api/categoryItems/hoodies')
+
+      setHoodiesItems(data)
+    }
+
+    fetchHoodiesItems()
+  }, [])
   const isFound = hoodiesItems.some((hoodies) => {
     if (hoodies._id) {
       return true

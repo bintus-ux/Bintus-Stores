@@ -1,9 +1,21 @@
-import React from 'react'
-import { tshirtItems } from '../products_folder/products'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Container, Row, Col, Image } from 'react-bootstrap'
+import axios from 'axios'
 
 const TshirtScreen = () => {
+  const [tshirtItems, setTshirtItems] = useState([])
+
+  useEffect(() => {
+    const fetchTshirtItems = async () => {
+      const { data } = await axios.get('/api/categoryItems/tshirts')
+
+      setTshirtItems(data)
+    }
+
+    fetchTshirtItems()
+  }, [])
+
   const isFound = tshirtItems.some((tshirt) => {
     if (tshirt._id) {
       return true

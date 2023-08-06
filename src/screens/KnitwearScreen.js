@@ -1,9 +1,21 @@
-import React from 'react'
-import { knitwearItems } from '../products_folder/products'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Container, Row, Col, Image } from 'react-bootstrap'
+import axios from 'axios'
 
 const KnitwearScreen = () => {
+  const [knitwearItems, setknitwearItems] = useState([])
+
+  useEffect(() => {
+    const fetchknitwearItems = async () => {
+      const { data } = await axios.get('/api/categoryItems/knitwears')
+
+      setknitwearItems(data)
+    }
+
+    fetchknitwearItems()
+  }, [])
+
   const isFound = knitwearItems.some((knitwear) => {
     if (knitwear._id) {
       return true

@@ -1,10 +1,22 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Dropdown } from 'react-bootstrap'
-import { pantsItems } from '../products_folder/products'
 import { Link } from 'react-router-dom'
-import { Container, Row, Col, Image } from 'react-bootstrap'
+import { Row, Image } from 'react-bootstrap'
+import axios from 'axios'
 
 const PantsScreen = () => {
+  const [pantsItems, setPantsItems] = useState([])
+
+  useEffect(() => {
+    const fetchPantsItems = async () => {
+      const { data } = await axios.get('/api/categoryItems/pants')
+
+      setPantsItems(data)
+    }
+
+    fetchPantsItems()
+  }, [])
+
   const isFound = pantsItems.some((pant) => {
     if (pant._id) {
       return true
@@ -29,22 +41,6 @@ const PantsScreen = () => {
               </div>
             </div>
           </div>
-          {/* <select
-          class='selectpicker'
-          name='sort_by'
-          aria-label='.form-select-lg example'
-          data-width='100%'
-          onChange={handleSortingOptionChange}
-          value={sortingOption}>
-          <option value='manual'>Featured</option>
-          <option value='best-selling'>Best selling</option>
-          <option value='asc'> Alphabetically, A-Z</option>
-          <option value='desc'>Alphabetically, Z-A</option>
-          <option value='price-ascending'>Price, low to high</option>
-          <option value='price-descending'>Price, high to low</option>
-          <option value='created-ascending'>Date, old to new</option>
-          <option value='created-descending'>Date, new to old</option>
-        </select> */}
           <div className='text-center my-5'>
             <Dropdown>
               <Dropdown.Toggle variant='dark' id='dropdown-basic'>

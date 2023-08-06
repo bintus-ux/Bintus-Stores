@@ -1,9 +1,21 @@
-import React from 'react'
-import { footwearItems } from '../products_folder/products'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Container, Row, Col, Image } from 'react-bootstrap'
+import axios from 'axios'
 
 const FootwearScreen = () => {
+  const [footwearItems, setFootwearItems] = useState([])
+
+  useEffect(() => {
+    const fetchFootwearItems = async () => {
+      const { data } = await axios.get('/api/categoryItems/footwears')
+
+      setFootwearItems(data)
+    }
+
+    fetchFootwearItems()
+  }, [])
+
   const isFound = footwearItems.some((footwear) => {
     if (footwear._id) {
       return true

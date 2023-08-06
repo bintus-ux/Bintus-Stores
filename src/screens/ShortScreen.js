@@ -1,9 +1,21 @@
-import React from 'react'
-import { shortItems } from '../products_folder/products'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Container, Row, Col, Image } from 'react-bootstrap'
+import axios from 'axios'
 
 const ShortScreen = () => {
+  const [shortItems, setShortItems] = useState([])
+
+  useEffect(() => {
+    const fetchShortItems = async () => {
+      const { data } = await axios.get('/api/categoryItems/shorts')
+
+      setShortItems(data)
+    }
+
+    fetchShortItems()
+  }, [])
+
   const isFound = shortItems.some((short) => {
     if (short._id) {
       return true
