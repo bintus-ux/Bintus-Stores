@@ -9,7 +9,6 @@ import {
   ListGroupItem,
 } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
-import { tshirtItems, newArrivals } from '../products_folder/products'
 import axios from 'axios'
 
 const ItemScreen = () => {
@@ -24,6 +23,7 @@ const ItemScreen = () => {
   const [set, setSet] = useState({})
   const [short, setShort] = useState({})
   const [tshirt, setTshirt] = useState({})
+  const [newArrival, setNewArrival] = useState({})
 
   useEffect(() => {
     const fetchCap = async () => {
@@ -108,7 +108,15 @@ const ItemScreen = () => {
 
     fetchTshirt()
   }, [])
-  const newItems = newArrivals.find((p) => p.linkName === id)
+  useEffect(() => {
+    const fetchNewArrival = async () => {
+      const { data } = await axios.get(`/api/categoryItems/newArrival/${id}`)
+
+      setNewArrival(data)
+    }
+
+    fetchNewArrival()
+  }, [])
 
   return (
     <>
@@ -408,35 +416,35 @@ const ItemScreen = () => {
             </Col>
           </Row>
         </>
-      ) : newItems ? (
-        // Mapping Per newitems ids
+      ) : newArrival ? (
+        // Mapping Per newArrival ids
         <>
           <Row>
             <Col md={6}>
-              <Image src={newItems.image} alt={newItems.name} fluid />
+              <Image src={newArrival.image} alt={newArrival.name} fluid />
             </Col>
             <Col md={6}>
               <ListGroup variant='flush'>
                 <ListGroupItem
                   className='text-center'
                   style={{ border: 'none' }}>
-                  <h3>{newItems.name}</h3>
+                  <h3>{newArrival.name}</h3>
                 </ListGroupItem>
                 <ListGroupItem
                   className='text-center'
                   style={{ border: 'none' }}>
-                  <h3>₦ {newItems.price}</h3>
+                  <h3>₦ {newArrival.price}</h3>
                 </ListGroupItem>
                 <ListGroupItem
                   className='text-center'
                   style={{ border: 'none' }}>
-                  <p>{newItems.info}</p>
+                  <p>{newArrival.info}</p>
                 </ListGroupItem>
                 <ListGroupItem style={{ border: 'none' }}>
                   <Button
                     className='btn-block btn-xl'
                     type='button'
-                    disabled={newItems.countInStock === 0}>
+                    disabled={newArrival.countInStock === 0}>
                     Add To Cart
                   </Button>
                 </ListGroupItem>
@@ -444,7 +452,7 @@ const ItemScreen = () => {
                   <Button
                     className='btn-block btn-light btn-xl'
                     type='button'
-                    disabled={newItems.countInStock === 0}>
+                    disabled={newArrival.countInStock === 0}>
                     Buy Now!
                   </Button>
                 </ListGroupItem>
