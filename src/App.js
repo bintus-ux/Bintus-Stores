@@ -16,6 +16,16 @@ import PantsScreen from './screens/PantsScreen'
 import ShortScreen from './screens/ShortScreen'
 import SetsScreen from './screens/SetsScreen'
 import ItemScreen from './screens/ItemScreen'
+import HoodieItemScreen from './screens/item screens/HoodieItemScreen'
+import CapItemScreen from './screens/item screens/CapItemScreen'
+import KnitwearItemScreen from './screens/item screens/KnitwearItemScreen'
+import FootwearItemScreen from './screens/item screens/FootwearItemScreen'
+import PantItemScreen from './screens/item screens/PantItemScreen'
+import ShortItemScreen from './screens/item screens/ShortItemScreen'
+import SetItemScreen from './screens/item screens/SetItemScreen'
+import TshirtItemScreen from './screens/item screens/TshirtItemScreen'
+import NewArrivalItemScreen from './screens/item screens/NewArrivalItemScreen'
+import TeeItemScreen from './screens/item screens/TeeItemScreen'
 
 const App = () => {
   return (
@@ -34,7 +44,7 @@ const App = () => {
             />
             <Route
               path='/categoryItem/footwears/:id'
-              element={<ItemScreen />}
+              element={<FootwearItemScreen />}
             />
             <Route
               path='/categoryItem/knitwears'
@@ -42,22 +52,39 @@ const App = () => {
             />
             <Route
               path='/categoryItem/knitwears/:id'
-              element={<ItemScreen />}
+              element={<KnitwearItemScreen />}
             />
             <Route path='/categoryItem/hoodies' element={<HoodiesScreen />} />
-            <Route path='/categoryItem/hoodies/:id' element={<ItemScreen />} />
+            <Route
+              path='/categoryItem/hoodies/:id'
+              element={<HoodieItemScreen />}
+            />
             <Route path='/categoryItem/Caps' element={<CapScreen />} />
-            <Route path='/categoryItem/Caps/:id' element={<ItemScreen />} />
+            <Route path='/categoryItem/Caps/:id' element={<CapItemScreen />} />
             <Route path='/categoryItem/tees' element={<TeesScreen />} />
-            <Route path='/categoryItem/tees/:id' element={<ItemScreen />} />
+            <Route path='/categoryItem/tees/:id' element={<TeeItemScreen />} />
             <Route path='/categoryItem/tshirts' element={<TshirtScreen />} />
-            <Route path='/categoryItem/tshirts/:id' element={<ItemScreen />} />
+            <Route
+              path='/categoryItem/tshirts/:id'
+              element={<TshirtItemScreen />}
+            />
             <Route path='/categoryItem/shorts' element={<ShortScreen />} />
+            <Route
+              path='/categoryItem/shorts/:id'
+              element={<ShortItemScreen />}
+            />
+
             <Route path='/categoryItem/pants' element={<PantsScreen />} />
-            <Route path='/categoryItem/pants/:id' element={<ItemScreen />} />
+            <Route
+              path='/categoryItem/pants/:id'
+              element={<PantItemScreen />}
+            />
             <Route path='/categoryItem/sets' element={<SetsScreen />} />
-            <Route path='/categoryItem/sets/:id' element={<ItemScreen />} />
-            <Route path='/New-Arrivals/:id' element={<ItemScreen />} />
+            <Route path='/categoryItem/sets/:id' element={<SetItemScreen />} />
+            <Route
+              path='/New-Arrivals/:id'
+              element={<NewArrivalItemScreen />}
+            />
           </Routes>
         </Container>
       </main>
