@@ -44,7 +44,7 @@ const ShortScreen = () => {
               {shortItems.map((shortItem) => (
                 <div xs={6} md={4} key={shortItem._id} className='text-center'>
                   <Link
-                    to={`/categoryItem/${shortItem.category}/${shortItem.linkName}`}>
+                    to={`/categoryItem/${shortItem.category}/${shortItem._id}`}>
                     {shortItem.countInStock === 0 ? (
                       <>
                         <div className='row justify-content-left'>
@@ -72,7 +72,7 @@ const ShortScreen = () => {
 
                   <div>
                     <Link
-                      to={`/categoryItem/${shortItem.category}/${shortItem.linkName}`}
+                      to={`/categoryItem/${shortItem.category}/${shortItem._id}`}
                       style={{ textDecoration: 'none' }}>
                       <h3
                         style={{ color: 'black' }}

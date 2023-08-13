@@ -15,7 +15,6 @@ import TshirtScreen from './screens/TshirtScreen'
 import PantsScreen from './screens/PantsScreen'
 import ShortScreen from './screens/ShortScreen'
 import SetsScreen from './screens/SetsScreen'
-import ItemScreen from './screens/ItemScreen'
 import HoodieItemScreen from './screens/item screens/HoodieItemScreen'
 import CapItemScreen from './screens/item screens/CapItemScreen'
 import KnitwearItemScreen from './screens/item screens/KnitwearItemScreen'
@@ -82,7 +81,7 @@ const App = () => {
             <Route path='/categoryItem/sets' element={<SetsScreen />} />
             <Route path='/categoryItem/sets/:id' element={<SetItemScreen />} />
             <Route
-              path='/New-Arrivals/:id'
+              path='/categoryItem/New-Arrivals/:id'
               element={<NewArrivalItemScreen />}
             />
           </Routes>

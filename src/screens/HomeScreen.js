@@ -64,7 +64,8 @@ const HomeScreen = () => {
         <div className='custom-margin'>
           {newArrivals.map((newArrival) => (
             <div xs={6} md={4} key={newArrival._id} className='text-center'>
-              <Link to={`/${newArrival.category}/${newArrival.linkName}`}>
+              <Link
+                to={`/categoryItem/${newArrival.category}/${newArrival._id}`}>
                 {newArrival.countInStock === 0 ? (
                   <>
                     <div className='row justify-content-left'>
@@ -92,7 +93,7 @@ const HomeScreen = () => {
 
               <div>
                 <Link
-                  to={`/categoryItem/${newArrival.category}/${newArrival.linkName}`}
+                  to={`/categoryItem/${newArrival.category}/${newArrival._id}`}
                   style={{ textDecoration: 'none' }}>
                   <h3 style={{ color: 'black' }} className='text-capitalize'>
                     {newArrival.name}
