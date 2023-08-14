@@ -30,14 +30,12 @@ const HomeScreen = () => {
 
   return (
     <Container fluid>
-      <div className='my-5'>
-        <div className='row'>
-          <div className='col-12'>
-            <h2 className='display-4 text-center text-capitalize font-italic'>
-              Welcome To Bintus Store
-            </h2>
-            <hr className='border border-primary ' />
-          </div>
+      <div className='row my-5'>
+        <div className='col-12'>
+          <h2 className='display-4 text-center text-capitalize font-italic'>
+            Welcome To Bintus Store
+          </h2>
+          <hr className='border border-primary ' />
         </div>
       </div>
       <Slideshow products_0={products_0} />
