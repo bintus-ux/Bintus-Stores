@@ -48,7 +48,7 @@ const KnitwearScreen = () => {
                   key={knitwearItem._id}
                   className='text-center'>
                   <Link
-                    to={`/categoryItem/${knitwearItem.category}/${knitwearItem._id}`}>
+                    to={`/categoryItems/${knitwearItem.category}/${knitwearItem._id}`}>
                     {knitwearItem.countInStock === 0 ? (
                       <>
                         <div className='row justify-content-left'>
@@ -76,7 +76,7 @@ const KnitwearScreen = () => {
 
                   <div>
                     <Link
-                      to={`/categoryItem/${knitwearItem.category}/${knitwearItem._id}`}
+                      to={`/categoryItems/${knitwearItem.category}/${knitwearItem._id}`}
                       style={{ textDecoration: 'none' }}>
                       <h3
                         style={{ color: 'black' }}

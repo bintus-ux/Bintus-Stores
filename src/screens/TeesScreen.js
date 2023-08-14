@@ -44,7 +44,7 @@ const TeesScreen = () => {
               {teesItems.map((teesItem) => (
                 <div xs={6} md={4} key={teesItem._id} className='text-center'>
                   <Link
-                    to={`/categoryItem/${teesItem.category}/${teesItem._id}`}>
+                    to={`/categoryItems/${teesItem.category}/${teesItem._id}`}>
                     {teesItem.countInStock === 0 ? (
                       <>
                         <div className='row justify-content-left'>
@@ -72,7 +72,7 @@ const TeesScreen = () => {
 
                   <div>
                     <Link
-                      to={`/categoryItem/${teesItem.category}/${teesItem._id}`}
+                      to={`/categoryItems/${teesItem.category}/${teesItem._id}`}
                       style={{ textDecoration: 'none' }}>
                       <h3
                         style={{ color: 'black' }}

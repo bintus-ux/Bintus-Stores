@@ -65,15 +65,13 @@ const Header = () => {
             </Offcanvas.Body>
           </Navbar.Offcanvas>
           <Link to='/'>
-            <Navbar.Brand>
-              <img
-                className='img-responsive img-fit'
-                src='logo bsss.jpg'
-                width='250'
-                height='200'
-                alt='Bintus Store logo'
-              />
-            </Navbar.Brand>
+            <img
+              className='img-responsive img-fit'
+              src='/logo_bs.jpg'
+              width='250'
+              height='200'
+              alt='Bintus Store logo'
+            />
           </Link>
           <Nav className='d-flex flex-row'>
             <Nav.Link href='/profile'>

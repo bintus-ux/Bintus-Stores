@@ -9,15 +9,23 @@ import axios from 'axios'
 
 const HomeScreen = () => {
   const [categoryItems, setCategoryItems] = useState([])
+  const [newArrivalItems, setNewArrivalItems] = useState([])
+
+  const fetchNewArrivalItems = async () => {
+    const { data } = await axios.get('/api/categoryItems/new-arrivals')
+    console.log(data, 'new')
+    setNewArrivalItems(data.data)
+  }
 
   useEffect(() => {
     const fetchCategoryItems = async () => {
       const { data } = await axios.get('/api/categoryItems')
-
+      console.log(data)
       setCategoryItems(data)
     }
 
     fetchCategoryItems()
+    fetchNewArrivalItems()
   }, [])
 
   return (
@@ -62,10 +70,10 @@ const HomeScreen = () => {
       </div>
       <Row>
         <div className='custom-margin'>
-          {newArrivals.map((newArrival) => (
+          {newArrivalItems.map((newArrival) => (
             <div xs={6} md={4} key={newArrival._id} className='text-center'>
               <Link
-                to={`/categoryItem/${newArrival.category}/${newArrival._id}`}>
+                to={`/categoryItems/${newArrival.category}/${newArrival._id}`}>
                 {newArrival.countInStock === 0 ? (
                   <>
                     <div className='row justify-content-left'>
@@ -93,7 +101,7 @@ const HomeScreen = () => {
 
               <div>
                 <Link
-                  to={`/categoryItem/${newArrival.category}/${newArrival._id}`}
+                  to={`/categoryItems/${newArrival.category}/${newArrival._id}`}
                   style={{ textDecoration: 'none' }}>
                   <h3 style={{ color: 'black' }} className='text-capitalize'>
                     {newArrival.name}

@@ -38,50 +38,50 @@ const App = () => {
             <Route path='/catalog' element={<CatalogScreen />} exact />
             {/* <Route path='/categories/:id' element={<CategoryItems />} /> */}
             <Route
-              path='/categoryItem/footwears'
+              path='/categoryItems/footwears'
               element={<FootwearScreen />}
             />
             <Route
-              path='/categoryItem/footwears/:id'
+              path='/categoryItems/footwears/:id'
               element={<FootwearItemScreen />}
             />
             <Route
-              path='/categoryItem/knitwears'
+              path='/categoryItems/knitwears'
               element={<KnitwearScreen />}
             />
             <Route
-              path='/categoryItem/knitwears/:id'
+              path='/categoryItems/knitwears/:id'
               element={<KnitwearItemScreen />}
             />
-            <Route path='/categoryItem/hoodies' element={<HoodiesScreen />} />
+            <Route path='/categoryItems/hoodies' element={<HoodiesScreen />} />
             <Route
-              path='/categoryItem/hoodies/:id'
+              path='/categoryItems/hoodies/:id'
               element={<HoodieItemScreen />}
             />
-            <Route path='/categoryItem/Caps' element={<CapScreen />} />
-            <Route path='/categoryItem/Caps/:id' element={<CapItemScreen />} />
-            <Route path='/categoryItem/tees' element={<TeesScreen />} />
-            <Route path='/categoryItem/tees/:id' element={<TeeItemScreen />} />
-            <Route path='/categoryItem/tshirts' element={<TshirtScreen />} />
+            <Route path='/categoryItems/Caps' element={<CapScreen />} />
+            <Route path='/categoryItems/Caps/:id' element={<CapItemScreen />} />
+            <Route path='/categoryItems/tees' element={<TeesScreen />} />
+            <Route path='/categoryItems/tees/:id' element={<TeeItemScreen />} />
+            <Route path='/categoryItems/tshirts' element={<TshirtScreen />} />
             <Route
-              path='/categoryItem/tshirts/:id'
+              path='/categoryItems/tshirts/:id'
               element={<TshirtItemScreen />}
             />
-            <Route path='/categoryItem/shorts' element={<ShortScreen />} />
+            <Route path='/categoryItems/shorts' element={<ShortScreen />} />
             <Route
-              path='/categoryItem/shorts/:id'
+              path='/categoryItems/shorts/:id'
               element={<ShortItemScreen />}
             />
 
-            <Route path='/categoryItem/pants' element={<PantsScreen />} />
+            <Route path='/categoryItems/pants' element={<PantsScreen />} />
             <Route
-              path='/categoryItem/pants/:id'
+              path='/categoryItems/pants/:id'
               element={<PantItemScreen />}
             />
-            <Route path='/categoryItem/sets' element={<SetsScreen />} />
-            <Route path='/categoryItem/sets/:id' element={<SetItemScreen />} />
+            <Route path='/categoryItems/sets' element={<SetsScreen />} />
+            <Route path='/categoryItems/sets/:id' element={<SetItemScreen />} />
             <Route
-              path='/categoryItem/New-Arrivals/:id'
+              path='/categoryItems/New-Arrivals/:id'
               element={<NewArrivalItemScreen />}
             />
           </Routes>
