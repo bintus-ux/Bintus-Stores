@@ -25,6 +25,7 @@ import SetItemScreen from './screens/item screens/SetItemScreen'
 import TshirtItemScreen from './screens/item screens/TshirtItemScreen'
 import NewArrivalItemScreen from './screens/item screens/NewArrivalItemScreen'
 import TeeItemScreen from './screens/item screens/TeeItemScreen'
+import CartScreen from './screens/CartScreen'
 
 const App = () => {
   return (
@@ -84,6 +85,7 @@ const App = () => {
               path='/categoryItems/New-Arrivals/:id'
               element={<NewArrivalItemScreen />}
             />
+            <Route path='/cart/:id?' element={<CartScreen />} />
           </Routes>
         </Container>
       </main>
