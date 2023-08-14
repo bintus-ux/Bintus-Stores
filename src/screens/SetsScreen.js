@@ -45,7 +45,7 @@ const SetsScreen = () => {
               {setsItems.map((setsItem) => (
                 <div xs={6} md={4} key={setsItem._id} className='text-center'>
                   <Link
-                    to={`/categoryItem/${setsItem.category}/${setsItem._id}`}>
+                    to={`/categoryItems/${setsItem.category}/${setsItem._id}`}>
                     {setsItem.countInStock === 0 ? (
                       <>
                         <div className='row justify-content-left'>
@@ -73,7 +73,7 @@ const SetsScreen = () => {
 
                   <div>
                     <Link
-                      to={`/categoryItem/${setsItem.category}/${setsItem._id}`}
+                      to={`/categoryItems/${setsItem.category}/${setsItem._id}`}
                       style={{ textDecoration: 'none' }}>
                       <h3
                         style={{ color: 'black' }}

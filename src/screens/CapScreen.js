@@ -42,7 +42,8 @@ const CapScreen = () => {
             <div className='custom-margin'>
               {capItems.map((capItem) => (
                 <div xs={6} md={4} key={capItem._id} className='text-center'>
-                  <Link to={`/categoryItem/${capItem.category}/${capItem._id}`}>
+                  <Link
+                    to={`/categoryItems/${capItem.category}/${capItem._id}`}>
                     {capItem.countInStock === 0 ? (
                       <>
                         <div className='row justify-content-left'>
@@ -70,7 +71,7 @@ const CapScreen = () => {
 
                   <div>
                     <Link
-                      to={`/categoryItem/${capItem.category}/${capItem._id}`}
+                      to={`/categoryItems/${capItem.category}/${capItem._id}`}
                       style={{ textDecoration: 'none' }}>
                       <h3
                         style={{ color: 'black' }}

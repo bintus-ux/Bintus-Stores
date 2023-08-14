@@ -44,7 +44,7 @@ const TshirtScreen = () => {
               {tshirtItems.map((tshirtItem) => (
                 <div xs={6} md={4} key={tshirtItem._id} className='text-center'>
                   <Link
-                    to={`/categoryItem/${tshirtItem.category}/${tshirtItem._id}`}>
+                    to={`/categoryItems/${tshirtItem.category}/${tshirtItem._id}`}>
                     {tshirtItem.countInStock === 0 ? (
                       <>
                         <div className='row justify-content-left'>
@@ -72,7 +72,7 @@ const TshirtScreen = () => {
 
                   <div>
                     <Link
-                      to={`/categoryItem/${tshirtItem.category}/${tshirtItem._id}`}
+                      to={`/categoryItems/${tshirtItem.category}/${tshirtItem._id}`}
                       style={{ textDecoration: 'none' }}>
                       <h3
                         style={{ color: 'black' }}
