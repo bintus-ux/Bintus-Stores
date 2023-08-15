@@ -1,8 +1,11 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
+import { capItemListReducer } from './reducers/capItemReducers'
 
-const reducer = combineReducers({})
+const reducer = combineReducers({
+  capList: capItemListReducer,
+})
 
 const initialState = {}
 
