@@ -51,7 +51,7 @@ const CapItemScreen = () => {
                 <ListGroupItem
                   className='text-center'
                   style={{ border: 'none' }}>
-                  <h3>₦ {cap.price}</h3>
+                  <h3>₦{cap.price}</h3>
                 </ListGroupItem>
                 <ListGroupItem
                   className='text-center'

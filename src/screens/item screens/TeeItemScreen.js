@@ -46,7 +46,7 @@ const TeeItemScreen = () => {
                 <ListGroupItem
                   className='text-center'
                   style={{ border: 'none' }}>
-                  <h3>₦ {tee.price}</h3>
+                  <h3>₦{tee.price}</h3>
                 </ListGroupItem>
                 <ListGroupItem
                   className='text-center'

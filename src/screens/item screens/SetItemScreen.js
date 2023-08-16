@@ -46,7 +46,7 @@ const SetItemScreen = () => {
                 <ListGroupItem
                   className='text-center'
                   style={{ border: 'none' }}>
-                  <h3>₦ {set.price}</h3>
+                  <h3>₦{set.price}</h3>
                 </ListGroupItem>
                 <ListGroupItem
                   className='text-center'
