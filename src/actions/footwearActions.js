@@ -1,3 +1,4 @@
+import axios from 'axios'
 import {
   FOOTWEARITEMS_LIST_REQUEST,
   FOOTWEARITEMS_LIST_SUCCESS,

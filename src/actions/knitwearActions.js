@@ -1,3 +1,4 @@
+import axios from 'axios'
 import {
   KNITWEARITEMS_LIST_REQUEST,
   KNITWEARITEMS_LIST_SUCCESS,
