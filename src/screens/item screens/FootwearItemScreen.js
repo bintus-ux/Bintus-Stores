@@ -25,6 +25,11 @@ const FootwearItemScreen = () => {
   useEffect(() => {
     dispatch(listFootwearItemDetails(id))
   }, [dispatch, id])
+
+  const addToCartFunction = () => {
+    navigate(`/cart/${id}`)
+  }
+
   return (
     <>
       <button className='btn btn-light my-3' onClick={() => navigate(-1)}>
@@ -65,6 +70,7 @@ const FootwearItemScreen = () => {
                     </ListGroupItem>
                     <ListGroupItem style={{ border: 'none' }}>
                       <Button
+                        onClick={addToCartFunction}
                         className='btn-block btn-xl'
                         type='button'
                         disabled={footwearItem.countInStock === 0}>

@@ -24,6 +24,11 @@ const HoodieItemScreen = () => {
   useEffect(() => {
     dispatch(listHoodieItemDetails(id))
   }, [dispatch, id])
+
+  const addToCartFunction = () => {
+    navigate(`/cart/${id}`)
+  }
+
   return (
     <>
       <button className='btn btn-light my-3' onClick={() => navigate(-1)}>
@@ -60,6 +65,7 @@ const HoodieItemScreen = () => {
                     </ListGroupItem>
                     <ListGroupItem style={{ border: 'none' }}>
                       <Button
+                        onClick={addToCartFunction}
                         className='btn-block btn-xl'
                         type='button'
                         disabled={hoodieItem.countInStock === 0}>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 import {
   Row,
   Col,
@@ -9,108 +10,122 @@ import {
   ListGroupItem,
 } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
-import axios from 'axios'
+import Message from '../../components/Message'
+import Loader from '../../components/Loader'
+import { listTeeItemDetails } from '../../actions/teeActions'
 
 const TeeItemScreen = () => {
   const { id } = useParams()
   const navigate = useNavigate()
-  const [tee, setTee] = useState({})
+  const dispatch = useDispatch()
+
+  const teeDetails = useSelector((state) => state.teeDetails)
+  const { loading, error, teeItem } = teeDetails
 
   useEffect(() => {
-    const fetchTee = async () => {
-      const { data } = await axios.get(`/api/categoryItems/tees/${id}`)
+    dispatch(listTeeItemDetails(id))
+  }, [dispatch, id])
 
-      setTee(data)
-    }
+  const addToCartFunction = () => {
+    navigate(`/cart/${id}`)
+  }
 
-    fetchTee()
-  }, [])
   return (
     <>
       <button className='btn btn-light my-3' onClick={() => navigate(-1)}>
         Go Back
       </button>
-      {tee ? (
+      {loading ? (
+        <Loader />
+      ) : error ? (
+        <Message variant='danger'>{error}</Message>
+      ) : (
         <>
-          <Row>
-            <Col md={6}>
-              <Image src={tee.image} alt={tee.name} fluid />
-            </Col>
-            <Col md={6}>
-              <ListGroup variant='flush'>
-                <ListGroupItem
-                  className='text-center'
-                  style={{ border: 'none' }}>
-                  <h3>{tee.name}</h3>
-                </ListGroupItem>
-                <ListGroupItem
-                  className='text-center'
-                  style={{ border: 'none' }}>
-                  <h3>₦{tee.price}</h3>
-                </ListGroupItem>
-                <ListGroupItem
-                  className='text-center'
-                  style={{ border: 'none' }}>
-                  <p>{tee.info}</p>
-                </ListGroupItem>
-                <ListGroupItem style={{ border: 'none' }}>
-                  <Button
-                    className='btn-block btn-xl'
-                    type='button'
-                    disabled={tee.countInStock === 0}>
-                    Add To Cart
+          {teeItem ? (
+            <>
+              <Row>
+                <Col md={6}>
+                  <Image src={teeItem.image} alt={teeItem.name} fluid />
+                </Col>
+                <Col md={6}>
+                  <ListGroup variant='flush'>
+                    <ListGroupItem
+                      className='text-center'
+                      style={{ border: 'none' }}>
+                      <h3>{teeItem.name}</h3>
+                    </ListGroupItem>
+                    <ListGroupItem
+                      className='text-center'
+                      style={{ border: 'none' }}>
+                      <h3>₦{teeItem.price}</h3>
+                    </ListGroupItem>
+                    <ListGroupItem
+                      className='text-center'
+                      style={{ border: 'none' }}>
+                      <p>{teeItem.info}</p>
+                    </ListGroupItem>
+                    <ListGroupItem style={{ border: 'none' }}>
+                      <Button
+                        onClick={addToCartFunction}
+                        className='btn-block btn-xl'
+                        type='button'
+                        disabled={teeItem.countInStock === 0}>
+                        Add To Cart
+                      </Button>
+                    </ListGroupItem>
+                    <ListGroupItem style={{ border: 'none' }}>
+                      <Button
+                        className='btn-block btn-light btn-xl'
+                        type='button'
+                        disabled={teeItem.countInStock === 0}>
+                        Buy Now!
+                      </Button>
+                    </ListGroupItem>
+                  </ListGroup>
+                  <hr />
+                </Col>
+              </Row>
+              <Row>
+                <Col md={12} className='text-center my-4'>
+                  <h3>Customer Reviews</h3>
+                </Col>
+              </Row>
+              <Row>
+                <Col md={6} className='text-center'>
+                  <i style={{ color: 'red' }} className='far fa-star'></i>
+                  <i style={{ color: 'red' }} className='far fa-star'></i>
+                  <i style={{ color: 'red' }} className='far fa-star'></i>
+                  <i style={{ color: 'red' }} className='far fa-star'></i>
+                  <i style={{ color: 'red' }} className='far fa-star'></i>
+                  <p>Be the first to write a review!</p>
+                </Col>
+                <Col md={6}>
+                  <Button className='btn-block btn-light btn-xl' type='button'>
+                    Leave a review!!
                   </Button>
-                </ListGroupItem>
-                <ListGroupItem style={{ border: 'none' }}>
-                  <Button
-                    className='btn-block btn-light btn-xl'
-                    type='button'
-                    disabled={tee.countInStock === 0}>
-                    Buy Now!
-                  </Button>
-                </ListGroupItem>
-              </ListGroup>
-              <hr />
-            </Col>
-          </Row>
+                </Col>
+              </Row>
+              <Row>
+                <Col md={12} className='text-center my-4'>
+                  <h3>You may also like</h3>
+                </Col>
+              </Row>
+            </>
+          ) : (
+            ''
+          )}
           <Row>
             <Col md={12} className='text-center my-4'>
-              <h3>Customer Reviews</h3>
-            </Col>
-          </Row>
-          <Row>
-            <Col md={6} className='text-center'>
-              <i style={{ color: 'red' }} className='far fa-star'></i>
-              <i style={{ color: 'red' }} className='far fa-star'></i>
-              <i style={{ color: 'red' }} className='far fa-star'></i>
-              <i style={{ color: 'red' }} className='far fa-star'></i>
-              <i style={{ color: 'red' }} className='far fa-star'></i>
-              <p>Be the first to write a review!</p>
-            </Col>
-            <Col md={6}>
-              <Button className='btn-block btn-light btn-xl' type='button'>
-                Leave a review!!
-              </Button>
-            </Col>
-          </Row>
-          <Row>
-            <Col md={12} className='text-center my-4'>
-              <h3>You may also like</h3>
+              <button
+                className='btn btn-light btn-md my-3'
+                onClick={() => navigate(-1)}>
+                <i className='fa-solid fa-circle-left mx-2'></i>Back to Item
+                Catalog
+              </button>
             </Col>
           </Row>
         </>
-      ) : (
-        ''
       )}
-      <Row>
-        <Col md={12} className='text-center my-4'>
-          <button
-            className='btn btn-light btn-md my-3'
-            onClick={() => navigate(-1)}>
-            <i className='fa-solid fa-circle-left mx-2'></i>Back to Item Catalog
-          </button>
-        </Col>
-      </Row>
     </>
   )
 }

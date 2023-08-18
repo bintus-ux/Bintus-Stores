@@ -37,6 +37,7 @@ import {
   pantItemListReducer,
   pantItemDetailsReducer,
 } from './reducers/pantItemReducers'
+import { newArrivalItemDetailsReducer } from './reducers/newArrivalItemReducers'
 
 const reducer = combineReducers({
   capList: capItemListReducer,
@@ -57,6 +58,7 @@ const reducer = combineReducers({
   hoodieDetails: hoodieItemDetailsReducer,
   pantList: pantItemListReducer,
   pantDetails: pantItemDetailsReducer,
+  newArrivalDetails: newArrivalItemDetailsReducer,
 })
 
 const initialState = {}
