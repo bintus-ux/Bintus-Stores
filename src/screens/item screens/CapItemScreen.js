@@ -15,6 +15,8 @@ import Loader from '../../components/Loader'
 import { listCapItemDetails } from '../../actions/capActions'
 
 const CapItemScreen = () => {
+  const [qty, setQty] = useState(1)
+
   const { id } = useParams()
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -57,6 +59,59 @@ const CapItemScreen = () => {
                     <ListGroupItem
                       className='text-center'
                       style={{ border: 'none' }}>
+                      {capItem.countInStock > 0 ? (
+                        <i
+                          className='fa-solid fa-circle fa-beat'
+                          style={{ color: '#41d280' }}></i>
+                      ) : (
+                        <i
+                          className='fa-solid fa-circle'
+                          style={{ color: '#a63647' }}></i>
+                      )}{' '}
+                      {capItem.countInStock} {capItem.category}{' '}
+                      {capItem.countInStock > 0 ? 'in Stock!' : 'out of Stock.'}
+                    </ListGroupItem>
+                    <ListGroupItem
+                      className='text-center'
+                      style={{ border: 'none' }}>
+                      {capItem.countInStock >= 1 && (
+                        <>
+                          <p>Quantity</p>
+                          <div>
+                            <span
+                              className='input-group-btn text-center'
+                              style={{
+                                border: 'grey 2px solid',
+                                padding: '15px',
+                              }}>
+                              <button
+                                type='button'
+                                className='btn'
+                                max={capItem.countInStock}
+                                onClick={() => {
+                                  setQty(
+                                    qty <= capItem.countInStock ? qty + 1 : qty
+                                  )
+                                }}>
+                                <i className='fa-solid fa-plus'></i>
+                              </button>
+                              {qty}
+                              <button
+                                type='button'
+                                className='btn'
+                                onClick={() => {
+                                  setQty(Math.max(qty - 1, 0))
+                                }}>
+                                <i className='fa-solid fa-minus'></i>
+                              </button>
+                            </span>
+                          </div>
+                        </>
+                      )}
+                    </ListGroupItem>
+                    <ListGroupItem
+                      className='text-center'
+                      style={{ border: 'none' }}>
                       <h3>₦{capItem.price}</h3>
                     </ListGroupItem>
                     <ListGroupItem
@@ -64,6 +119,7 @@ const CapItemScreen = () => {
                       style={{ border: 'none' }}>
                       <p>{capItem.info}</p>
                     </ListGroupItem>
+                    <hr />
                     <ListGroupItem style={{ border: 'none' }}>
                       <Button
                         onClick={addToCartFunction}
