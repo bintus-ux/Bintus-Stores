@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import {
   Button,
   Container,
@@ -13,13 +13,16 @@ import {
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import { useParams } from 'react-router-dom'
-import { addCapToCart, addTeeToCart } from '../actions/cartActions'
+import { addToCart } from '../actions/cartActions'
 
 const CartScreen = () => {
   const { id } = useParams()
   const [itemCount, setItemCount] = useState(1)
 
   const dispatch = useDispatch()
+  const location = useLocation()
+
+  const qty = location.search ? Number(location.search.split('=')[1]) : 1
 
   const cart = useSelector((state) => state.cart)
   const { cartItems } = cart
@@ -27,10 +30,9 @@ const CartScreen = () => {
 
   useEffect(() => {
     if (id) {
-      dispatch(addCapToCart(id, itemCount))
-      dispatch(addTeeToCart(id, itemCount))
+      dispatch(addToCart(id, qty))
     }
-  }, [dispatch, id, itemCount])
+  }, [dispatch, id, qty])
 
   const removeFromCartHandler = (id) => {
     console.log('remove')
@@ -70,7 +72,7 @@ const CartScreen = () => {
                       <div className='position-relative'>
                         <i className='fa-sharp fa-solid fa-cart-shopping mx-5'>
                           <span className='position-absolute badge top-0 bg-danger border border-light rounded-circle'>
-                            {itemCount}
+                            {item.qty}
                           </span>
                         </i>
                         <div
@@ -80,16 +82,21 @@ const CartScreen = () => {
                           <button
                             type='button'
                             className='btn btn-danger'
-                            onClick={() => {
-                              setItemCount(itemCount + 1)
+                            onClick={(e) => {
+                              dispatch(addToCart(item.product, item.qty + 1))
                             }}>
                             <i className='fa-solid fa-plus'></i>
                           </button>
                           <button
                             type='button'
                             className='btn btn-secondary'
-                            onClick={() => {
-                              setItemCount(Math.max(itemCount - 1, 0))
+                            onClick={(e) => {
+                              dispatch(
+                                addToCart(
+                                  item.product,
+                                  Math.max(item.qty - 1, 0)
+                                )
+                              )
                             }}>
                             <i className='fa-solid fa-minus'></i>
                           </button>
@@ -113,42 +120,6 @@ const CartScreen = () => {
         <Col md={2}></Col>
         <Col md={2}></Col>
       </Row>
-
-      {/* <div className='row'>
-        <div className='d-flex justify-content-around col-12'>
-          <div>
-            <p style={{ fontSize: '20px' }}>Cart item</p>
-          </div>
-          <div>
-            <div className='position-relative'>
-              <i className='fa-sharp fa-solid fa-cart-shopping mx-5'>
-                <span className='position-absolute badge top-0 bg-danger border border-light rounded-circle'>
-                  {itemCount}
-                </span>
-              </i>
-
-              <div className='btn-group' role='group' aria-label='button group'>
-                <button
-                  type='button'
-                  className='btn btn-danger'
-                  onClick={() => {
-                    setItemCount(itemCount + 1)
-                  }}>
-                  <i className='fa-solid fa-plus'></i>
-                </button>
-                <button
-                  type='button'
-                  className='btn btn-secondary'
-                  onClick={() => {
-                    setItemCount(Math.max(itemCount - 1, 0))
-                  }}>
-                  <i className='fa-solid fa-minus'></i>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> */}
     </Container>
   )
 }
