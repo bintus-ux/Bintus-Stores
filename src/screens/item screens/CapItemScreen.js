@@ -29,7 +29,19 @@ const CapItemScreen = () => {
   }, [dispatch, id])
 
   const addToCartFunction = () => {
-    navigate(`/cart/${id}`)
+    navigate(`/cart/${id}?qty=${qty}`)
+  }
+  const max = capItem.countInStock
+
+  const handleIncrement = () => {
+    if (qty < max) {
+      setQty(qty + 1)
+    }
+  }
+  const handleDecrement = () => {
+    if (qty > 0) {
+      setQty(Math.max(qty - 1, 0))
+    }
   }
 
   return (
@@ -77,34 +89,43 @@ const CapItemScreen = () => {
                       {capItem.countInStock >= 1 && (
                         <>
                           <p>Quantity</p>
-                          <div>
-                            <span
-                              className='input-group-btn text-center'
+                          <div className='number-input'>
+                            <button
+                              className='icon-button'
                               style={{
-                                border: 'grey 2px solid',
-                                padding: '15px',
-                              }}>
-                              <button
-                                type='button'
-                                className='btn'
-                                max={capItem.countInStock}
-                                onClick={() => {
-                                  setQty(
-                                    qty <= capItem.countInStock ? qty + 1 : qty
-                                  )
-                                }}>
-                                <i className='fa-solid fa-plus'></i>
-                              </button>
-                              {qty}
-                              <button
-                                type='button'
-                                className='btn'
-                                onClick={() => {
-                                  setQty(Math.max(qty - 1, 0))
-                                }}>
-                                <i className='fa-solid fa-minus'></i>
-                              </button>
-                            </span>
+                                color: 'white',
+                                backgroundColor: 'black',
+                                width: '30px',
+                              }}
+                              disabled={qty === 0}
+                              onClick={handleDecrement}>
+                              -
+                            </button>{' '}
+                            <input
+                              type='text'
+                              className='input-field'
+                              value={qty}
+                              onChange={(e) => {
+                                const newValue = parseInt(
+                                  e.target.qty,
+                                  capItem.countInStock
+                                )
+                                if (!isNaN(newValue) && newValue <= max) {
+                                  setQty(newValue)
+                                }
+                              }}
+                            />{' '}
+                            <button
+                              className='icon-button'
+                              style={{
+                                color: 'white',
+                                backgroundColor: 'black',
+                                width: '30px',
+                              }}
+                              disabled={qty === max}
+                              onClick={handleIncrement}>
+                              +
+                            </button>{' '}
                           </div>
                         </>
                       )}

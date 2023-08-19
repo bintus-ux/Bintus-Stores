@@ -19,6 +19,8 @@ const SetItemScreen = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
+  const [qty, setQty] = useState(1)
+
   const setDetails = useSelector((state) => state.setDetails)
   const { loading, error, setItem } = setDetails
 
@@ -27,7 +29,19 @@ const SetItemScreen = () => {
   }, [dispatch, id])
 
   const addToCartFunction = () => {
-    navigate(`/cart/${id}`)
+    navigate(`/cart/${id}?qty=${qty}`)
+  }
+  const max = setItem.countInStock
+
+  const handleIncrement = () => {
+    if (qty < max) {
+      setQty(qty + 1)
+    }
+  }
+  const handleDecrement = () => {
+    if (qty > 0) {
+      setQty(Math.max(qty - 1, 0))
+    }
   }
 
   return (
@@ -53,6 +67,68 @@ const SetItemScreen = () => {
                       className='text-center'
                       style={{ border: 'none' }}>
                       <h3>{setItem.name}</h3>
+                    </ListGroupItem>
+                    <ListGroupItem
+                      className='text-center'
+                      style={{ border: 'none' }}>
+                      {setItem.countInStock > 0 ? (
+                        <i
+                          className='fa-solid fa-circle fa-beat'
+                          style={{ color: '#41d280' }}></i>
+                      ) : (
+                        <i
+                          className='fa-solid fa-circle'
+                          style={{ color: '#a63647' }}></i>
+                      )}{' '}
+                      {setItem.countInStock} {setItem.category}{' '}
+                      {setItem.countInStock > 0 ? 'in Stock!' : 'out of Stock.'}
+                    </ListGroupItem>
+                    <ListGroupItem
+                      className='text-center'
+                      style={{ border: 'none' }}>
+                      {setItem.countInStock >= 1 && (
+                        <>
+                          <p>Quantity</p>
+                          <div className='number-input'>
+                            <button
+                              className='icon-button'
+                              style={{
+                                color: 'white',
+                                backgroundColor: 'black',
+                                width: '30px',
+                              }}
+                              disabled={qty === 0}
+                              onClick={handleDecrement}>
+                              -
+                            </button>{' '}
+                            <input
+                              type='text'
+                              className='input-field'
+                              value={qty}
+                              onChange={(e) => {
+                                const newValue = parseInt(
+                                  e.target.qty,
+                                  setItem.countInStock
+                                )
+                                if (!isNaN(newValue) && newValue <= max) {
+                                  setQty(newValue)
+                                }
+                              }}
+                            />{' '}
+                            <button
+                              className='icon-button'
+                              style={{
+                                color: 'white',
+                                backgroundColor: 'black',
+                                width: '30px',
+                              }}
+                              disabled={qty === max}
+                              onClick={handleIncrement}>
+                              +
+                            </button>{' '}
+                          </div>
+                        </>
+                      )}
                     </ListGroupItem>
                     <ListGroupItem
                       className='text-center'

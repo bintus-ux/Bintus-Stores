@@ -18,6 +18,7 @@ const TeeItemScreen = () => {
   const { id } = useParams()
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const [qty, setQty] = useState(1)
 
   const teeDetails = useSelector((state) => state.teeDetails)
   const { loading, error, teeItem } = teeDetails
@@ -27,9 +28,20 @@ const TeeItemScreen = () => {
   }, [dispatch, id])
 
   const addToCartFunction = () => {
-    navigate(`/cart/${id}`)
+    navigate(`/cart/${id}?qty=${qty}`)
   }
+  const max = teeItem.countInStock
 
+  const handleIncrement = () => {
+    if (qty < max) {
+      setQty(qty + 1)
+    }
+  }
+  const handleDecrement = () => {
+    if (qty > 0) {
+      setQty(Math.max(qty - 1, 0))
+    }
+  }
   return (
     <>
       <button className='btn btn-light my-3' onClick={() => navigate(-1)}>
@@ -53,6 +65,68 @@ const TeeItemScreen = () => {
                       className='text-center'
                       style={{ border: 'none' }}>
                       <h3>{teeItem.name}</h3>
+                    </ListGroupItem>
+                    <ListGroupItem
+                      className='text-center'
+                      style={{ border: 'none' }}>
+                      {teeItem.countInStock > 0 ? (
+                        <i
+                          className='fa-solid fa-circle fa-beat'
+                          style={{ color: '#41d280' }}></i>
+                      ) : (
+                        <i
+                          className='fa-solid fa-circle'
+                          style={{ color: '#a63647' }}></i>
+                      )}{' '}
+                      {teeItem.countInStock} {teeItem.category}{' '}
+                      {teeItem.countInStock > 0 ? 'in Stock!' : 'out of Stock.'}
+                    </ListGroupItem>
+                    <ListGroupItem
+                      className='text-center'
+                      style={{ border: 'none' }}>
+                      {teeItem.countInStock >= 1 && (
+                        <>
+                          <p>Quantity</p>
+                          <div className='number-input'>
+                            <button
+                              className='icon-button'
+                              style={{
+                                color: 'white',
+                                backgroundColor: 'black',
+                                width: '30px',
+                              }}
+                              disabled={qty === 0}
+                              onClick={handleDecrement}>
+                              -
+                            </button>{' '}
+                            <input
+                              type='text'
+                              className='input-field'
+                              value={qty}
+                              onChange={(e) => {
+                                const newValue = parseInt(
+                                  e.target.qty,
+                                  teeItem.countInStock
+                                )
+                                if (!isNaN(newValue) && newValue <= max) {
+                                  setQty(newValue)
+                                }
+                              }}
+                            />{' '}
+                            <button
+                              className='icon-button'
+                              style={{
+                                color: 'white',
+                                backgroundColor: 'black',
+                                width: '30px',
+                              }}
+                              disabled={qty === max}
+                              onClick={handleIncrement}>
+                              +
+                            </button>{' '}
+                          </div>
+                        </>
+                      )}
                     </ListGroupItem>
                     <ListGroupItem
                       className='text-center'

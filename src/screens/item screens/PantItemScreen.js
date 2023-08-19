@@ -19,6 +19,8 @@ const PantItemScreen = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
+  const [qty, setQty] = useState(1)
+
   const pantDetails = useSelector((state) => state.pantDetails)
   const { loading, error, pantItem } = pantDetails
   useEffect(() => {
@@ -26,7 +28,19 @@ const PantItemScreen = () => {
   }, [dispatch, id])
 
   const addToCartFunction = () => {
-    navigate(`/cart/${id}`)
+    navigate(`/cart/${id}?qty=${qty}`)
+  }
+  const max = pantItem.countInStock
+
+  const handleIncrement = () => {
+    if (qty < max) {
+      setQty(qty + 1)
+    }
+  }
+  const handleDecrement = () => {
+    if (qty > 0) {
+      setQty(Math.max(qty - 1, 0))
+    }
   }
 
   return (
@@ -52,6 +66,70 @@ const PantItemScreen = () => {
                       className='text-center'
                       style={{ border: 'none' }}>
                       <h3>{pantItem.name}</h3>
+                    </ListGroupItem>
+                    <ListGroupItem
+                      className='text-center'
+                      style={{ border: 'none' }}>
+                      {pantItem.countInStock > 0 ? (
+                        <i
+                          className='fa-solid fa-circle fa-beat'
+                          style={{ color: '#41d280' }}></i>
+                      ) : (
+                        <i
+                          className='fa-solid fa-circle'
+                          style={{ color: '#a63647' }}></i>
+                      )}{' '}
+                      {pantItem.countInStock} {pantItem.category}{' '}
+                      {pantItem.countInStock > 0
+                        ? 'in Stock!'
+                        : 'out of Stock.'}
+                    </ListGroupItem>
+                    <ListGroupItem
+                      className='text-center'
+                      style={{ border: 'none' }}>
+                      {pantItem.countInStock >= 1 && (
+                        <>
+                          <p>Quantity</p>
+                          <div className='number-input'>
+                            <button
+                              className='icon-button'
+                              style={{
+                                color: 'white',
+                                backgroundColor: 'black',
+                                width: '30px',
+                              }}
+                              disabled={qty === 0}
+                              onClick={handleDecrement}>
+                              -
+                            </button>{' '}
+                            <input
+                              type='text'
+                              className='input-field'
+                              value={qty}
+                              onChange={(e) => {
+                                const newValue = parseInt(
+                                  e.target.qty,
+                                  pantItem.countInStock
+                                )
+                                if (!isNaN(newValue) && newValue <= max) {
+                                  setQty(newValue)
+                                }
+                              }}
+                            />{' '}
+                            <button
+                              className='icon-button'
+                              style={{
+                                color: 'white',
+                                backgroundColor: 'black',
+                                width: '30px',
+                              }}
+                              disabled={qty === max}
+                              onClick={handleIncrement}>
+                              +
+                            </button>{' '}
+                          </div>
+                        </>
+                      )}
                     </ListGroupItem>
                     <ListGroupItem
                       className='text-center'

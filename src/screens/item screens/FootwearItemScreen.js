@@ -18,6 +18,7 @@ const FootwearItemScreen = () => {
   const { id } = useParams()
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const [qty, setQty] = useState(1)
 
   const footwearDetails = useSelector((state) => state.footwearDetails)
   const { loading, error, footwearItem } = footwearDetails
@@ -27,9 +28,20 @@ const FootwearItemScreen = () => {
   }, [dispatch, id])
 
   const addToCartFunction = () => {
-    navigate(`/cart/${id}`)
+    navigate(`/cart/${id}?qty=${qty}`)
   }
+  const max = footwearItem.countInStock
 
+  const handleIncrement = () => {
+    if (qty < max) {
+      setQty(qty + 1)
+    }
+  }
+  const handleDecrement = () => {
+    if (qty > 0) {
+      setQty(Math.max(qty - 1, 0))
+    }
+  }
   return (
     <>
       <button className='btn btn-light my-3' onClick={() => navigate(-1)}>
@@ -57,6 +69,70 @@ const FootwearItemScreen = () => {
                       className='text-center'
                       style={{ border: 'none' }}>
                       <h3>{footwearItem.name}</h3>
+                    </ListGroupItem>
+                    <ListGroupItem
+                      className='text-center'
+                      style={{ border: 'none' }}>
+                      {footwearItem.countInStock > 0 ? (
+                        <i
+                          className='fa-solid fa-circle fa-beat'
+                          style={{ color: '#41d280' }}></i>
+                      ) : (
+                        <i
+                          className='fa-solid fa-circle'
+                          style={{ color: '#a63647' }}></i>
+                      )}{' '}
+                      {footwearItem.countInStock} {footwearItem.category}{' '}
+                      {footwearItem.countInStock > 0
+                        ? 'in Stock!'
+                        : 'out of Stock.'}
+                    </ListGroupItem>
+                    <ListGroupItem
+                      className='text-center'
+                      style={{ border: 'none' }}>
+                      {footwearItem.countInStock >= 1 && (
+                        <>
+                          <p>Quantity</p>
+                          <div className='number-input'>
+                            <button
+                              className='icon-button'
+                              style={{
+                                color: 'white',
+                                backgroundColor: 'black',
+                                width: '30px',
+                              }}
+                              disabled={qty === 0}
+                              onClick={handleDecrement}>
+                              -
+                            </button>{' '}
+                            <input
+                              type='text'
+                              className='input-field'
+                              value={qty}
+                              onChange={(e) => {
+                                const newValue = parseInt(
+                                  e.target.qty,
+                                  footwearItem.countInStock
+                                )
+                                if (!isNaN(newValue) && newValue <= max) {
+                                  setQty(newValue)
+                                }
+                              }}
+                            />{' '}
+                            <button
+                              className='icon-button'
+                              style={{
+                                color: 'white',
+                                backgroundColor: 'black',
+                                width: '30px',
+                              }}
+                              disabled={qty === max}
+                              onClick={handleIncrement}>
+                              +
+                            </button>{' '}
+                          </div>
+                        </>
+                      )}
                     </ListGroupItem>
                     <ListGroupItem
                       className='text-center'
