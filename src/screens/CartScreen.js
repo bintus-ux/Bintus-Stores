@@ -1,26 +1,28 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import {
   Button,
   Container,
   Badge,
   Row,
   Col,
+  Card,
   ListGroup,
   Image,
+  ListGroupItem,
 } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import { useParams } from 'react-router-dom'
-import { addToCart } from '../actions/cartActions'
+import { addToCart, removeFromCart } from '../actions/cartActions'
 
 const CartScreen = () => {
   const { id } = useParams()
-  const [itemCount, setItemCount] = useState(1)
 
   const dispatch = useDispatch()
   const location = useLocation()
+  const navigate = useNavigate()
 
   const qty = location.search ? Number(location.search.split('=')[1]) : 1
 
@@ -35,7 +37,11 @@ const CartScreen = () => {
   }, [dispatch, id, qty])
 
   const removeFromCartHandler = (id) => {
-    console.log('remove')
+    dispatch(removeFromCart(id))
+  }
+
+  const checkoutHandler = () => {
+    navigate('/login?redirect=shipping')
   }
 
   return (
@@ -67,7 +73,9 @@ const CartScreen = () => {
                         <h3>{item.name}</h3>
                       </Link>
                     </Col>
-                    <Col md={1}>${item.price}</Col>
+                    <Col md={1} style={{ fontSize: '20px' }}>
+                      ₦{item.price}
+                    </Col>
                     <Col md={4}>
                       <div className='position-relative'>
                         <i className='fa-sharp fa-solid fa-cart-shopping mx-5'>
@@ -82,7 +90,7 @@ const CartScreen = () => {
                           <button
                             type='button'
                             className='btn btn-danger'
-                            onClick={(e) => {
+                            onClick={() => {
                               dispatch(addToCart(item.product, item.qty + 1))
                             }}>
                             <i className='fa-solid fa-plus'></i>
@@ -90,7 +98,7 @@ const CartScreen = () => {
                           <button
                             type='button'
                             className='btn btn-secondary'
-                            onClick={(e) => {
+                            onClick={() => {
                               dispatch(
                                 addToCart(
                                   item.product,
@@ -117,8 +125,36 @@ const CartScreen = () => {
             </ListGroup>
           )}
         </Col>
-        <Col md={2}></Col>
-        <Col md={2}></Col>
+      </Row>
+      <Row>
+        <Col md={12} className='text-center justify-center'>
+          <Card>
+            <ListGroup variant='flush'>
+              <ListGroupItem style={{ border: 'none' }}>
+                <h2>
+                  Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)}
+                  ) items
+                </h2>
+                <p>
+                  Total accumulated cost ₦
+                  {cartItems
+                    .reduce((acc, item) => acc + item.qty * item.price, 0)
+                    .toLocaleString('en-US')}
+                </p>
+              </ListGroupItem>
+              <hr />
+              <ListGroupItem>
+                <Button
+                  type='button'
+                  className='btn-block'
+                  disabled={cartItems.length === 0}
+                  onClick={checkoutHandler}>
+                  Proceed To Checkout
+                </Button>
+              </ListGroupItem>
+            </ListGroup>
+          </Card>
+        </Col>
       </Row>
     </Container>
   )
