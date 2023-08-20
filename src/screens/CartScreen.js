@@ -55,7 +55,7 @@ const CartScreen = () => {
         </div>
       </div>
       <Row>
-        <Col md={12}>
+        <Col md={10}>
           {cartItems.length === 0 ? (
             <Message>
               Your cart is empty. <Link to='/'>Head Back</Link>
@@ -72,11 +72,10 @@ const CartScreen = () => {
                       <Link to={`/categoryItems/${item.product}`}>
                         <h3>{item.name}</h3>
                       </Link>
+                      <p>Price/piece: ₦{item.price}</p>
                     </Col>
-                    <Col md={1} style={{ fontSize: '20px' }}>
-                      ₦{item.price}
-                    </Col>
-                    <Col md={4}>
+
+                    <Col md={3}>
                       <div className='position-relative'>
                         <i className='fa-sharp fa-solid fa-cart-shopping mx-5'>
                           <span className='position-absolute badge top-0 bg-danger border border-light rounded-circle'>
@@ -111,7 +110,7 @@ const CartScreen = () => {
                         </div>
                       </div>
                     </Col>
-                    <Col md={2}>
+                    <Col md={1}>
                       <Button
                         type='button'
                         variant='light'
@@ -125,32 +124,35 @@ const CartScreen = () => {
             </ListGroup>
           )}
         </Col>
-      </Row>
-      <Row>
-        <Col md={12} className='text-center justify-center'>
+        <Col md={2} className='text-center justify-center'>
           <Card>
             <ListGroup variant='flush'>
               <ListGroupItem style={{ border: 'none' }}>
-                <h2>
-                  Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)}
-                  ) items
-                </h2>
+                <h3>
+                  Subtotal of
+                  <span style={{ fontSize: '25px', color: 'red' }}>
+                    ({cartItems.reduce((acc, item) => acc + item.qty, 0)})
+                  </span>{' '}
+                  item(s)
+                </h3>
                 <p>
-                  Total accumulated cost ₦
-                  {cartItems
-                    .reduce((acc, item) => acc + item.qty * item.price, 0)
-                    .toLocaleString('en-US')}
+                  Total accumulated cost: ₦
+                  <span style={{ fontSize: '25px', color: 'red' }}>
+                    {cartItems
+                      .reduce((acc, item) => acc + item.qty * item.price, 0)
+                      .toLocaleString('en-US')}
+                  </span>
                 </p>
               </ListGroupItem>
               <hr />
               <ListGroupItem>
-                <Button
+                <button
                   type='button'
-                  className='btn-block'
+                  className='btn btn-outline-danger'
                   disabled={cartItems.length === 0}
                   onClick={checkoutHandler}>
-                  Proceed To Checkout
-                </Button>
+                  Checkout
+                </button>
               </ListGroupItem>
             </ListGroup>
           </Card>
