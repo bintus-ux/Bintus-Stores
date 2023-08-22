@@ -32,9 +32,20 @@ const LoginScreen = () => {
     dispatch(login(email, password))
   }
 
+  // toggle visiblity for password
+
+  const [showPassword, setShowPassword] = useState(false)
+
+  const handlePasswordToggle = () => {
+    setShowPassword(!showPassword)
+  }
+
   return (
     <FormContainer>
-      <h1>Sign In</h1>
+      <div className='text-center my-2'>
+        <h1>Sign In Form</h1>
+      </div>
+      <hr />
       {error && <Message variant='danger'>{error}</Message>}
       {loading && <Loader />}
       <Form onSubmit={submitHandler}>
@@ -47,26 +58,77 @@ const LoginScreen = () => {
             onChange={(e) => setEmail(e.target.value)}></Form.Control>
         </Form.Group>
 
-        <Form.Group controlId='password'>
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type='password'
+        <label for='password-input'>Password</label>
+        <div className='input-group'>
+          <input
+            type={showPassword ? 'text' : 'password'}
             placeholder='Enter password'
             value={password}
-            onChange={(e) => setPassword(e.target.value)}></Form.Control>
-        </Form.Group>
+            id='password-input'
+            className='form-control'
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <span onClick={handlePasswordToggle} className='mt-2'>
+            {showPassword ? (
+              <i className='fa-regular fa-eye-slash'></i>
+            ) : (
+              <i className='fa-regular fa-eye'></i>
+            )}
+          </span>
+        </div>
 
-        <Button type='submit' variant='primary' className='py-2 my-3'>
-          Sign In
-        </Button>
+        {/* <div>
+          <label>Password:</label>
+          <input
+            type={showPassword ? 'text' : 'password'}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button onClick={handlePasswordToggle}>
+            {showPassword ? (
+              <i className='fa-regular fa-eye-slash'></i>
+            ) : (
+              <i className='fa-regular fa-eye'></i>
+            )}
+          </button>
+        </div> */}
+
+        <div className='row my-4'>
+          <div className='col d-flex justify-content-center'>
+            <div className='form-check'>
+              <input
+                className='form-check-input'
+                type='checkbox'
+                value=''
+                id='form1Example3'
+                checked
+              />
+              <label className='form-check-label mt-2' for='form1Example3'>
+                {' '}
+                Remember me{' '}
+              </label>
+            </div>
+          </div>
+
+          <div className='col mt-2'>
+            <a href='#!'>Forgot password?</a>
+          </div>
+        </div>
+
+        <div className='d-grid gap-2 my-3'>
+          <button className='btn btn-primary' type='submit'>
+            Sign In
+          </button>
+        </div>
       </Form>
 
       <Row className='py-3'>
         <Col>
-          New Customer?
+          New Here? why not{' '}
           <Link to={redirect ? `/register?redirect=${redirect}` : '/register'}>
             Register
-          </Link>
+          </Link>{' '}
+          real quick.
         </Col>
       </Row>
     </FormContainer>
