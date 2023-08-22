@@ -40,6 +40,8 @@ const LoginScreen = () => {
     setShowPassword(!showPassword)
   }
 
+  // clear input field for password
+
   const handleClearPassword = () => {
     setPassword('')
   }
@@ -86,7 +88,9 @@ const LoginScreen = () => {
           style={{ fontWeight: 'bold', fontSize: '20px' }}>
           Password:
         </label>
-        <div className='input-group'>
+        <div
+          className='input-group'
+          style={{ backgroundColor: 'rgb(240, 239, 239)' }}>
           <div className='form-div'>
             <input
               type={showPassword ? 'text' : 'password'}

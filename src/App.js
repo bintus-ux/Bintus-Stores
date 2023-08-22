@@ -36,7 +36,6 @@ const App = () => {
       <main className='py-3'>
         <Container>
           <Routes>
-            <Route path='/' element={<HomeScreen />} exact />
             <Route path='/catalog' element={<CatalogScreen />} exact />
             {/* <Route path='/categories/:id' element={<CategoryItems />} /> */}
             <Route
@@ -88,6 +87,7 @@ const App = () => {
             />
             <Route path='/cart/:id?' element={<CartScreen />} />
             <Route path='/login' element={<LoginScreen />} />
+            <Route path='/' element={<HomeScreen />} exact />
           </Routes>
         </Container>
       </main>
