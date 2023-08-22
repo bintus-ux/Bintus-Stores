@@ -42,7 +42,7 @@ const LoginScreen = () => {
 
   return (
     <FormContainer>
-      <div className='text-center my-2'>
+      <div className='text-center my-4'>
         <h1>Sign In Form</h1>
       </div>
       <hr />
@@ -57,21 +57,29 @@ const LoginScreen = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}></Form.Control>
         </Form.Group> */}
-        <label for='password-input'>Email</label>
+        <label
+          for='email-input'
+          style={{ fontWeight: 'bold', fontSize: '20px' }}>
+          Email
+        </label>
         <div className='input-group'>
           <div className='form-div'>
             <input
               type='email'
               placeholder='Enter email'
               value={email}
-              id='email'
+              id='email-input'
               className='input-form'
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
         </div>
 
-        <label for='password-input'>Password</label>
+        <label
+          for='password-input'
+          style={{ fontWeight: 'bold', fontSize: '20px' }}>
+          Password
+        </label>
         <div className='input-group'>
           <div className='form-div'>
             <input
@@ -145,7 +153,7 @@ const LoginScreen = () => {
           <Link
             to={redirect ? `/register?redirect=${redirect}` : '/register'}
             style={{ color: 'blue' }}>
-            Register
+            register
           </Link>{' '}
           real quick.
         </Col>

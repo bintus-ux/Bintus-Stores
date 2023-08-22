@@ -74,12 +74,12 @@ const Header = () => {
             />
           </Link>
           <Nav className='d-flex flex-row'>
-            <Nav.Link href='/login'>
+            <Link to='/login'>
               <i className='fa-solid fa-user px-3'></i>
-            </Nav.Link>
-            <Nav.Link href='/cart'>
+            </Link>
+            <Link to='/cart'>
               <i className='fa-sharp fa-solid fa-cart-shopping px-3'></i>
-            </Nav.Link>
+            </Link>
           </Nav>
         </Container>
       </Navbar>
