@@ -40,12 +40,16 @@ const LoginScreen = () => {
     setShowPassword(!showPassword)
   }
 
+  const handleClearPassword = () => {
+    setPassword('')
+  }
+
   return (
     <FormContainer>
       <div className='text-center my-4'>
         <h1>Sign In Form</h1>
+        <hr />
       </div>
-      <hr />
       {error && <Message variant='danger'>{error}</Message>}
       {loading && <Loader />}
       <Form onSubmit={submitHandler}>
@@ -59,8 +63,9 @@ const LoginScreen = () => {
         </Form.Group> */}
         <label
           for='email-input'
+          className='my-2'
           style={{ fontWeight: 'bold', fontSize: '20px' }}>
-          Email
+          Email:
         </label>
         <div className='input-group'>
           <div className='form-div'>
@@ -77,8 +82,9 @@ const LoginScreen = () => {
 
         <label
           for='password-input'
+          className='my-2'
           style={{ fontWeight: 'bold', fontSize: '20px' }}>
-          Password
+          Password:
         </label>
         <div className='input-group'>
           <div className='form-div'>
@@ -90,6 +96,15 @@ const LoginScreen = () => {
               className='input-form'
               onChange={(e) => setPassword(e.target.value)}
             />
+            <div className='form-icon'>
+              <span onClick={handleClearPassword} className='mt-2'>
+                {password && (
+                  <i
+                    className='fa-solid fa-circle-xmark'
+                    style={{ color: 'grey' }}></i>
+                )}
+              </span>
+            </div>
             <div className='form-icon'>
               <span onClick={handlePasswordToggle} className='mt-2'>
                 {showPassword ? (
