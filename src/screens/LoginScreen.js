@@ -49,32 +49,49 @@ const LoginScreen = () => {
       {error && <Message variant='danger'>{error}</Message>}
       {loading && <Loader />}
       <Form onSubmit={submitHandler}>
-        <Form.Group controlId='email'>
+        {/* <Form.Group controlId='email'>
           <Form.Label>Email Address</Form.Label>
           <Form.Control
             type='email'
             placeholder='Enter email'
             value={email}
             onChange={(e) => setEmail(e.target.value)}></Form.Control>
-        </Form.Group>
+        </Form.Group> */}
+        <label for='password-input'>Email</label>
+        <div className='input-group'>
+          <div className='form-div'>
+            <input
+              type='email'
+              placeholder='Enter email'
+              value={email}
+              id='email'
+              className='input-form'
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+        </div>
 
         <label for='password-input'>Password</label>
         <div className='input-group'>
-          <input
-            type={showPassword ? 'text' : 'password'}
-            placeholder='Enter password'
-            value={password}
-            id='password-input'
-            className='form-control'
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <span onClick={handlePasswordToggle} className='mt-2'>
-            {showPassword ? (
-              <i className='fa-regular fa-eye-slash'></i>
-            ) : (
-              <i className='fa-regular fa-eye'></i>
-            )}
-          </span>
+          <div className='form-div'>
+            <input
+              type={showPassword ? 'text' : 'password'}
+              placeholder='Enter password'
+              value={password}
+              id='password-input'
+              className='input-form'
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <div className='form-icon'>
+              <span onClick={handlePasswordToggle} className='mt-2'>
+                {showPassword ? (
+                  <i className='fa-regular fa-eye-slash'></i>
+                ) : (
+                  <i className='fa-regular fa-eye'></i>
+                )}
+              </span>
+            </div>
+          </div>
         </div>
 
         {/* <div>
@@ -125,7 +142,9 @@ const LoginScreen = () => {
       <Row className='py-3'>
         <Col>
           New Here? why not{' '}
-          <Link to={redirect ? `/register?redirect=${redirect}` : '/register'}>
+          <Link
+            to={redirect ? `/register?redirect=${redirect}` : '/register'}
+            style={{ color: 'blue' }}>
             Register
           </Link>{' '}
           real quick.
