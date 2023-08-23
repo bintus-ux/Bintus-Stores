@@ -47,6 +47,12 @@ const RegisterScreen = () => {
     setShowPassword(!showPassword)
   }
 
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+
+  const handleConfirmPasswordToggle = () => {
+    setShowConfirmPassword(!showConfirmPassword)
+  }
+
   // clear input field for password
 
   const handleClearPassword = () => {
@@ -155,7 +161,7 @@ const RegisterScreen = () => {
           style={{ backgroundColor: 'rgb(240, 239, 239)' }}>
           <div className='form-div'>
             <input
-              type={showPassword ? 'text' : 'password'}
+              type={showConfirmPassword ? 'text' : 'password'}
               placeholder='Enter password'
               value={confirmPassword}
               id='confirmPassword'
@@ -172,8 +178,8 @@ const RegisterScreen = () => {
               </span>
             </div>
             <div className='form-icon'>
-              <span onClick={handlePasswordToggle} className='mt-2'>
-                {showPassword ? (
+              <span onClick={handleConfirmPasswordToggle} className='mt-2'>
+                {showConfirmPassword ? (
                   <i className='fa-regular fa-eye'></i>
                 ) : (
                   <i className='fa-regular fa-eye-slash'></i>
