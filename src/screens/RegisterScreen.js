@@ -59,6 +59,9 @@ const RegisterScreen = () => {
     setPassword('')
   }
 
+  const handleClearConfirmPassword = () => {
+    setConfirmPassword('')
+  }
   return (
     <FormContainer>
       <div className='text-center my-4'>
@@ -169,7 +172,7 @@ const RegisterScreen = () => {
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
             <div className='form-icon'>
-              <span onClick={handleClearPassword} className='mt-2'>
+              <span onClick={handleClearConfirmPassword} className='mt-2'>
                 {confirmPassword && (
                   <i
                     className='fa-solid fa-circle-xmark'
