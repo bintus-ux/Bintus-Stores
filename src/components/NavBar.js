@@ -55,11 +55,13 @@ const Header = () => {
                 <NavDropdown
                   title='Account'
                   id={`offcanvasNavbarDropdown-expand-$'false`}>
-                  <NavDropdown.Item to='/login'>Log in</NavDropdown.Item>
+                  <LinkContainer to='/login'>
+                    <NavDropdown.Item>Log in</NavDropdown.Item>
+                  </LinkContainer>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item href='#action4'>
-                    Create Account
-                  </NavDropdown.Item>
+                  <LinkContainer to='/register'>
+                    <NavDropdown.Item>Create Account</NavDropdown.Item>
+                  </LinkContainer>
                 </NavDropdown>
               </Nav>
               <Form className='d-flex'>

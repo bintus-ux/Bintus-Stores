@@ -5,31 +5,38 @@ import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import FormContainer from '../components/FormContainer'
-import { login } from '../actions/userActions'
+import { register } from '../actions/userActions'
 
-const LoginScreen = () => {
+const RegisterScreen = () => {
+  const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
+  const [message, setMessage] = useState(null)
 
   let location = useLocation()
-  let navigate = useNavigate()
+  let history = useNavigate()
 
   const dispatch = useDispatch()
 
-  const userLogin = useSelector((state) => state.userLogin)
-  const { loading, error, userInfo } = userLogin
+  const userRegister = useSelector((state) => state.userRegister)
+  const { loading, error, userInfo } = userRegister
 
   const redirect = location.search ? location.search.split('=')[1] : '/'
 
   useEffect(() => {
     if (userInfo) {
-      navigate(redirect)
+      history.push(redirect)
     }
-  }, [navigate, userInfo, redirect])
+  }, [history, userInfo, redirect])
 
   const submitHandler = (e) => {
     e.preventDefault()
-    dispatch(login(email, password))
+    if (password !== confirmPassword) {
+      setMessage('Passwords do not match')
+    } else {
+      dispatch(register(name, email, password))
+    }
   }
 
   // toggle visiblity for password
@@ -49,17 +56,38 @@ const LoginScreen = () => {
   return (
     <FormContainer>
       <div className='text-center my-4'>
-        <h1>Sign In Form</h1>
+        <h1>Sign Up Form</h1>
         <hr />
       </div>
+      {message && <Message variant='danger'>{message}</Message>}
       {error && <Message variant='danger'>{error}</Message>}
       {loading && <Loader />}
       <Form onSubmit={submitHandler}>
+        {/* Name field */}
         <label
-          for='email-input'
+          for='name'
           className='my-2'
           style={{ fontWeight: 'bold', fontSize: '20px' }}>
-          Email:
+          Name:
+        </label>
+        <div className='input-group'>
+          <div className='form-div'>
+            <input
+              type='name'
+              placeholder='Enter name'
+              value={name}
+              id='email-input'
+              className='input-form'
+              onChange={(e) => setName(e.target.value)}
+            />
+          </div>
+        </div>
+        {/* Email field */}
+        <label
+          for='email'
+          className='my-2'
+          style={{ fontWeight: 'bold', fontSize: '20px' }}>
+          Email Address:
         </label>
         <div className='input-group'>
           <div className='form-div'>
@@ -74,8 +102,9 @@ const LoginScreen = () => {
           </div>
         </div>
 
+        {/* Password Field */}
         <label
-          for='password-input'
+          for='password'
           className='my-2'
           style={{ fontWeight: 'bold', fontSize: '20px' }}>
           Password:
@@ -113,64 +142,64 @@ const LoginScreen = () => {
           </div>
         </div>
 
-        {/* <div>
-          <label>Password:</label>
-          <input
-            type={showPassword ? 'text' : 'password'}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <button onClick={handlePasswordToggle}>
-            {showPassword ? (
-              <i className='fa-regular fa-eye-slash'></i>
-            ) : (
-              <i className='fa-regular fa-eye'></i>
-            )}
-          </button>
-        </div> */}
+        {/* Re-enter Password Field */}
 
-        <div className='row my-4'>
-          <div className='col d-flex justify-content-center'>
-            <div className='form-check'>
-              <input
-                className='form-check-input'
-                type='checkbox'
-                value=''
-                id='form1Example3'
-                checked
-              />
-              <label className='form-check-label mt-2' for='form1Example3'>
-                {' '}
-                Remember me{' '}
-              </label>
+        <label
+          for='confirmPassword'
+          className='my-2'
+          style={{ fontWeight: 'bold', fontSize: '20px' }}>
+          Confirm Password:
+        </label>
+        <div
+          className='input-group'
+          style={{ backgroundColor: 'rgb(240, 239, 239)' }}>
+          <div className='form-div'>
+            <input
+              type={showPassword ? 'text' : 'password'}
+              placeholder='Enter password'
+              value={confirmPassword}
+              id='confirmPassword'
+              className='input-form'
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
+            <div className='form-icon'>
+              <span onClick={handleClearPassword} className='mt-2'>
+                {confirmPassword && (
+                  <i
+                    className='fa-solid fa-circle-xmark'
+                    style={{ color: 'grey' }}></i>
+                )}
+              </span>
+            </div>
+            <div className='form-icon'>
+              <span onClick={handlePasswordToggle} className='mt-2'>
+                {showPassword ? (
+                  <i className='fa-regular fa-eye'></i>
+                ) : (
+                  <i className='fa-regular fa-eye-slash'></i>
+                )}
+              </span>
             </div>
           </div>
-
-          <div className='col mt-2'>
-            <a to='/register'>Forgot password?</a>
-          </div>
         </div>
 
-        <div className='d-grid gap-2 my-3'>
-          <button className='btn btn-primary' type='submit'>
-            Sign In
-          </button>
-        </div>
+        <Button type='submit' variant='primary' className='py-2 my-3'>
+          Register
+        </Button>
       </Form>
 
       <Row className='py-3'>
         <Col>
-          New Here? why not{' '}
+          Have an existing account?{' '}
           <Link
-            to={redirect ? `/register?redirect=${redirect}` : '/register'}
+            to={redirect ? `/login?redirect=${redirect}` : '/login'}
             style={{ color: 'blue' }}>
-            register
-          </Link>{' '}
-          real quick.
+            Login
+          </Link>
         </Col>
       </Row>
     </FormContainer>
   )
 }
 
-export default LoginScreen
+export default RegisterScreen

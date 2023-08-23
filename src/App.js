@@ -27,6 +27,7 @@ import NewArrivalItemScreen from './screens/item screens/NewArrivalItemScreen'
 import TeeItemScreen from './screens/item screens/TeeItemScreen'
 import CartScreen from './screens/CartScreen'
 import LoginScreen from './screens/LoginScreen'
+import RegisterScreen from './screens/RegisterScreen'
 
 const App = () => {
   return (
@@ -87,6 +88,7 @@ const App = () => {
             />
             <Route path='/cart/:id?' element={<CartScreen />} />
             <Route path='/login' element={<LoginScreen />} />
+            <Route path='/register' element={<RegisterScreen />} />
             <Route path='/' element={<HomeScreen />} exact />
           </Routes>
         </Container>
