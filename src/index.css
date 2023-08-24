@@ -5,7 +5,18 @@ html {
 header  {
     background-color: black;
     color: whitesmoke;
-
+}
+#newsletter-email-wrapper {
+  width: 30%;
+  margin: auto;
+}
+#newsletter-input {
+  width: auto;
+  border-bottom: black 1px dotted;
+  text-decoration: none;
+  color: white;
+  background-color: transparent;
+  height: auto;
 }
 @media (max-width: 600px) {
     .img-fit {

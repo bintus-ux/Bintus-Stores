@@ -68,10 +68,9 @@ const Header = () => {
                 <Form.Control
                   type='search'
                   placeholder='Search'
-                  className='me-2'
                   aria-label='Search'
                 />
-                <Button variant='outline-success'>Search</Button>
+                <Button variant='outline-dark'>Search</Button>
               </Form>
             </Offcanvas.Body>
           </Navbar.Offcanvas>
@@ -84,7 +83,7 @@ const Header = () => {
               alt='Bintus Store logo'
             />
           </Link>
-          <div className='d-inline-flex' style={{ border: 'solid 1px red' }}>
+          <div className='d-inline-flex'>
             {userInfo ? (
               <NavDropdown title={userInfo.name} id='username'>
                 <Link to='/profile'>
@@ -96,9 +95,7 @@ const Header = () => {
               </NavDropdown>
             ) : (
               <Link to='/login'>
-                <Nav.Link>
-                  <i className='fas fa-user'></i>
-                </Nav.Link>
+                <i className='fas fa-user'></i>
               </Link>
             )}
             <Link to='/cart'>

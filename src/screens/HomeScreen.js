@@ -146,34 +146,22 @@ const HomeScreen = () => {
             </div>
           </div>
         </div>
-        <div className='container mt-5'>
-          <div className='row justify-content-center'>
-            <div className='col-md-6'>
-              <form>
-                <div className='input-group mb-3'>
-                  <input
-                    type='email'
-                    className='form-control'
-                    placeholder='Enter your email'
-                    aria-label='Email address'
-                    aria-describedby='submitButton'
-                    required
-                  />
-                  <div className='input-group-append'>
-                    <button
-                      className='btn btn-primary'
-                      type='submit'
-                      id='submitButton'>
-                      Submit
-                    </button>
-                  </div>
-                </div>
-                <div className='invalid-feedback'>
-                  Please provide a valid email address.
-                </div>
-              </form>
-            </div>
-          </div>
+        <div className='input-group' id='newsletter-email-wrapper'>
+          <input
+            type='email'
+            className='form-control'
+            id='newsletter-input'
+            placeholder='...input email'
+            aria-label='email'
+            aria-describedby='button-addon2'
+          />
+          <button
+            className='btn btn-outline-primary'
+            type='button'
+            id='button-addon2'
+            data-mdb-ripple-color='dark'>
+            Submit
+          </button>
         </div>
       </div>
     </Container>
