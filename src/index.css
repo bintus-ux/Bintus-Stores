@@ -193,3 +193,20 @@ input{
   margin-right: 5px;
   font-size: 14px;
 }
+#order-list-wrapper {
+  background-color: rgb(229, 224, 224);
+  height: 400px;
+  width: auto;
+}
+#order-header-wrapper {
+  height: 30px;
+  border: none;
+  width: auto;
+
+}
+.active-order-list {
+  background-color: rgb(206, 136, 136);
+}
+.active-order-list:hover {
+  background-color: rgb(206, 136, 136);
+}

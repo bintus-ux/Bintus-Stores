@@ -80,10 +80,15 @@ const ProfileScreen = () => {
   return (
     <Row>
       <Col md={3}>
-        <h2>User Profile</h2>
+        <div className='text-center my-4'>
+          <h2>User Profile</h2>
+        </div>
+        <hr />
         {message && <Message variant='danger'>{message}</Message>}
         {error && <Message variant='danger'>{error}</Message>}
-        {success && <Message variant='success'>Profile Updated</Message>}
+        {success && (
+          <Message variant='success'>Profile Updated Successfully!</Message>
+        )}
         {loading && <Loader />}
         <Form onSubmit={submitHandler}>
           <label
@@ -204,11 +209,47 @@ const ProfileScreen = () => {
               </div>
             </div>
           </div>
-
-          <Button type='submit' variant='primary' className='py-2 my-3'>
-            Update
-          </Button>
+          <div class='col-md-12 text-left' style={{ width: 'auto' }}>
+            <button
+              type='submit'
+              variant='primary'
+              className='btn py-2 my-3'
+              style={{ backgroundColor: 'rgb(206, 136, 136)', color: 'black' }}>
+              Update
+            </button>
+          </div>
         </Form>
+      </Col>
+      <Col md={9} className='text-center' style={{ width: '900px' }}>
+        <div className='my-4'>
+          <h2>My Orders</h2>
+          <hr />
+        </div>
+
+        <div className='row' id='order-list-wrapper'>
+          <div className='row' id='order-header-wrapper'>
+            <button
+              className='col btn active-order-list btn-sm'
+              type='button'
+              md={3}>
+              <h5>Delivered</h5>
+            </button>
+            <button
+              className='col btn-secondary btn-sm'
+              type='button'
+              md={3}
+              style={{ border: 'none' }}>
+              <h5>Processing</h5>
+            </button>
+            <button
+              className='col btn-secondary btn-sm'
+              type='button'
+              md={3}
+              style={{ border: 'none' }}>
+              <h5>Cancelled</h5>
+            </button>
+          </div>
+        </div>
       </Col>
     </Row>
   )
