@@ -13,7 +13,6 @@ header  {
     }
   }
   .active {
-    background-color: rgb(187, 193, 200);
     color: black;
     font-size: large;
   }
@@ -204,9 +203,10 @@ input{
   width: auto;
 
 }
-.active-order-list {
-  background-color: rgb(206, 136, 136);
+#order-button {
+  height: 50px;
+  text-decoration: none;
 }
-.active-order-list:hover {
-  background-color: rgb(206, 136, 136);
+.active-order-list {
+  background-color: rgb(229, 224, 224);
 }

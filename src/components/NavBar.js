@@ -80,31 +80,31 @@ const Header = () => {
               className='img-responsive img-fit'
               src='/logo_bs.jpg'
               width='250'
-              height='200'
+              height='auto'
               alt='Bintus Store logo'
             />
           </Link>
-          <Nav className='d-flex flex-row'>
+          <div className='d-inline-flex' style={{ border: 'solid 1px red' }}>
             {userInfo ? (
               <NavDropdown title={userInfo.name} id='username'>
-                <LinkContainer to='/profile'>
+                <Link to='/profile'>
                   <NavDropdown.Item>Profile</NavDropdown.Item>
-                </LinkContainer>
+                </Link>
                 <NavDropdown.Item onClick={logoutHandler}>
                   Logout
                 </NavDropdown.Item>
               </NavDropdown>
             ) : (
-              <LinkContainer to='/login'>
+              <Link to='/login'>
                 <Nav.Link>
                   <i className='fas fa-user'></i>
                 </Nav.Link>
-              </LinkContainer>
+              </Link>
             )}
             <Link to='/cart'>
-              <i className='fa-sharp fa-solid fa-cart-shopping mt-3 mx-3'></i>
+              <i className='fa-sharp fa-solid fa-cart-shopping mx-3'></i>
             </Link>
-          </Nav>
+          </div>
         </Container>
       </Navbar>
     </>

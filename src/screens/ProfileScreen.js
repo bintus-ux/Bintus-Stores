@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate, Link } from 'react-router-dom'
 import { Table, Form, Button, Row, Col } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
@@ -209,18 +209,17 @@ const ProfileScreen = () => {
               </div>
             </div>
           </div>
-          <div class='col-md-12 text-left' style={{ width: 'auto' }}>
+          <div class='col-md-12 text-left'>
             <button
               type='submit'
               variant='primary'
-              className='btn py-2 my-3'
-              style={{ backgroundColor: 'rgb(206, 136, 136)', color: 'black' }}>
+              className='btn btn-outline-dark my-2'>
               Update
             </button>
           </div>
         </Form>
       </Col>
-      <Col md={9} className='text-center' style={{ width: '900px' }}>
+      <Col md={9} className='text-center'>
         <div className='my-4'>
           <h2>My Orders</h2>
           <hr />
@@ -229,24 +228,39 @@ const ProfileScreen = () => {
         <div className='row' id='order-list-wrapper'>
           <div className='row' id='order-header-wrapper'>
             <button
-              className='col btn active-order-list btn-sm'
+              className='col btn active-order-list btn-sm shadow'
+              id='order-button'
               type='button'
               md={3}>
-              <h5>Delivered</h5>
+              <Link
+                to='/profile/view_delivered_orders'
+                style={{ textDecoration: 'none' }}>
+                <h5>Delivered</h5>
+              </Link>
             </button>
             <button
-              className='col btn-secondary btn-sm'
+              className='col btn-secondary btn-sm shadow'
+              id='order-button'
               type='button'
               md={3}
               style={{ border: 'none' }}>
-              <h5>Processing</h5>
+              <Link
+                to='/profile/view_processing_orders'
+                style={{ textDecoration: 'none' }}>
+                <h5>Processing</h5>
+              </Link>
             </button>
             <button
-              className='col btn-secondary btn-sm'
+              className='col btn-secondary btn-sm shadow'
+              id='order-button'
               type='button'
               md={3}
               style={{ border: 'none' }}>
-              <h5>Cancelled</h5>
+              <Link
+                to='/profile/view_cancelled_orders'
+                style={{ textDecoration: 'none' }}>
+                <h5>Cancelled</h5>
+              </Link>
             </button>
           </div>
         </div>
