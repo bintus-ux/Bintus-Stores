@@ -71,10 +71,15 @@ const TshirtItemScreen = () => {
                     <ListGroupItem
                       className='text-center'
                       style={{ border: 'none' }}>
-                      {tshirtItem.countInStock > 0 ? (
+                      {tshirtItem.countInStock > 1 &&
+                      tshirtItem.countInStock <= 5 ? (
                         <i
                           className='fa-solid fa-circle fa-beat'
-                          style={{ color: '#41d280' }}></i>
+                          style={{ color: '#b19c17' }}></i>
+                      ) : tshirtItem.countInStock > 0 ? (
+                        <i
+                          className='fa-solid fa-circle fa-beat'
+                          style={{ color: '#50d731' }}></i>
                       ) : (
                         <i
                           className='fa-solid fa-circle'

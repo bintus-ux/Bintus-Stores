@@ -70,10 +70,15 @@ const PantItemScreen = () => {
                     <ListGroupItem
                       className='text-center'
                       style={{ border: 'none' }}>
-                      {pantItem.countInStock > 0 ? (
+                      {pantItem.countInStock > 1 &&
+                      pantItem.countInStock <= 5 ? (
                         <i
                           className='fa-solid fa-circle fa-beat'
-                          style={{ color: '#41d280' }}></i>
+                          style={{ color: '#b19c17' }}></i>
+                      ) : pantItem.countInStock > 0 ? (
+                        <i
+                          className='fa-solid fa-circle fa-beat'
+                          style={{ color: '#50d731' }}></i>
                       ) : (
                         <i
                           className='fa-solid fa-circle'

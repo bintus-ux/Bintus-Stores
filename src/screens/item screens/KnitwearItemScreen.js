@@ -74,10 +74,15 @@ const KnitwearItemScreen = () => {
                     <ListGroupItem
                       className='text-center'
                       style={{ border: 'none' }}>
-                      {knitwearItem.countInStock > 0 ? (
+                      {knitwearItem.countInStock > 1 &&
+                      knitwearItem.countInStock <= 5 ? (
                         <i
                           className='fa-solid fa-circle fa-beat'
-                          style={{ color: '#41d280' }}></i>
+                          style={{ color: '#b19c17' }}></i>
+                      ) : knitwearItem.countInStock > 0 ? (
+                        <i
+                          className='fa-solid fa-circle fa-beat'
+                          style={{ color: '#50d731' }}></i>
                       ) : (
                         <i
                           className='fa-solid fa-circle'

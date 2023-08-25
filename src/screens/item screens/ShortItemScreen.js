@@ -70,10 +70,15 @@ const ShortItemScreen = () => {
                     <ListGroupItem
                       className='text-center'
                       style={{ border: 'none' }}>
-                      {shortItem.countInStock > 0 ? (
+                      {shortItem.countInStock > 1 &&
+                      shortItem.countInStock <= 5 ? (
                         <i
                           className='fa-solid fa-circle fa-beat'
-                          style={{ color: '#41d280' }}></i>
+                          style={{ color: '#b19c17' }}></i>
+                      ) : shortItem.countInStock > 0 ? (
+                        <i
+                          className='fa-solid fa-circle fa-beat'
+                          style={{ color: '#50d731' }}></i>
                       ) : (
                         <i
                           className='fa-solid fa-circle'

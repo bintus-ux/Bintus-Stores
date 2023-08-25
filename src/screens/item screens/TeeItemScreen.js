@@ -69,14 +69,18 @@ const TeeItemScreen = () => {
                     <ListGroupItem
                       className='text-center'
                       style={{ border: 'none' }}>
-                      {teeItem.countInStock > 0 ? (
+                      {teeItem.countInStock > 1 && teeItem.countInStock <= 5 ? (
                         <i
                           className='fa-solid fa-circle fa-beat'
-                          style={{ color: '#41d280' }}></i>
+                          style={{ color: '#b19c17' }}></i>
+                      ) : teeItem.countInStock > 0 ? (
+                        <i
+                          className='fa-solid fa-circle fa-beat'
+                          style={{ color: '#50d731' }}></i>
                       ) : (
                         <i
                           className='fa-solid fa-circle'
-                          style={{ color: '#a63647' }}></i>
+                          style={{ color: 'red' }}></i>
                       )}{' '}
                       {teeItem.countInStock} {teeItem.category}{' '}
                       {teeItem.countInStock > 0 ? 'in Stock!' : 'out of Stock.'}

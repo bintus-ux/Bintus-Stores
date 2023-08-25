@@ -88,7 +88,10 @@ const CartScreen = () => {
                           aria-label='button group'>
                           <button
                             type='button'
-                            className='btn btn-danger'
+                            className='btn btn-success'
+                            style={{
+                              padding: '20px',
+                            }}
                             onClick={() => {
                               dispatch(addToCart(item.product, item.qty + 1))
                             }}>
@@ -96,7 +99,12 @@ const CartScreen = () => {
                           </button>
                           <button
                             type='button'
-                            className='btn btn-secondary'
+                            className='btn btn-danger'
+                            style={{
+                              marginTop: '10px',
+                              marginBottom: '10px',
+                              padding: '10px',
+                            }}
                             onClick={() => {
                               dispatch(
                                 addToCart(
@@ -130,14 +138,14 @@ const CartScreen = () => {
               <ListGroupItem style={{ border: 'none' }}>
                 <h3>
                   Subtotal of
-                  <span style={{ fontSize: '25px', color: 'red' }}>
+                  <span style={{ fontSize: '25px', color: 'rgb(96, 196, 49)' }}>
                     ({cartItems.reduce((acc, item) => acc + item.qty, 0)})
                   </span>{' '}
                   item(s)
                 </h3>
                 <p>
                   Total accumulated cost: ₦
-                  <span style={{ fontSize: '25px', color: 'red' }}>
+                  <span style={{ fontSize: '25px', color: 'rgb(96, 196, 49)' }}>
                     {cartItems
                       .reduce((acc, item) => acc + item.qty * item.price, 0)
                       .toLocaleString('en-US')}
@@ -148,7 +156,7 @@ const CartScreen = () => {
               <ListGroupItem>
                 <button
                   type='button'
-                  className='btn btn-outline-danger'
+                  className='btn btn-outline-success'
                   disabled={cartItems.length === 0}
                   onClick={checkoutHandler}>
                   Checkout

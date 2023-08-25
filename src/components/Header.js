@@ -1,6 +1,7 @@
 import React from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 import Typewriter from './Typewriter'
+import { BsMegaphone } from 'react-icons/bs'
 
 const Header = () => {
   return (
@@ -8,9 +9,10 @@ const Header = () => {
       <Container>
         <Row>
           <Col className='text-center py-3 header'>
-            <i className='fa-solid fa-siren'></i>
+            <BsMegaphone style={{ color: 'yellow', marginRight: '10px' }} />
+            {'    '}
             <Typewriter
-              text='Spend N40,000 and get 10% off automatically at checkout!'
+              text='Spend ₦40,000 and get 10% off automatically at checkout!'
               delay={90}
               infinite
             />
