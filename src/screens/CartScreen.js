@@ -15,7 +15,11 @@ import {
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import { useParams } from 'react-router-dom'
-import { addToCart, removeFromCart } from '../actions/cartActions'
+import {
+  addToCart,
+  removeFromCart,
+  removeAllFromCart,
+} from '../actions/cartActions'
 
 const CartScreen = () => {
   const { id } = useParams()
@@ -25,6 +29,8 @@ const CartScreen = () => {
   const navigate = useNavigate()
 
   const qty = location.search ? Number(location.search.split('=')[1]) : 1
+
+  let loggedIn = localStorage.getItem('userInfo')
 
   const cart = useSelector((state) => state.cart)
   const { cartItems } = cart
@@ -40,8 +46,17 @@ const CartScreen = () => {
     dispatch(removeFromCart(id))
   }
 
+  const removeAllFromCartHandler = () => {
+    dispatch(removeAllFromCart())
+  }
+
   const checkoutHandler = () => {
-    navigate('/login?redirect=shipping')
+    if (!loggedIn) {
+      navigate('/login')
+    } else {
+      navigate('/shipping')
+    }
+    // navigate('/login?redirect=shipping')
   }
 
   return (
@@ -131,9 +146,30 @@ const CartScreen = () => {
               ))}
             </ListGroup>
           )}
+          <button
+            type='button'
+            className='btn btn-outline-success'
+            disabled={cartItems.length === 0}
+            onClick={checkoutHandler}>
+            Checkout ₦
+            {cartItems
+              .reduce((acc, item) => acc + item.qty * item.price, 0)
+              .toLocaleString('en-US')}
+          </button>
         </Col>
         <Col md={2} className='text-center justify-center'>
-          <Card>
+          {cartItems.length > 0 && (
+            <span
+              type='button'
+              style={{ color: 'red' }}
+              onClick={() => removeAllFromCartHandler()}>
+              Clear cart
+              <i
+                className='fa-regular fa-circle-xmark'
+                style={{ color: 'red' }}></i>
+            </span>
+          )}
+          {/* <Card>
             <ListGroup variant='flush'>
               <ListGroupItem style={{ border: 'none' }}>
                 <h3>
@@ -163,7 +199,7 @@ const CartScreen = () => {
                 </button>
               </ListGroupItem>
             </ListGroup>
-          </Card>
+          </Card> */}
         </Col>
       </Row>
     </Container>
