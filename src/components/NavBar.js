@@ -86,9 +86,10 @@ const Header = () => {
           <div className='d-inline-flex'>
             {userInfo ? (
               <NavDropdown title={userInfo.name} id='username'>
-                <Link to='/profile'>
-                  <NavDropdown.Item>Profile</NavDropdown.Item>
-                </Link>
+                <NavDropdown.Item>
+                  <Link to='/profile'>Profile</Link>
+                </NavDropdown.Item>
+
                 <NavDropdown.Item onClick={logoutHandler}>
                   Logout
                 </NavDropdown.Item>

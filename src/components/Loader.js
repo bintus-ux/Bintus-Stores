@@ -1,19 +1,31 @@
 import React from 'react'
-import { Spinner } from 'react-bootstrap'
+import { MutatingDots } from 'react-loader-spinner'
 
 const Loader = () => {
   return (
-    <Spinner
-      className='spinner-border text-secondary'
-      role='status'
+    <div
       style={{
-        width: '100px',
-        height: '100px',
+        width: 'fit-content',
+        height: 'fit-content',
         margin: 'auto',
-        display: 'block',
       }}>
-      <span className='sr-only'>Loading...</span>
-    </Spinner>
+      <MutatingDots
+        style={{
+          width: '100px',
+          height: '100px',
+          margin: 'auto',
+          display: 'block',
+          border: 'solid 2px red',
+        }}
+        color='black'
+        secondaryColor='gray'
+        radius='12.5'
+        ariaLabel='mutating-dots-loading'
+        wrapperStyle={{}}
+        wrapperClass=''
+        visible={true}
+      />
+    </div>
   )
 }
 

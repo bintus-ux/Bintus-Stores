@@ -82,8 +82,9 @@ const ProfileScreen = () => {
       <Col md={3}>
         <div className='text-center my-4'>
           <h2>User Profile</h2>
+          <hr />
         </div>
-        <hr />
+
         {message && <Message variant='danger'>{message}</Message>}
         {error && <Message variant='danger'>{error}</Message>}
         {success && (
@@ -225,8 +226,8 @@ const ProfileScreen = () => {
           <hr />
         </div>
 
-        <div className='row' id='order-list-wrapper'>
-          <div className='row' id='order-header-wrapper'>
+        <div id='order-list-wrapper'>
+          <div id='order-header-wrapper'>
             <button
               className='col btn active-order-list btn-sm shadow'
               id='order-button'
