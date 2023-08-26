@@ -31,10 +31,8 @@ const CartScreen = () => {
   const qty = location.search ? Number(location.search.split('=')[1]) : 1
 
   let loggedIn = localStorage.getItem('userInfo')
-
   const cart = useSelector((state) => state.cart)
   const { cartItems } = cart
-  console.log(cartItems)
 
   useEffect(() => {
     if (id) {
@@ -56,8 +54,23 @@ const CartScreen = () => {
     } else {
       navigate('/shipping')
     }
-    // navigate('/login?redirect=shipping')
   }
+
+  // calculating shipping cost
+
+  const shipping = cartItems.reduce((acc, item) => acc + item.qty * 500, 0)
+
+  // calculating subtotal cost
+
+  const subtotal = cartItems.reduce(
+    (acc, item) => acc + item.qty * item.price,
+    0
+  )
+
+  //  adding subtotal cost & shipping cost
+
+  const total = subtotal + shipping
+  console.log(total)
 
   return (
     <Container fluid>
@@ -71,13 +84,14 @@ const CartScreen = () => {
       </div>
       <div className='d-flex justify-content-end'>
         <span
+          type='button'
           style={{ color: 'red' }}
           onClick={() => removeAllFromCartHandler()}>
           Clear all
         </span>
       </div>
-      <Row style={{ border: 'solid 1px red', marginTop: '20px' }}>
-        <Col className='col-12 col-md-12'>
+      <Row style={{ marginTop: '20px' }}>
+        <Col md={9}>
           {cartItems.length === 0 ? (
             <Message>
               Your cart is empty. <Link to='/'>Head Back</Link>
@@ -153,16 +167,78 @@ const CartScreen = () => {
               ))}
             </ListGroup>
           )}
-          <button
-            type='button'
-            className='btn btn-outline-success'
-            disabled={cartItems.length === 0}
-            onClick={checkoutHandler}>
-            Checkout ₦
-            {cartItems
-              .reduce((acc, item) => acc + item.qty * item.price, 0)
-              .toLocaleString('en-US')}
-          </button>
+        </Col>
+        <Col md={3}>
+          <div className='text-center'>
+            <Card>
+              <ListGroup variant='flush'>
+                <ListGroupItem>
+                  <div
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                    }}>
+                    <h5
+                      style={{
+                        fontSize: '17px',
+                        fontWeight: 800,
+                        textAlign: 'left',
+                      }}>
+                      Subtotal:{'  '}
+                    </h5>{' '}
+                    <span>
+                      {' '}
+                      ₦
+                      {cartItems
+                        .reduce((acc, item) => acc + item.qty * item.price, 0)
+                        .toLocaleString('en-US')}
+                    </span>
+                  </div>
+                </ListGroupItem>
+                <ListGroupItem>
+                  <div
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                    }}>
+                    <p style={{ textAlign: 'left' }}>Total items:{'  '}</p>{' '}
+                    <span style={{ textAlign: 'right' }}>
+                      {cartItems.reduce((acc, item) => acc + item.qty, 0)}
+                    </span>
+                  </div>
+                </ListGroupItem>
+                <ListGroupItem>
+                  <div
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                    }}>
+                    <p>Shipping:</p>
+                    <span>{shipping}</span>
+                  </div>
+                </ListGroupItem>
+                <ListGroupItem>
+                  <div
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                    }}>
+                    <h5>Total:</h5>
+                    <span>{total}</span>
+                  </div>
+                </ListGroupItem>
+                <ListGroupItem>
+                  <button
+                    type='button'
+                    className='btn btn-outline-success'
+                    disabled={cartItems.length === 0}
+                    onClick={checkoutHandler}>
+                    Checkout ₦{total}
+                  </button>
+                </ListGroupItem>
+              </ListGroup>
+            </Card>
+          </div>
         </Col>
       </Row>
     </Container>

@@ -3,32 +3,43 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { Form, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import FormContainer from '../components/FormContainer'
+import { saveShippingAddress } from '../actions/cartActions'
 
 const ShippingScreen = () => {
-  const [address, setAddress] = useState('')
-  const [city, setCity] = useState('')
-  const [postalCode, setPostalCode] = useState('')
-  const [country, setCountry] = useState('')
+  const cart = useSelector((state) => state.cart)
+  const { shippingAddress } = cart
+
+  const [address, setAddress] = useState(shippingAddress.address)
+  const [city, setCity] = useState(shippingAddress.city)
+  const [postalCode, setPostalCode] = useState(shippingAddress.postalCode)
+  const [country, setCountry] = useState(shippingAddress.country)
 
   const dispatch = useDispatch()
   let navigate = useNavigate()
 
   const submitHandler = (e) => {
     e.preventDefault()
-    // dispatch(saveShippingAddress({ address, city, postalCode, country }))
-    // navigate('/payment')
+    dispatch(saveShippingAddress({ address, city, postalCode, country }))
+    navigate('/payment')
   }
 
   return (
     <>
       <FormContainer>
-        <h1>Shipping</h1>
+        <div className='row my-5'>
+          <div className='col-12'>
+            <h2 className='display-4 text-center text-capitalize font-italic'>
+              Shipping{' '}
+            </h2>
+            <hr className='border border-primary ' />
+          </div>
+        </div>
         <Form onSubmit={submitHandler}>
           <label
             for='address'
             className='my-2'
             style={{ fontWeight: 'bold', fontSize: '20px' }}>
-            Address
+            Address:
           </label>
           <div className='input-group'>
             <div className='form-div'>
@@ -48,7 +59,7 @@ const ShippingScreen = () => {
             for='city'
             className='my-2'
             style={{ fontWeight: 'bold', fontSize: '20px' }}>
-            City
+            City:
           </label>
           <div className='input-group'>
             <div className='form-div'>
@@ -68,7 +79,7 @@ const ShippingScreen = () => {
             for='postalcode'
             className='my-2'
             style={{ fontWeight: 'bold', fontSize: '20px' }}>
-            Postal Code
+            Postal Code:
           </label>
           <div className='input-group'>
             <div className='form-div'>
@@ -88,7 +99,7 @@ const ShippingScreen = () => {
             for='country'
             className='my-2'
             style={{ fontWeight: 'bold', fontSize: '20px' }}>
-            Country
+            Country:
           </label>
           <div className='input-group'>
             <div className='form-div'>
