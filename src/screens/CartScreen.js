@@ -69,8 +69,15 @@ const CartScreen = () => {
           <hr className='border border-primary ' />
         </div>
       </div>
-      <Row>
-        <Col md={10}>
+      <div className='d-flex justify-content-end'>
+        <span
+          style={{ color: 'red' }}
+          onClick={() => removeAllFromCartHandler()}>
+          Clear all
+        </span>
+      </div>
+      <Row style={{ border: 'solid 1px red', marginTop: '20px' }}>
+        <Col className='col-12 col-md-12'>
           {cartItems.length === 0 ? (
             <Message>
               Your cart is empty. <Link to='/'>Head Back</Link>
@@ -156,50 +163,6 @@ const CartScreen = () => {
               .reduce((acc, item) => acc + item.qty * item.price, 0)
               .toLocaleString('en-US')}
           </button>
-        </Col>
-        <Col md={2} className='text-center justify-center'>
-          {cartItems.length > 0 && (
-            <span
-              type='button'
-              style={{ color: 'red' }}
-              onClick={() => removeAllFromCartHandler()}>
-              Clear cart
-              <i
-                className='fa-regular fa-circle-xmark'
-                style={{ color: 'red' }}></i>
-            </span>
-          )}
-          {/* <Card>
-            <ListGroup variant='flush'>
-              <ListGroupItem style={{ border: 'none' }}>
-                <h3>
-                  Subtotal of
-                  <span style={{ fontSize: '25px', color: 'rgb(96, 196, 49)' }}>
-                    ({cartItems.reduce((acc, item) => acc + item.qty, 0)})
-                  </span>{' '}
-                  item(s)
-                </h3>
-                <p>
-                  Total accumulated cost: ₦
-                  <span style={{ fontSize: '25px', color: 'rgb(96, 196, 49)' }}>
-                    {cartItems
-                      .reduce((acc, item) => acc + item.qty * item.price, 0)
-                      .toLocaleString('en-US')}
-                  </span>
-                </p>
-              </ListGroupItem>
-              <hr />
-              <ListGroupItem>
-                <button
-                  type='button'
-                  className='btn btn-outline-success'
-                  disabled={cartItems.length === 0}
-                  onClick={checkoutHandler}>
-                  Checkout
-                </button>
-              </ListGroupItem>
-            </ListGroup>
-          </Card> */}
         </Col>
       </Row>
     </Container>

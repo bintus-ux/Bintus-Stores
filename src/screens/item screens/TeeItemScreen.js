@@ -53,7 +53,7 @@ const TeeItemScreen = () => {
         <Message variant='danger'>{error}</Message>
       ) : (
         <>
-          {teeItem ? (
+          {teeItem && (
             <>
               <Row>
                 <Col md={6}>
@@ -90,44 +90,47 @@ const TeeItemScreen = () => {
                       style={{ border: 'none' }}>
                       {teeItem.countInStock >= 1 && (
                         <>
-                          <p>Quantity</p>
+                          <p>Quantity:</p>
                           <div className='number-input'>
-                            <button
-                              className='icon-button'
-                              style={{
-                                color: 'white',
-                                backgroundColor: 'black',
-                                width: '30px',
-                              }}
-                              disabled={qty === 0}
-                              onClick={handleDecrement}>
-                              -
-                            </button>{' '}
-                            <input
-                              type='text'
-                              className='input-field'
-                              value={qty}
-                              onChange={(e) => {
-                                const newValue = parseInt(
-                                  e.target.qty,
-                                  teeItem.countInStock
-                                )
-                                if (!isNaN(newValue) && newValue <= max) {
-                                  setQty(newValue)
-                                }
-                              }}
-                            />{' '}
-                            <button
-                              className='icon-button'
-                              style={{
-                                color: 'white',
-                                backgroundColor: 'black',
-                                width: '30px',
-                              }}
-                              disabled={qty === max}
-                              onClick={handleIncrement}>
-                              +
-                            </button>{' '}
+                            <div className='text-center'>
+                              <button
+                                className='icon-button'
+                                style={{
+                                  color: 'black',
+                                  backgroundColor: 'white',
+                                  width: '40px',
+                                }}
+                                disabled={qty === max}
+                                onClick={handleIncrement}>
+                                +
+                              </button>{' '}
+                              <input
+                                type='text'
+                                className='input-field'
+                                value={qty}
+                                style={{ border: 'none', width: '50px' }}
+                                onChange={(e) => {
+                                  const newValue = parseInt(
+                                    e.target.qty,
+                                    teeItem.countInStock
+                                  )
+                                  if (!isNaN(newValue) && newValue <= max) {
+                                    setQty(newValue)
+                                  }
+                                }}
+                              />{' '}
+                              <button
+                                className='icon-button'
+                                style={{
+                                  color: 'black',
+                                  backgroundColor: 'white',
+                                  width: '30px',
+                                }}
+                                disabled={qty === 0}
+                                onClick={handleDecrement}>
+                                -
+                              </button>{' '}
+                            </div>
                           </div>
                         </>
                       )}
@@ -189,8 +192,6 @@ const TeeItemScreen = () => {
                 </Col>
               </Row>
             </>
-          ) : (
-            ''
           )}
           <Row>
             <Col md={12} className='text-center my-4'>

@@ -55,7 +55,7 @@ const SetItemScreen = () => {
         <Message variant='danger'>{error}</Message>
       ) : (
         <>
-          {setItem ? (
+          {setItem && (
             <>
               <Row>
                 <Col md={6}>
@@ -92,44 +92,47 @@ const SetItemScreen = () => {
                       style={{ border: 'none' }}>
                       {setItem.countInStock >= 1 && (
                         <>
-                          <p>Quantity</p>
+                          <p>Quantity:</p>
                           <div className='number-input'>
-                            <button
-                              className='icon-button'
-                              style={{
-                                color: 'white',
-                                backgroundColor: 'black',
-                                width: '30px',
-                              }}
-                              disabled={qty === 0}
-                              onClick={handleDecrement}>
-                              -
-                            </button>{' '}
-                            <input
-                              type='text'
-                              className='input-field'
-                              value={qty}
-                              onChange={(e) => {
-                                const newValue = parseInt(
-                                  e.target.qty,
-                                  setItem.countInStock
-                                )
-                                if (!isNaN(newValue) && newValue <= max) {
-                                  setQty(newValue)
-                                }
-                              }}
-                            />{' '}
-                            <button
-                              className='icon-button'
-                              style={{
-                                color: 'white',
-                                backgroundColor: 'black',
-                                width: '30px',
-                              }}
-                              disabled={qty === max}
-                              onClick={handleIncrement}>
-                              +
-                            </button>{' '}
+                            <div className='text-center'>
+                              <button
+                                className='icon-button'
+                                style={{
+                                  color: 'black',
+                                  backgroundColor: 'white',
+                                  width: '40px',
+                                }}
+                                disabled={qty === max}
+                                onClick={handleIncrement}>
+                                +
+                              </button>{' '}
+                              <input
+                                type='text'
+                                className='input-field'
+                                value={qty}
+                                style={{ border: 'none', width: '50px' }}
+                                onChange={(e) => {
+                                  const newValue = parseInt(
+                                    e.target.qty,
+                                    setItem.countInStock
+                                  )
+                                  if (!isNaN(newValue) && newValue <= max) {
+                                    setQty(newValue)
+                                  }
+                                }}
+                              />{' '}
+                              <button
+                                className='icon-button'
+                                style={{
+                                  color: 'black',
+                                  backgroundColor: 'white',
+                                  width: '30px',
+                                }}
+                                disabled={qty === 0}
+                                onClick={handleDecrement}>
+                                -
+                              </button>{' '}
+                            </div>
                           </div>
                         </>
                       )}
@@ -191,8 +194,6 @@ const SetItemScreen = () => {
                 </Col>
               </Row>
             </>
-          ) : (
-            ''
           )}
           <Row>
             <Col md={12} className='text-center my-4'>
