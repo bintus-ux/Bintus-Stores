@@ -4,6 +4,7 @@ import { Form, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import FormContainer from '../components/FormContainer'
 import { saveShippingAddress } from '../actions/cartActions'
+import CheckoutStepsRow from '../components/CheckoutStepsRow'
 import StateDropdown from '../components/StateDropdown'
 
 const ShippingScreen = () => {
@@ -47,6 +48,7 @@ const ShippingScreen = () => {
   return (
     <>
       <FormContainer>
+        <CheckoutStepsRow step1 step2 />
         <div className='row my-5'>
           <div className='col-12'>
             <h2 className='display-4 text-center text-capitalize font-italic'>

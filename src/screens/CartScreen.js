@@ -20,6 +20,7 @@ import {
   removeFromCart,
   removeAllFromCart,
 } from '../actions/cartActions'
+import { bgBlack } from 'colors'
 
 const CartScreen = () => {
   const { id } = useParams()
@@ -171,8 +172,29 @@ const CartScreen = () => {
         <Col md={3}>
           <div className='text-center'>
             <Card>
-              <ListGroup variant='flush'>
-                <ListGroupItem>
+              <ListGroup variant='flush' className='border'>
+                <ListGroupItem id='list-group-item-div'>
+                  <div>
+                    <h5 style={{ color: 'white' }}>Card type</h5>
+                  </div>
+                  <spn>
+                    <i
+                      className='fa-brands fa-cc-paypal fa-2xl'
+                      style={{ color: 'white' }}></i>{' '}
+                    <i
+                      className='fa-brands fa-cc-stripe fa-2xl'
+                      style={{ color: 'white' }}></i>{' '}
+                    <i
+                      className='fa-brands fa-cc-mastercard fa-2xl'
+                      style={{ color: 'white' }}></i>{' '}
+                    <i
+                      className='fa-brands fa-cc-visa fa-2xl'
+                      style={{ color: 'white' }}></i>
+                  </spn>
+                </ListGroupItem>
+                <ListGroupItem
+                  id='list-group-item-div'
+                  style={{ border: 'none', color: 'white' }}>
                   <div
                     style={{
                       display: 'flex',
@@ -195,7 +217,9 @@ const CartScreen = () => {
                     </span>
                   </div>
                 </ListGroupItem>
-                <ListGroupItem>
+                <ListGroupItem
+                  id='list-group-item-div'
+                  style={{ border: 'none', color: 'white' }}>
                   <div
                     style={{
                       display: 'flex',
@@ -207,7 +231,9 @@ const CartScreen = () => {
                     </span>
                   </div>
                 </ListGroupItem>
-                <ListGroupItem>
+                <ListGroupItem
+                  id='list-group-item-div'
+                  style={{ border: 'none', color: 'white' }}>
                   <div
                     style={{
                       display: 'flex',
@@ -217,27 +243,33 @@ const CartScreen = () => {
                     <span>₦{shipping.toLocaleString('en-US')}</span>
                   </div>
                 </ListGroupItem>
-                <ListGroupItem>
+                <ListGroupItem
+                  id='list-group-item-div'
+                  style={{ border: 'none', color: 'white' }}>
                   <div
                     style={{
                       display: 'flex',
                       justifyContent: 'space-between',
                     }}>
-                    <h5 style={{ fontSize: '20px', fontWeight: 'bold' }}>
-                      Total
-                    </h5>
+                    <span style={{ fontSize: '14px', fontWeight: 'bold' }}>
+                      Total<p>(Incl. shipp)</p>
+                    </span>
+
                     <span style={{ fontSize: '20px' }}>
                       ₦{total.toLocaleString('en-US')}
                     </span>
                   </div>
                 </ListGroupItem>
-                <ListGroupItem>
+                <ListGroupItem id='list-group-item-div'>
                   <button
                     type='button'
-                    className='btn btn-outline-success'
+                    className='btn'
+                    id='button-cart'
                     disabled={cartItems.length === 0}
+                    style={{ backgroundColor: '#61c1e1', color: 'whitesmoke' }}
                     onClick={checkoutHandler}>
-                    Checkout ₦{total.toLocaleString('en-US')}
+                    Checkout ₦{total.toLocaleString('en-US')}{' '}
+                    <i className='fa-solid fa-arrow-right-long'></i>
                   </button>
                 </ListGroupItem>
               </ListGroup>

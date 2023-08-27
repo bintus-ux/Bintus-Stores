@@ -234,4 +234,27 @@ input{
 .active-order-list {
   background-color: rgb(229, 224, 224);
 }
+.border {
+  border-radius: 30%;
+}
 
+#list-group-item-div {
+  background-color: #3d88d3;
+}
+.checkout-steps {
+  display: flex;
+  justify-content: space-between;
+  width: 40rem;
+  margin: 1rem auto;
+}
+
+
+.active {
+  border-top: 0.3rem orange solid;
+  color: black;
+}
+ .non-active {
+  border-top: 0.3rem red solid;
+  color: black;
+  padding-top: 1rem;
+}
