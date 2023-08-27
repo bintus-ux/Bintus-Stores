@@ -10,17 +10,20 @@ const ShippingScreen = () => {
   const cart = useSelector((state) => state.cart)
   const { shippingAddress } = cart
 
-  const [address, setAddress] = useState(shippingAddress.address)
-  const [city, setCity] = useState(shippingAddress.city)
-  const [postalCode, setPostalCode] = useState(shippingAddress.postalCode)
-  const [country, setCountry] = useState(shippingAddress.country)
+  const [firstName, setFirstName] = useState(shippingAddress.firstName)
+  const [lastName, setLastName] = useState(shippingAddress.lastName)
+  const [address1, setAddress1] = useState(shippingAddress.address1)
+  const [address2, setAddress2] = useState(shippingAddress.address2)
+  const [phoneNumber, setPhoneNumber] = useState(shippingAddress.phoneNumber)
 
   const nigerianStates = ['Abia', 'Adamawa', 'Akwa Ibom' /* ... and so on */]
 
-  const [selectedState, setSelectedState] = useState('')
+  const [selectedState, setSelectedState] = useState(
+    shippingAddress.selectedState
+  )
 
-  const handleStateSelect = (event) => {
-    setSelectedState(event.target.value)
+  const handleStateSelect = (e) => {
+    setSelectedState(e.target.value)
   }
 
   const dispatch = useDispatch()
@@ -28,7 +31,16 @@ const ShippingScreen = () => {
 
   const submitHandler = (e) => {
     e.preventDefault()
-    dispatch(saveShippingAddress({ address, city, postalCode, country }))
+    dispatch(
+      saveShippingAddress({
+        firstName,
+        lastName,
+        address1,
+        address2,
+        selectedState,
+        phoneNumber,
+      })
+    )
     navigate('/payment')
   }
 
@@ -44,25 +56,50 @@ const ShippingScreen = () => {
           </div>
         </div>
         <Form onSubmit={submitHandler}>
-          {/* <label
-            for='address'
-            className='my-2'
-            style={{ fontWeight: 'bold', fontSize: '20px' }}>
-            Address:
-          </label>
-          <div className='input-group'>
-            <div className='form-div'>
-              <input
-                type='text'
-                placeholder='Enter address'
-                value={address}
-                required
-                id='address'
-                className='input-form'
-                onChange={(e) => setAddress(e.target.value)}
-              />
+          <div className='container'>
+            <label
+              for='address'
+              className='my-2'
+              style={{ fontWeight: 'bold', fontSize: '20px' }}>
+              First Name:
+            </label>
+            <div className='input-group'>
+              <div className='form-div'>
+                <input
+                  type='text'
+                  placeholder='Enter first name'
+                  value={firstName}
+                  required
+                  id='address'
+                  className='input-form'
+                  onChange={(e) => setFirstName(e.target.value)}
+                />
+              </div>
             </div>
-          </div> */}
+          </div>
+
+          <div className='container'>
+            <label
+              for='address'
+              className='my-2'
+              style={{ fontWeight: 'bold', fontSize: '20px' }}>
+              Last Name:
+            </label>
+            <div className='input-group'>
+              <div className='form-div'>
+                <input
+                  type='text'
+                  placeholder='Enter last name'
+                  value={lastName}
+                  required
+                  id='address'
+                  className='input-form'
+                  onChange={(e) => setLastName(e.target.value)}
+                />
+              </div>
+            </div>
+          </div>
+
           <div className='container'>
             <label
               for='address'
@@ -74,8 +111,11 @@ const ShippingScreen = () => {
               <div class='col-md-12'>
                 <textarea
                   class='form-control'
+                  value={address1}
+                  required
                   rows='2'
-                  style={{ width: '100%' }}></textarea>
+                  style={{ width: '100%' }}
+                  onChange={(e) => setAddress1(e.target.value)}></textarea>
               </div>
             </div>
           </div>
@@ -85,14 +125,17 @@ const ShippingScreen = () => {
               for='address'
               className='my-2'
               style={{ fontWeight: 'bold', fontSize: '20px' }}>
-              <i className='fa-solid fa-location-dot'></i> Street address 2:
+              <i className='fa-solid fa-location-dot'></i> Street address
+              2(optional):
             </label>
             <div class='row'>
               <div class='col-md-12'>
                 <textarea
                   class='form-control'
+                  value={address2}
                   rows='2'
-                  style={{ width: '100%' }}></textarea>
+                  style={{ width: '100%' }}
+                  onChange={(e) => setAddress1(e.target.value)}></textarea>
               </div>
             </div>
           </div>
@@ -109,52 +152,32 @@ const ShippingScreen = () => {
                 <StateDropdown
                   states={nigerianStates}
                   onSelect={handleStateSelect}
+                  value={selectedState}
+                  required
                   style={{ width: '300px' }}
                 />
-                {selectedState && <p>You selected: {selectedState}</p>}
               </div>
+              {selectedState && <p>You selected: {selectedState} state</p>}
             </div>
           </div>
 
           <div className='container'>
             <label
-              for='postalcode'
+              for='phoneNumber'
               className='my-2'
               style={{ fontWeight: 'bold', fontSize: '20px' }}>
-              Postal Code:
+              <i class='fa-solid fa-phone'></i> Phone Number:
             </label>
             <div className='input-group'>
               <div className='form-div'>
                 <input
                   type='text'
-                  placeholder='Enter postal code'
-                  value={postalCode}
-                  required
-                  id='postalcode'
-                  className='input-form'
-                  onChange={(e) => setPostalCode(e.target.value)}
-                />
-              </div>
-            </div>
-          </div>
-
-          <div className='container'>
-            <label
-              for='country'
-              className='my-2'
-              style={{ fontWeight: 'bold', fontSize: '20px' }}>
-              Country:
-            </label>
-            <div className='input-group'>
-              <div className='form-div'>
-                <input
-                  type='text'
-                  placeholder='Enter country'
-                  value={country}
+                  placeholder='Enter phone number'
+                  value={phoneNumber}
                   required
                   id='country'
                   className='input-form'
-                  onChange={(e) => setCountry(e.target.value)}
+                  onChange={(e) => setPhoneNumber(e.target.value)}
                 />
               </div>
             </div>
