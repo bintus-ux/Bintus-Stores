@@ -214,7 +214,7 @@ const CartScreen = () => {
                       justifyContent: 'space-between',
                     }}>
                     <p>Shipping:</p>
-                    <span>{shipping}</span>
+                    <span>₦{shipping.toLocaleString('en-US')}</span>
                   </div>
                 </ListGroupItem>
                 <ListGroupItem>
@@ -223,8 +223,12 @@ const CartScreen = () => {
                       display: 'flex',
                       justifyContent: 'space-between',
                     }}>
-                    <h5>Total:</h5>
-                    <span>{total}</span>
+                    <h5 style={{ fontSize: '20px', fontWeight: 'bold' }}>
+                      Total
+                    </h5>
+                    <span style={{ fontSize: '20px' }}>
+                      ₦{total.toLocaleString('en-US')}
+                    </span>
                   </div>
                 </ListGroupItem>
                 <ListGroupItem>
@@ -233,7 +237,7 @@ const CartScreen = () => {
                     className='btn btn-outline-success'
                     disabled={cartItems.length === 0}
                     onClick={checkoutHandler}>
-                    Checkout ₦{total}
+                    Checkout ₦{total.toLocaleString('en-US')}
                   </button>
                 </ListGroupItem>
               </ListGroup>
