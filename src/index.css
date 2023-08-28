@@ -249,7 +249,7 @@ input{
 }
 
 
-.active {
+.active-step {
   border-top: 0.3rem orange solid;
   color: black;
 }
@@ -258,3 +258,34 @@ input{
   color: black;
   padding-top: 1rem;
 }
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.flex-item1 {
+  width: 70%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  margin: 5px;
+}
+.flex-item2 {
+  width: 30%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  margin: 5px;
+}
+
+
+/* @media (max-width: 767px) {
+  .flex-container {
+    display: block;
+  }
+} */

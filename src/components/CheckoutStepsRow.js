@@ -9,7 +9,9 @@ const CheckoutStepsRow = ({ step1, step2, step3, step4 }) => {
         <NavItem>
           {step1 ? (
             <LinkContainer to='/login'>
-              <NavLink className={step1 ? 'active' : ''}>Sign In</NavLink>
+              <NavLink className={step1 ? 'active-step' : 'nonactive'}>
+                Sign In
+              </NavLink>
             </LinkContainer>
           ) : (
             <NavLink disabled style={{ borderTop: '0.3rem solid ' }}>
@@ -21,7 +23,9 @@ const CheckoutStepsRow = ({ step1, step2, step3, step4 }) => {
         <NavItem>
           {step2 ? (
             <LinkContainer to='/shipping'>
-              <NavLink className={step2 ? 'active' : ''}>Shipping</NavLink>
+              <NavLink className={step2 ? 'active-step' : 'nonactive'}>
+                Shipping
+              </NavLink>
             </LinkContainer>
           ) : (
             <NavLink disabled>Shipping</NavLink>
@@ -31,7 +35,7 @@ const CheckoutStepsRow = ({ step1, step2, step3, step4 }) => {
         <NavItem>
           {step3 ? (
             <LinkContainer to='/payment'>
-              <NavLink className={step3 ? 'active' : 'non-active'}>
+              <NavLink className={step3 ? 'active-step' : 'non-active'}>
                 Payment
               </NavLink>
             </LinkContainer>
