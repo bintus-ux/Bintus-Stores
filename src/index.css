@@ -244,19 +244,20 @@ input{
 .checkout-steps {
   display: flex;
   justify-content: space-between;
-  width: 40rem;
-  margin: 1rem auto;
+  width: 80rem;
+  margin: 2rem auto red;
 }
 
 
 .active-step {
   border-top: 0.3rem orange solid;
   color: black;
+  width: 100px;
 }
- .non-active {
-  border-top: 0.3rem red solid;
-  color: black;
-  padding-top: 1rem;
+
+.cart-button {
+  margin-left: 60px;
+  margin-top: -30px;
 }
 .container {
   max-width: 1200px;

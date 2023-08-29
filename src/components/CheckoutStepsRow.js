@@ -9,12 +9,12 @@ const CheckoutStepsRow = ({ step1, step2, step3, step4 }) => {
         <NavItem>
           {step1 ? (
             <LinkContainer to='/login'>
-              <NavLink className={step1 ? 'active-step' : 'nonactive'}>
-                Sign In
-              </NavLink>
+              <NavLink className={step1 && 'active-step'}>Sign In</NavLink>
             </LinkContainer>
           ) : (
-            <NavLink disabled style={{ borderTop: '0.3rem solid ' }}>
+            <NavLink
+              disabled
+              style={{ borderTop: '0.3rem solid #9d611b', width: '100px' }}>
               Sign In
             </NavLink>
           )}
@@ -23,24 +23,26 @@ const CheckoutStepsRow = ({ step1, step2, step3, step4 }) => {
         <NavItem>
           {step2 ? (
             <LinkContainer to='/shipping'>
-              <NavLink className={step2 ? 'active-step' : 'nonactive'}>
-                Shipping
-              </NavLink>
+              <NavLink className={step2 && 'active-step'}>Shipping</NavLink>
             </LinkContainer>
           ) : (
-            <NavLink disabled>Shipping</NavLink>
+            <NavLink
+              disabled
+              style={{ borderTop: '0.3rem solid #9d611b', width: '100px' }}>
+              Shipping
+            </NavLink>
           )}{' '}
         </NavItem>
 
         <NavItem>
           {step3 ? (
             <LinkContainer to='/payment'>
-              <NavLink className={step3 ? 'active-step' : 'non-active'}>
-                Payment
-              </NavLink>
+              <NavLink className={step3 && 'active-step'}>Payment</NavLink>
             </LinkContainer>
           ) : (
-            <NavLink disabled style={{ borderTop: '0.3rem solid #9d611b' }}>
+            <NavLink
+              disabled
+              style={{ borderTop: '5px solid #9d611b', width: '100px' }}>
               Payment
             </NavLink>
           )}
@@ -49,12 +51,12 @@ const CheckoutStepsRow = ({ step1, step2, step3, step4 }) => {
         <NavItem>
           {step4 ? (
             <LinkContainer to='/placeorder'>
-              <NavLink className={step4 ? 'active' : 'non-active'}>
-                Place Order
-              </NavLink>
+              <NavLink className={step4 && 'active'}>Place Order</NavLink>
             </LinkContainer>
           ) : (
-            <NavLink disabled style={{ borderTop: '0.3rem solid #9d611b' }}>
+            <NavLink
+              disabled
+              style={{ borderTop: '0.3rem solid #9d611b', width: '140px' }}>
               Place Order
             </NavLink>
           )}

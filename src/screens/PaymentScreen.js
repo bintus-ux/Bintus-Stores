@@ -90,45 +90,65 @@ const PaymentScreen = () => {
 
         {showCreditForm ? (
           <>
-            <div className='my-5'>
-              <h2>Enter Credit Card Details</h2>
+            <div className='my-5 mx-2'>
+              <h3 className='mx-1'>Enter Credit Card Details</h3>
               <form onSubmit={handleSubmit}>
-                <label
-                  for='card-input'
-                  className='my-2'
-                  style={{ fontWeight: 'bold', fontSize: '20px' }}>
-                  Select Card Type
-                </label>
-                <div className='input-group'>
-                  <div className='form-div'>
-                    <select
-                      id='cars'
-                      name='cars'
-                      className='input-form'
-                      required>
-                      <option value='masterCard'>Master card</option>
-                      <option value='visaCard'>Visa card</option>
-                    </select>
+                <div
+                  style={{
+                    border: '1px solid #ddd',
+                    padding: '10px',
+                    margin: '5px',
+                  }}>
+                  <label
+                    for='card-input'
+                    className='my-2'
+                    style={{
+                      fontWeight: 'bold',
+                      fontSize: '20px',
+                    }}>
+                    Select Card Type
+                  </label>
+                  <div className='input-group'>
+                    <div className='form-div'>
+                      <select
+                        id='cars'
+                        name='cars'
+                        className='input-form'
+                        required>
+                        <option value='masterCard'>Master card</option>
+                        <option value='visaCard'>Visa card</option>
+                      </select>
+                    </div>
                   </div>
                 </div>
 
-                <label
-                  for='card-input'
-                  className='my-2'
-                  style={{ fontWeight: 'bold', fontSize: '20px' }}>
-                  Enter Credit Card Number
-                </label>
-                <div className='input-group'>
-                  <div className='form-div'>
-                    <input
-                      type='text'
-                      placeholder='1234 5678 9012 3456'
-                      value={cardNumber}
-                      id='card-input'
-                      required
-                      className='input-form'
-                      onChange={(e) => setCardNumber(e.target.value)}
-                    />
+                <div
+                  style={{
+                    border: '1px solid #ddd',
+                    padding: '10px',
+                    margin: '5px',
+                  }}>
+                  <label
+                    for='card-input'
+                    className='my-2'
+                    style={{
+                      fontWeight: 'bold',
+                      fontSize: '20px',
+                    }}>
+                    Enter Credit Card Number
+                  </label>
+                  <div className='input-group'>
+                    <div className='form-div'>
+                      <input
+                        type='text'
+                        placeholder='1234 5678 9012 3456'
+                        value={cardNumber}
+                        id='card-input'
+                        required
+                        className='input-form'
+                        onChange={(e) => setCardNumber(e.target.value)}
+                      />
+                    </div>
                   </div>
                 </div>
 
@@ -174,7 +194,7 @@ const PaymentScreen = () => {
                   </div>
                 </div>
 
-                <button type='submit' className='btn btn-primary'>
+                <button type='submit' className='btn btn-primary my-2'>
                   Submit
                 </button>
               </form>

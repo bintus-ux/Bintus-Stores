@@ -92,12 +92,12 @@ const CartScreen = () => {
         </span>
       </div>
       <Row style={{ marginTop: '20px' }}>
-        <Col md={9}>
-          {cartItems.length === 0 ? (
-            <Message>
-              Your cart is empty. <Link to='/'>Head Back</Link>
-            </Message>
-          ) : (
+        {cartItems.length === 0 ? (
+          <Message>
+            Your cart is empty. <Link to='/'>Head Back</Link>
+          </Message>
+        ) : (
+          <Col md={9}>
             <ListGroup variant='flush'>
               {cartItems.map((item) => (
                 <ListGroup.Item key={item.id}>
@@ -105,7 +105,7 @@ const CartScreen = () => {
                     <Col md={3}>
                       <Image src={item.image} alt={item.name} fluid rounded />
                     </Col>
-                    <Col md={3}>
+                    <Col md={5}>
                       <Link to={`/categoryItems/${item.product}`}>
                         <h3>{item.name}</h3>
                       </Link>
@@ -114,13 +114,13 @@ const CartScreen = () => {
 
                     <Col md={3}>
                       <div className='position-relative'>
-                        <i className='fa-sharp fa-solid fa-cart-shopping mx-5'>
+                        <i className='fa-sharp fa-solid fa-cart-shopping mx-1 mt-3'>
                           <span className='position-absolute badge top-0 bg-danger border border-light rounded-circle'>
                             {item.qty}
                           </span>
                         </i>
                         <div
-                          className='btn-group'
+                          className='cart-button'
                           role='group'
                           aria-label='button group'>
                           <button
@@ -167,8 +167,8 @@ const CartScreen = () => {
                 </ListGroup.Item>
               ))}
             </ListGroup>
-          )}
-        </Col>
+          </Col>
+        )}
         <Col md={3}>
           <div className='text-center'>
             <Card>
