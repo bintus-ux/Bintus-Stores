@@ -244,15 +244,14 @@ input{
 .checkout-steps {
   display: flex;
   justify-content: space-between;
-  width: 80rem;
-  margin: 2rem auto red;
+  margin: 20px
 }
 
 
 .active-step {
-  border-top: 0.3rem orange solid;
+  border-top: 5px orange solid;
   color: black;
-  width: 100px;
+  width: 140px;
 }
 
 .cart-button {
@@ -282,6 +281,14 @@ input{
   padding: 10px;
   border: 1px solid #ddd;
   margin: 5px;
+}
+.shipping-details-container {
+  display: grid;
+  grid-template-columns: auto auto;
+  row-gap: 20px;
+}
+.shipping-details-container > div {
+  /* border-bottom: #ddd solid 1px; */
 }
 
 

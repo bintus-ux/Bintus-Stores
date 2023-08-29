@@ -23,7 +23,7 @@ const PaymentScreen = () => {
     navigate('/shipping')
   }
 
-  const [paymentMethod, setPaymentMethod] = useState('PayStack')
+  const [paymentMethod, setPaymentMethod] = useState('Stripe')
   const [cardNumber, setCardNumber] = useState('')
   const [expirationDate, setExpirationDate] = useState('')
   const [cvv, setCvv] = useState('')

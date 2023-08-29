@@ -20,7 +20,6 @@ import {
   removeFromCart,
   removeAllFromCart,
 } from '../actions/cartActions'
-import { bgBlack } from 'colors'
 
 const CartScreen = () => {
   const { id } = useParams()

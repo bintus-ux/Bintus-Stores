@@ -14,7 +14,7 @@ const CheckoutStepsRow = ({ step1, step2, step3, step4 }) => {
           ) : (
             <NavLink
               disabled
-              style={{ borderTop: '0.3rem solid #9d611b', width: '100px' }}>
+              style={{ borderTop: '5px solid #9d611b', width: '100px' }}>
               Sign In
             </NavLink>
           )}
@@ -28,7 +28,7 @@ const CheckoutStepsRow = ({ step1, step2, step3, step4 }) => {
           ) : (
             <NavLink
               disabled
-              style={{ borderTop: '0.3rem solid #9d611b', width: '100px' }}>
+              style={{ borderTop: '5px solid #9d611b', width: '100px' }}>
               Shipping
             </NavLink>
           )}{' '}
@@ -51,12 +51,12 @@ const CheckoutStepsRow = ({ step1, step2, step3, step4 }) => {
         <NavItem>
           {step4 ? (
             <LinkContainer to='/placeorder'>
-              <NavLink className={step4 && 'active'}>Place Order</NavLink>
+              <NavLink className={step4 && 'active-step'}>Place Order</NavLink>
             </LinkContainer>
           ) : (
             <NavLink
               disabled
-              style={{ borderTop: '0.3rem solid #9d611b', width: '140px' }}>
+              style={{ borderTop: '5px solid #9d611b', width: '140px' }}>
               Place Order
             </NavLink>
           )}
