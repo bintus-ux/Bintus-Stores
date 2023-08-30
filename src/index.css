@@ -119,7 +119,7 @@ margin: 100px 0 0 520px;
 .text-light {
     cursor: pointer;
 }
-.btn-xl {
+.btn-block {
   width: 100%;
 }
 img.darker {
@@ -286,9 +286,6 @@ input{
   display: grid;
   grid-template-columns: auto auto;
   row-gap: 20px;
-}
-.shipping-details-container > div {
-  /* border-bottom: #ddd solid 1px; */
 }
 
 

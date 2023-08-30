@@ -4,7 +4,6 @@ import { Link, useNavigate, useLocation } from 'react-router-dom'
 import {
   Button,
   Container,
-  Badge,
   Row,
   Col,
   Card,
@@ -70,7 +69,6 @@ const CartScreen = () => {
   //  adding subtotal cost & shipping cost
 
   const total = subtotal + shipping
-  console.log(total)
 
   return (
     <Container fluid>

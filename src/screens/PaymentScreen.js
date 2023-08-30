@@ -53,7 +53,14 @@ const PaymentScreen = () => {
     <>
       <FormContainer>
         <CheckoutStepsRow step1 step2 step3 />
-        <h1>Payment Method</h1>
+        <div className='row my-5'>
+          <div className='col-12'>
+            <h2 className='display-4 text-center text-capitalize font-italic'>
+              Payment Method{' '}
+            </h2>
+            <hr className='border border-primary ' />
+          </div>
+        </div>
         <Form onSubmit={submitHandler}>
           <FormGroup>
             <FormLabel as='legend'>Select Method</FormLabel>

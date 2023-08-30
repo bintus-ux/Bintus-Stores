@@ -16,11 +16,32 @@ import CheckoutStepsRow from '../components/CheckoutStepsRow'
 
 const PlaceOrderScreen = () => {
   const cart = useSelector((state) => state.cart)
+
+  // calculating total items cost
+
+  cart.itemsPrice = cart.cartItems.reduce(
+    (acc, item) => acc + item.qty * item.price,
+    0
+  )
+
+  // calculating shipping cost
+
+  cart.shippingPrice = cart.cartItems.reduce(
+    (acc, item) => acc + item.qty * 500,
+    0
+  )
+
+  // calculating total cost
+  cart.totalPrice = Number(cart.itemsPrice) + Number(cart.shippingPrice)
+
+  const placeOrderHandler = () => {
+    console.log('place order')
+  }
   return (
     <>
       <CheckoutStepsRow step1 step2 step3 step4 />
-      <Row className='mt-5' style={{ border: '1px red solid' }}>
-        <Col md={8} style={{ border: '1px red solid' }}>
+      <Row className='mt-5'>
+        <Col md={8}>
           <ListGroup variant='flush'>
             <ListGroupItem>
               <h2>Shipping</h2>
@@ -74,12 +95,12 @@ const PlaceOrderScreen = () => {
                           />
                         </Col>
                         <Col>
-                          <Link to={`/product/${item.product}`}>
+                          <Link to={`/product/₦{item.product}`}>
                             {item.name}
                           </Link>
                         </Col>
                         <Col md={4}>
-                          {item.qty} x ${item.price} = ${item.qty * item.price}
+                          {item.qty} x ₦{item.price} = ₦{item.qty * item.price}
                         </Col>
                       </Row>
                     </ListGroupItem>
@@ -88,6 +109,46 @@ const PlaceOrderScreen = () => {
               )}
             </ListGroupItem>
           </ListGroup>
+        </Col>
+        <Col md={4}>
+          <Card>
+            <ListGroup variant='flush'>
+              <ListGroupItem>
+                <h2>Order Summery</h2>
+              </ListGroupItem>
+              <ListGroupItem>
+                <Row>
+                  <Col>Items</Col>
+                  <Col>₦{cart.itemsPrice.toLocaleString('en-US')}</Col>
+                </Row>
+              </ListGroupItem>
+              <ListGroupItem>
+                <Row>
+                  <Col>Shipping</Col>
+                  <Col>₦{cart.shippingPrice.toLocaleString('en-US')}</Col>
+                </Row>
+              </ListGroupItem>
+
+              <ListGroupItem>
+                <Row>
+                  <Col>Total</Col>
+                  <Col>₦{cart.totalPrice.toLocaleString('en-US')}</Col>
+                </Row>
+              </ListGroupItem>
+              <ListGroupItem>
+                {/* {error && <Message variant='danger'>{error}</Message>} */}
+              </ListGroupItem>
+              <ListGroupItem>
+                <Button
+                  type='button'
+                  className='btn-block'
+                  disabled={cart.cartItems === 0}
+                  onClick={placeOrderHandler}>
+                  Place Order
+                </Button>
+              </ListGroupItem>
+            </ListGroup>
+          </Card>
         </Col>
       </Row>
     </>
