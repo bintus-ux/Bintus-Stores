@@ -66,7 +66,7 @@ const PlaceOrderScreen = () => {
         <Col md={8}>
           <ListGroup variant='flush'>
             <ListGroupItem>
-              <h2>Shipping</h2>
+              <h2>Shipping Details</h2>
               <div className='shipping-details-container'>
                 <div className='item1'>
                   <strong>Name:</strong>
@@ -137,6 +137,35 @@ const PlaceOrderScreen = () => {
             <ListGroup variant='flush'>
               <ListGroupItem>
                 <h2>Order Summery</h2>
+              </ListGroupItem>
+              <ListGroupItem>
+                {cart.cartItems.length === 0 ? (
+                  <Message>Your cart is empty</Message>
+                ) : (
+                  <ListGroup variant='flush' className='listing-items'>
+                    {cart.cartItems.map((item, index) => (
+                      <ListGroupItem key={index}>
+                        <Row>
+                          <Col md={5}>
+                            <Image
+                              src={item.image}
+                              alt={item.name}
+                              fluid
+                              rounded
+                            />
+                          </Col>
+                          <Col md={7}>
+                            <Link to={`/product/₦{item.product}`}>
+                              {item.name}
+                            </Link>
+                            <p className='mt-2'>Quantity: - {item.qty}</p>
+                            <div className='mt-5'>₦{item.price}</div>
+                          </Col>
+                        </Row>
+                      </ListGroupItem>
+                    ))}
+                  </ListGroup>
+                )}
               </ListGroupItem>
               <ListGroupItem>
                 <Row>

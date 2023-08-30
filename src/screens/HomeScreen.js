@@ -29,7 +29,7 @@ const HomeScreen = () => {
 
   return (
     <Container fluid>
-      <div className='row my-5'>
+      <div className='row my-4'>
         <div className='col-12'>
           <h2 className='display-4 text-center text-capitalize font-italic'>
             Welcome To Bintus Store

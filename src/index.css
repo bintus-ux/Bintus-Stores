@@ -287,10 +287,10 @@ input{
   grid-template-columns: auto auto;
   row-gap: 20px;
 }
+.listing-items {
+  max-height: 300px; 
+  overflow-y: auto; 
+  border: 1px solid #ddd; 
+}
 
 
-/* @media (max-width: 767px) {
-  .flex-container {
-    display: block;
-  }
-} */
