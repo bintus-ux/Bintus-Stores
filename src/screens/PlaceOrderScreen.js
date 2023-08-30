@@ -13,8 +13,11 @@ import {
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import CheckoutStepsRow from '../components/CheckoutStepsRow'
+import { createOrder } from '../actions/orderActions'
 
 const PlaceOrderScreen = () => {
+  const dispatch = useDispatch()
+
   const cart = useSelector((state) => state.cart)
 
   // calculating total items cost
@@ -34,8 +37,27 @@ const PlaceOrderScreen = () => {
   // calculating total cost
   cart.totalPrice = Number(cart.itemsPrice) + Number(cart.shippingPrice)
 
+  const orderCreate = useSelector((state) => state.orderCreate)
+  const { order, success, error } = orderCreate
+
+  useEffect(() => {
+    if (success) {
+      navigate(`/order/${order._id}`)
+    }
+    // eslint-disable-next-line
+  }, [success])
+
   const placeOrderHandler = () => {
-    console.log('place order')
+    dispatch(
+      createOrder({
+        orderItems: cart.cartItems,
+        shippingAddress: cart.shippingAddress,
+        paymentMethod: cart.paymentMethod,
+        itemsPrice: cart.itemsPrice,
+        shippingPrice: cart.shippingPrice,
+        totalPrice: cart.totalPrice,
+      })
+    )
   }
   return (
     <>
@@ -136,7 +158,7 @@ const PlaceOrderScreen = () => {
                 </Row>
               </ListGroupItem>
               <ListGroupItem>
-                {/* {error && <Message variant='danger'>{error}</Message>} */}
+                {error && <Message variant='danger'>{error}</Message>}
               </ListGroupItem>
               <ListGroupItem>
                 <Button
