@@ -49,7 +49,7 @@ const ShippingScreen = () => {
     <>
       <FormContainer>
         <CheckoutStepsRow step1 step2 />
-        <div className='row my-5'>
+        <div className='row my-4'>
           <div className='col-12'>
             <h2 className='display-4 text-center text-capitalize font-italic'>
               Shipping{' '}
@@ -83,7 +83,6 @@ const ShippingScreen = () => {
           <div className='container'>
             <label
               for='address'
-              className='my-2'
               style={{ fontWeight: 'bold', fontSize: '20px' }}>
               Last Name:
             </label>
@@ -186,7 +185,7 @@ const ShippingScreen = () => {
           </div>
 
           <div className='container'>
-            <Button type='submit' variant='primary' className='mt-3'>
+            <Button type='submit' variant='primary'>
               Continue
             </Button>
           </div>

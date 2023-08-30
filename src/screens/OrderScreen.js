@@ -12,41 +12,29 @@ import {
 } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
-import CheckoutStepsRow from '../components/CheckoutStepsRow'
-import { createOrder } from '../actions/orderActions'
+import Loader from '../components/Loader'
+import { getOrderDetails } from '../actions/orderActions'
 
-const PlaceOrderScreen = () => {
+const OrderScreen = () => {
   const dispatch = useDispatch()
-  const navigate = useNavigate()
+  const navigate = useNavigate
+  let { id } = useParams()
 
-  const cart = useSelector((state) => state.cart)
+  const orderDetails = useSelector((state) => state.orderDetails)
+  const { order, loading, error } = orderDetails
 
-  // calculating total items cost
-
-  cart.itemsPrice = cart.cartItems.reduce(
-    (acc, item) => acc + item.qty * item.price,
-    0
-  )
-
-  // calculating shipping cost
-
-  cart.shippingPrice = cart.cartItems.reduce(
-    (acc, item) => acc + item.qty * 500,
-    0
-  )
-
-  // calculating total cost
-  cart.totalPrice = Number(cart.itemsPrice) + Number(cart.shippingPrice)
-
-  const orderCreate = useSelector((state) => state.orderCreate)
-  const { order, success, error } = orderCreate
+  if (!loading) {
+    order.itemsPrice = order.orderItems.reduce(
+      (acc, item) => acc + item.qty * item.price,
+      0
+    )
+  }
 
   useEffect(() => {
-    if (success) {
-      navigate(`/order/${order._id}`)
-    }
-    // eslint-disable-next-line
-  }, [success])
+    dispatch(getOrderDetails(id))
+  }, [dispatch, id])
+
+  // calculating total items cost
 
   const placeOrderHandler = () => {
     dispatch(
@@ -60,9 +48,13 @@ const PlaceOrderScreen = () => {
       })
     )
   }
-  return (
+  return loading ? (
+    <Loader />
+  ) : error ? (
+    <Message variant='danger'>{error}</Message>
+  ) : (
     <>
-      <CheckoutStepsRow step1 step2 step3 step4 />
+      <h1>Order {order._id}</h1>
       <Row className='mt-5'>
         <Col md={8}>
           <ListGroup variant='flush'>
@@ -73,40 +65,55 @@ const PlaceOrderScreen = () => {
                   <strong>Name:</strong>
                 </div>
                 <div className='item2'>
-                  {cart.shippingAddress.lastName}{' '}
-                  {cart.shippingAddress.firstName}
+                  {order.shippingAddress.lastName}{' '}
+                  {order.shippingAddress.firstName}
                 </div>
                 <div className='item1'>
                   <strong>Address:</strong>
                 </div>
                 <div className='item2'>
-                  {cart.shippingAddress.address1}
+                  {order.shippingAddress.address1}
                   {'  '}
                 </div>
+
                 <div className='item1'>
                   <strong>State:</strong>
                 </div>
                 <div className='item2'>
-                  {cart.shippingAddress.selectedState}
+                  {order.shippingAddress.selectedState}
                 </div>
                 <div className='item1'>
                   <strong>Phone:</strong>
                 </div>
-                <div className='item2'>{cart.shippingAddress.phoneNumber}</div>
+                <div className='item2'>{order.shippingAddress.phoneNumber}</div>
               </div>
+              {order.isDelivered ? (
+                <Message variant='success'>
+                  Delivered on {order.deliveredAt}
+                </Message>
+              ) : (
+                <Message variant='danger'>Not Delivered</Message>
+              )}
             </ListGroupItem>
             <ListGroupItem>
               <h2>Payment Method</h2>
-              <strong>Method: </strong>
-              {cart.paymentMethod}
+              <p>
+                <strong>Method: </strong>
+                {order.paymentMethod}
+              </p>
+              {order.isPaid ? (
+                <Message variant='success'>Paid on {order.paidAt}</Message>
+              ) : (
+                <Message variant='danger'>Not Paid</Message>
+              )}
             </ListGroupItem>
             <ListGroupItem>
               <h2>Order Items</h2>
-              {cart.cartItems.length === 0 ? (
-                <Message>Your cart is empty</Message>
+              {order.orderItems.length === 0 ? (
+                <Message>Your order is empty</Message>
               ) : (
                 <ListGroup variant='flush'>
-                  {cart.cartItems.map((item, index) => (
+                  {order.orderItems.map((item, index) => (
                     <ListGroupItem key={index}>
                       <Row>
                         <Col md={1}>
@@ -140,11 +147,11 @@ const PlaceOrderScreen = () => {
                 <h2>Order Summery</h2>
               </ListGroupItem>
               <ListGroupItem>
-                {cart.cartItems.length === 0 ? (
-                  <Message>Your cart is empty</Message>
+                {order.orderItems.length === 0 ? (
+                  <Message>Your order is empty</Message>
                 ) : (
                   <ListGroup variant='flush' className='listing-items'>
-                    {cart.cartItems.map((item, index) => (
+                    {order.orderItems.map((item, index) => (
                       <ListGroupItem key={index}>
                         <Row>
                           <Col md={5}>
@@ -171,33 +178,21 @@ const PlaceOrderScreen = () => {
               <ListGroupItem style={{ border: 'none' }}>
                 <Row>
                   <Col>Items</Col>
-                  <Col>₦{cart.itemsPrice.toLocaleString('en-US')}</Col>
+                  <Col>₦{order.itemsPrice.toLocaleString('en-US')}</Col>
                 </Row>
               </ListGroupItem>
               <ListGroupItem>
                 <Row>
                   <Col>Shipping</Col>
-                  <Col>₦{cart.shippingPrice.toLocaleString('en-US')}</Col>
+                  <Col>₦{order.shippingPrice.toLocaleString('en-US')}</Col>
                 </Row>
               </ListGroupItem>
 
               <ListGroupItem>
                 <Row>
                   <Col>Total</Col>
-                  <Col>₦{cart.totalPrice.toLocaleString('en-US')}</Col>
+                  <Col>₦{order.totalPrice.toLocaleString('en-US')}</Col>
                 </Row>
-              </ListGroupItem>
-              <ListGroupItem>
-                {error && <Message variant='danger'>{error}</Message>}
-              </ListGroupItem>
-              <ListGroupItem>
-                <Button
-                  type='button'
-                  className='btn-block'
-                  disabled={cart.cartItems === 0}
-                  onClick={placeOrderHandler}>
-                  Place Order
-                </Button>
               </ListGroupItem>
             </ListGroup>
           </Card>
@@ -207,4 +202,4 @@ const PlaceOrderScreen = () => {
   )
 }
 
-export default PlaceOrderScreen
+export default OrderScreen
