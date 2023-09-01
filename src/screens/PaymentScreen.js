@@ -23,7 +23,7 @@ const PaymentScreen = () => {
     navigate('/shipping')
   }
 
-  const [paymentMethod, setPaymentMethod] = useState('Stripe')
+  const [paymentMethod, setPaymentMethod] = useState('PayStack')
   const [cardNumber, setCardNumber] = useState('')
   const [expirationDate, setExpirationDate] = useState('')
   const [cvv, setCvv] = useState('')
@@ -67,20 +67,20 @@ const PaymentScreen = () => {
             <Col>
               <FormCheck
                 type='radio'
-                label='Stripe'
-                id='Stripe'
+                label='PayStack'
+                id='PayStack'
                 name='paymentMethod'
-                value='Stripe'
+                value='PayStack'
                 checked
                 className='my-2'
                 onChange={(e) => setPaymentMethod(e.target.value)}
                 onClick={hideCreditCardForm}></FormCheck>
               <FormCheck
                 type='radio'
-                label='PayStack or Credit Card'
-                id='PayStack'
+                label='Paypal or Credit Card'
+                id='Paypal'
                 name='paymentMethod'
-                value='PayStack'
+                value='Paypal'
                 onChange={(e) => setPaymentMethod(e.target.value)}
                 onClick={showCreditCardForm}></FormCheck>
             </Col>

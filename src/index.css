@@ -292,5 +292,7 @@ input{
   overflow-y: auto; 
   border: 1px solid #ddd; 
 }
-
+#paystack-button {
+  color: red;
+}
 
