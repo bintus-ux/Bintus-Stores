@@ -84,12 +84,12 @@ const CapScreen = () => {
                         <Link
                           to={`/categoryItems/${capItem.category}/${capItem._id}`}
                           style={{ textDecoration: 'none' }}>
-                          <h3
+                          <h4
                             style={{ color: 'black' }}
-                            className='text-capitalize'>
+                            className='text-capitalize my-3'>
                             {capItem.name}
-                          </h3>
-                          <h3 style={{ color: 'black' }}>- ₦{capItem.price}</h3>
+                          </h4>
+                          <h4 style={{ color: 'black' }}>- ₦{capItem.price}</h4>
                         </Link>
                       </div>
                     </div>

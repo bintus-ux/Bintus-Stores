@@ -84,14 +84,14 @@ const KnitwearScreen = () => {
                         <Link
                           to={`/categoryItems/${knitwearItem.category}/${knitwearItem._id}`}
                           style={{ textDecoration: 'none' }}>
-                          <h3
+                          <h4
                             style={{ color: 'black' }}
-                            className='text-capitalize'>
+                            className='text-capitalize my-3'>
                             {knitwearItem.name}
-                          </h3>
-                          <h3 style={{ color: 'black' }}>
+                          </h4>
+                          <h4 style={{ color: 'black' }}>
                             - ₦{knitwearItem.price}
-                          </h3>
+                          </h4>
                         </Link>
                       </div>
                     </div>

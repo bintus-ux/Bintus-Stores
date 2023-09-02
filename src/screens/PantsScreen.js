@@ -47,51 +47,7 @@ const PantsScreen = () => {
                   </div>
                 </div>
               </div>
-              <div className='text-center my-5'>
-                <Dropdown>
-                  <Dropdown.Toggle variant='dark' id='dropdown-basic'>
-                    Date, old to new
-                  </Dropdown.Toggle>
 
-                  <Dropdown.Menu>
-                    <Dropdown.Item
-                      as={Link}
-                      to='/categoryItems/pants/featured_order'>
-                      Featured
-                    </Dropdown.Item>
-                    <Dropdown.Item
-                      as={Link}
-                      to='/categoryItem/pants/title-ascending_order'>
-                      Alphabetically, A-Z
-                    </Dropdown.Item>
-                    <Dropdown.Item
-                      as={Link}
-                      to='/categoryItem/pants/title-descending_order'>
-                      Alphabetically, Z-A
-                    </Dropdown.Item>
-                    <Dropdown.Item
-                      as={Link}
-                      to='/categoryItem/pants/price-ascending_order'>
-                      Price, low to high
-                    </Dropdown.Item>
-                    <Dropdown.Item
-                      as={Link}
-                      to='/categoryItem/pants/price-descending_order'>
-                      Price, high to low
-                    </Dropdown.Item>
-                    <Dropdown.Item
-                      as={Link}
-                      to='/categoryItem/pants/created-ascending_order'>
-                      Date, old to new
-                    </Dropdown.Item>
-                    <Dropdown.Item
-                      as={Link}
-                      to='/categoryItem/pants/created-descending_order'>
-                      Date, new to old
-                    </Dropdown.Item>
-                  </Dropdown.Menu>
-                </Dropdown>
-              </div>
               <Row>
                 <div className='custom-margin'>
                   {pantItems.map((pantsItem) => (
@@ -131,14 +87,14 @@ const PantsScreen = () => {
                         <Link
                           to={`/categoryItems/${pantsItem.category}/${pantsItem._id}`}
                           style={{ textDecoration: 'none' }}>
-                          <h3
+                          <h4
                             style={{ color: 'black' }}
-                            className='text-capitalize'>
+                            className='text-capitalize my-3'>
                             {pantsItem.name}
-                          </h3>
-                          <h3 style={{ color: 'black' }}>
+                          </h4>
+                          <h4 style={{ color: 'black' }}>
                             - ₦{pantsItem.price}
-                          </h3>
+                          </h4>
                         </Link>
                       </div>
                     </div>

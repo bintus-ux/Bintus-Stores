@@ -84,14 +84,14 @@ const FootwearScreen = () => {
                         <Link
                           to={`/categoryItems/${footwearItem.category}/${footwearItem._id}`}
                           style={{ textDecoration: 'none' }}>
-                          <h3
+                          <h4
                             style={{ color: 'black' }}
-                            className='text-capitalize'>
+                            className='text-capitalize my-3'>
                             {footwearItem.name}
-                          </h3>
-                          <h3 style={{ color: 'black' }}>
+                          </h4>
+                          <h4 style={{ color: 'black' }}>
                             - ₦{footwearItem.price}
-                          </h3>
+                          </h4>
                         </Link>
                       </div>
                     </div>

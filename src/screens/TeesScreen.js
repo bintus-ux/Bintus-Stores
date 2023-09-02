@@ -84,14 +84,14 @@ const TeesScreen = () => {
                         <Link
                           to={`/categoryItems/${teesItem.category}/${teesItem._id}`}
                           style={{ textDecoration: 'none' }}>
-                          <h3
+                          <h4
                             style={{ color: 'black' }}
-                            className='text-teesitalize'>
+                            className='text-teesitalize my-3'>
                             {teesItem.name}
-                          </h3>
-                          <h3 style={{ color: 'black' }}>
+                          </h4>
+                          <h4 style={{ color: 'black' }}>
                             - ₦{teesItem.price}
-                          </h3>
+                          </h4>
                         </Link>
                       </div>
                     </div>

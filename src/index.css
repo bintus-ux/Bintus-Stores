@@ -83,10 +83,6 @@ header  {
     margin: auto;
     row-gap: 30px;
     column-gap: 30px;
-
-    /* margin-bottom: 25px;
-    margin-left: -15px;
-    width: 1000px; */
     
 }
 .custom-navbar {
@@ -142,16 +138,7 @@ img.darker:hover {
 .circle-text {
   text-align: center;
 }
-.grid-product__sold-out {
-  color: #1f2021;
-  border: 1px solid #1f2021;
-  border-radius: 50px;
-}
-.grid-product__sold-out p, .grid-product__on-sale p {
-  padding: 12px 8px 10px 9px;
-  margin: 0;
-  letter-spacing: 1px;
-}
+
 
 .minus, .plus{
   width:30px;

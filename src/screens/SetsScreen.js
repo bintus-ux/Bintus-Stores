@@ -85,14 +85,14 @@ const SetsScreen = () => {
                         <Link
                           to={`/categoryItems/${setsItem.category}/${setsItem._id}`}
                           style={{ textDecoration: 'none' }}>
-                          <h3
+                          <h4
                             style={{ color: 'black' }}
-                            className='text-capitalize'>
+                            className='text-capitalize my-3'>
                             {setsItem.name}
-                          </h3>
-                          <h3 style={{ color: 'black' }}>
+                          </h4>
+                          <h4 style={{ color: 'black' }}>
                             - ₦{setsItem.price}
-                          </h3>
+                          </h4>
                         </Link>
                       </div>
                     </div>
