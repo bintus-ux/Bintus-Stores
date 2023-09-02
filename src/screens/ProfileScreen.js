@@ -10,6 +10,7 @@ import {
   getUserDetails,
   updateUserProfile,
 } from '../actions/userActions'
+import { listMyOrders } from '../actions/orderActions'
 
 const ProfileScreen = () => {
   const [name, setName] = useState('')
@@ -31,12 +32,16 @@ const ProfileScreen = () => {
   const userUpdateProfile = useSelector((state) => state.userUpdateProfile)
   const { success } = userUpdateProfile
 
+  const orderListMy = useSelector((state) => state.orderListMy)
+  const { loading: loadingOrders, error: errorOrders, orders } = orderListMy
+
   useEffect(() => {
     if (!userInfo) {
       navigate('/login')
     } else {
       if (!user.name) {
         dispatch(getUserDetails('profile'))
+        dispatch(listMyOrders())
       } else {
         setName(user.name)
         setEmail(user.email)
@@ -237,7 +242,7 @@ const ProfileScreen = () => {
                 to='/profile/view_delivered_orders'
                 style={{ textDecoration: 'none' }}>
                 <h5>Delivered</h5>
-              </Link>
+              </Link>{' '}
             </button>
             <button
               className='col btn-secondary btn-sm shadow'
@@ -264,6 +269,61 @@ const ProfileScreen = () => {
               </Link>
             </button>
           </div>
+
+          {loadingOrders ? (
+            <Loader />
+          ) : errorOrders ? (
+            <Message variant='danger'>{errorOrders}</Message>
+          ) : (
+            <div className='profile-order-listing-items'>
+              <Table striped bordered hover responsive className='table-sm'>
+                <thead>
+                  <tr id='table-head'>
+                    <th id='table-head'>ID</th>
+                    <th id='table-head'>DATE</th>
+                    <th id='table-head'>TOTAL</th>
+                    <th id='table-head'>PAID</th>
+                    <th id='table-head'>DELIVERED</th>
+                    <th id='table-head'></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {orders.map((order) => (
+                    <tr key={order._id}>
+                      <td>{order._id}</td>
+                      <td>{order.createdAt.substring(0, 10)}</td>
+                      <td>{order.totalPrice}</td>
+                      <td>
+                        {order.isPaid ? (
+                          order.paidAt.substring(0, 10)
+                        ) : (
+                          <i
+                            className='fas fa-times'
+                            style={{ color: 'red' }}></i>
+                        )}
+                      </td>
+                      <td>
+                        {order.isDelivered ? (
+                          order.deliveredAt.substring(0, 10)
+                        ) : (
+                          <i
+                            className='fas fa-times'
+                            style={{ color: 'red' }}></i>
+                        )}
+                      </td>
+                      <td>
+                        <LinkContainer to={`/order/${order._id}`}>
+                          <Button className='btn-sm' variant='light'>
+                            Details
+                          </Button>
+                        </LinkContainer>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+            </div>
+          )}
         </div>
       </Col>
     </Row>

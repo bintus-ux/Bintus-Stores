@@ -207,7 +207,7 @@ input{
 #order-list-wrapper {
   background-color: rgb(229, 224, 224);
   position: relative;
-  height: 400px;
+  height: auto;
   width: 100%;
 }
 #order-header-wrapper {
@@ -292,7 +292,14 @@ input{
   overflow-y: auto; 
   border: 1px solid #ddd; 
 }
+.profile-order-listing-items {
+  max-height: 385px; 
+  overflow-y: auto; 
+  border: 1px solid #ddd; 
+}
 #paystack-button {
   color: red;
 }
-
+#table-head {
+  background-color: rgb(229, 224, 224);
+}

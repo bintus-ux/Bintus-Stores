@@ -8,7 +8,7 @@ const Header = () => {
     <header>
       <Container>
         <Row>
-          <Col className='text-center py-3 header'>
+          <Col className='text-center mt-4 header'>
             <BsMegaphone style={{ color: 'yellow', marginRight: '10px' }} />
             {'    '}
             <Typewriter
