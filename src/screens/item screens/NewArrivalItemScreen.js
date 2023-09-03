@@ -195,11 +195,6 @@ const NewArrivalItemScreen = () => {
                   </Button>
                 </Col>
               </Row>
-              <Row>
-                <Col md={12} className='text-center my-4'>
-                  <h3>You may also like</h3>
-                </Col>
-              </Row>
             </>
           )}
           <Row>

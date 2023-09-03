@@ -114,22 +114,6 @@ const LoginScreen = () => {
             </div>
           </div>
 
-          {/* <div>
-          <label>Password:</label>
-          <input
-            type={showPassword ? 'text' : 'password'}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <button onClick={handlePasswordToggle}>
-            {showPassword ? (
-              <i className='fa-regular fa-eye-slash'></i>
-            ) : (
-              <i className='fa-regular fa-eye'></i>
-            )}
-          </button>
-        </div> */}
-
           <div className='row my-4'>
             <div className='col d-flex justify-content-center'>
               <div className='form-check'>
@@ -170,38 +154,6 @@ const LoginScreen = () => {
             real quick.
           </Col>
         </Row>
-        {/* animating form */}
-        <div className='login-container'>
-          <form action='' className='login-form'>
-            <h1 className='login-title'>Sign In</h1>
-
-            <div className='input-group'>
-              <input
-                type='text'
-                className='input-field'
-                placeholder=' '
-                id='email'
-              />
-              <label for='email' className='input-label'>
-                Email
-              </label>
-            </div>
-
-            <div className='input-group'>
-              <input
-                type='password'
-                className='input-field'
-                placeholder=' '
-                id='password'
-              />
-              <label for='password' className='input-label'>
-                Password
-              </label>
-            </div>
-
-            <input type='submit' className='submit-button' value='Sign In' />
-          </form>
-        </div>
       </FormContainer>
     </>
   )

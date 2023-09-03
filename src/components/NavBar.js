@@ -67,8 +67,9 @@ const Header = () => {
               <Form className='d-flex'>
                 <Form.Control
                   type='search'
-                  placeholder='Search'
+                  placeholder='search products...'
                   aria-label='Search'
+                  style={{ height: 'auto' }}
                 />
                 <Button variant='outline-dark'>Search</Button>
               </Form>

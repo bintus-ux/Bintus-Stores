@@ -140,9 +140,9 @@ const PantItemScreen = () => {
                       )}
                     </ListGroupItem>
                     <ListGroupItem
-                      className='text-center'
+                      className='text-center my-3'
                       style={{ border: 'none' }}>
-                      <h3>₦{pantItem.price}</h3>
+                      <h4>₦{pantItem.price}</h4>
                     </ListGroupItem>
                     <ListGroupItem
                       className='text-center'
@@ -188,11 +188,6 @@ const PantItemScreen = () => {
                   <Button className='btn-block btn-light btn-xl' type='button'>
                     Leave a review!!
                   </Button>
-                </Col>
-              </Row>
-              <Row>
-                <Col md={12} className='text-center my-4'>
-                  <h3>You may also like</h3>
                 </Col>
               </Row>
             </>

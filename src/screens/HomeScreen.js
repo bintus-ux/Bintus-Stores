@@ -100,9 +100,15 @@ const HomeScreen = () => {
                 <Link
                   to={`/categoryItems/${newArrival.category}/${newArrival._id}`}
                   style={{ textDecoration: 'none' }}>
-                  <h3 style={{ color: 'black' }} className='text-capitalize'>
+                  <h4
+                    style={{
+                      color: 'black',
+                      border: '1px red solid',
+                      width: 'auto',
+                    }}
+                    className='text-capitalize my-3'>
                     {newArrival.name}
-                  </h3>
+                  </h4>
                   <h3 style={{ color: 'black' }}>- ₦{newArrival.price}</h3>
                 </Link>
               </div>
@@ -146,22 +152,25 @@ const HomeScreen = () => {
             </div>
           </div>
         </div>
-        <div className='input-group' id='newsletter-email-wrapper'>
-          <input
-            type='email'
-            className='form-control'
-            id='newsletter-input'
-            placeholder='...input email'
-            aria-label='email'
-            aria-describedby='button-addon2'
-          />
-          <button
-            className='btn btn-outline-primary'
-            type='button'
-            id='button-addon2'
-            data-mdb-ripple-color='dark'>
-            Submit
-          </button>
+        <div className='container'>
+          <div className='row justify-content-center'>
+            <div className='col-md-6'>
+              <form>
+                <div className='form-group'>
+                  <label for='email'>Email address</label>
+                  <input
+                    type='email'
+                    className='form-control'
+                    id='email'
+                    placeholder='Enter email'
+                  />
+                </div>
+                <button type='submit' className='btn btn-primary'>
+                  Submit
+                </button>
+              </form>
+            </div>
+          </div>
         </div>
       </div>
     </Container>

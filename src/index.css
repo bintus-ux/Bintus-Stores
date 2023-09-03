@@ -139,6 +139,15 @@ img.darker:hover {
   text-align: center;
 }
 
+.map-preferrable-items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  overflow: hidden;
+  margin: auto;
+  row-gap: 30px;
+  column-gap: 30px;
+}
 
 .minus, .plus{
   width:30px;

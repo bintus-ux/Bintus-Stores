@@ -2,6 +2,8 @@ import React from 'react'
 import { Row, Col, Container } from 'react-bootstrap'
 
 const Footer = () => {
+  const currentYear = new Date().getFullYear()
+
   return (
     <footer className='text-lg-start bg-light'>
       <Container>
@@ -59,7 +61,9 @@ const Footer = () => {
           </Col>
         </Row>
         <Row>
-          <Col className='text-center py-3'>Copyright &copy; Bintus Stores</Col>
+          <Col className='text-center py-3'>
+            Copyright &copy; <span>{currentYear}</span> Bintus Stores
+          </Col>
         </Row>
       </Container>
     </footer>
