@@ -1,15 +1,19 @@
 import React from 'react'
 import Button from 'react-bootstrap/Button'
+import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import Form from 'react-bootstrap/Form'
 import { Link } from 'react-router-dom'
 import { LinkContainer } from 'react-router-bootstrap'
 import Offcanvas from 'react-bootstrap/Offcanvas'
 import { Nav, Navbar, NavDropdown, Container } from 'react-bootstrap'
+import SearchBar from './SearchBar'
 import { logout } from '../actions/userActions'
 
 const Header = () => {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
+
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
 
@@ -64,7 +68,8 @@ const Header = () => {
                   </LinkContainer>
                 </NavDropdown>
               </Nav>
-              <Form className='d-flex'>
+              <SearchBar navigate={navigate} />
+              {/* <Form className='d-flex'>
                 <Form.Control
                   type='search'
                   placeholder='search products...'
@@ -72,7 +77,7 @@ const Header = () => {
                   style={{ height: 'auto' }}
                 />
                 <Button variant='outline-dark'>Search</Button>
-              </Form>
+              </Form> */}
             </Offcanvas.Body>
           </Navbar.Offcanvas>
           <Link to='/'>

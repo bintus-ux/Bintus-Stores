@@ -19,7 +19,6 @@ const HomeScreen = () => {
   useEffect(() => {
     const fetchCategoryItems = async () => {
       const { data } = await axios.get('/api/categoryItems')
-      console.log(data)
       setCategoryItems(data)
     }
 

@@ -33,6 +33,7 @@ import ShippingScreen from './screens/ShippingScreen'
 import PaymentScreen from './screens/PaymentScreen'
 import PlaceOrderScreen from './screens/PlaceOrderScreen'
 import OrderScreen from './screens/OrderScreen'
+import SearchScreen from './screens/SearchScreen'
 
 const App = () => {
   return (
@@ -66,6 +67,10 @@ const App = () => {
               element={<HoodieItemScreen />}
             />
             <Route path='/categoryItems/Caps' element={<CapScreen />} />
+            <Route
+              path='/categoryItems/Caps/itemPage/:pageNumber'
+              element={<CapScreen />}
+            />
             <Route path='/categoryItems/Caps/:id' element={<CapItemScreen />} />
             <Route path='/categoryItems/tees' element={<TeesScreen />} />
             <Route path='/categoryItems/tees/:id' element={<TeeItemScreen />} />
@@ -99,7 +104,7 @@ const App = () => {
             <Route path='/login' element={<LoginScreen />} />
             <Route path='/register' element={<RegisterScreen />} />
             <Route path='/profile' element={<ProfileScreen />} />
-            <Route path='/search/:keyword' element={<HomeScreen />} />
+            <Route path='/search/:keyword' element={<SearchScreen />} />
             <Route path='/' element={<HomeScreen />} exact />
           </Routes>
         </Container>

@@ -2,19 +2,23 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Row, Image } from 'react-bootstrap'
+import { useParams } from 'react-router-dom'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
+import Paginate from '../components/Paginate'
 import { listCapItems } from '../actions/capActions'
 
 const CapScreen = () => {
+  let { pageNumber } = useParams() || 1
+
   const dispatch = useDispatch()
 
   const capList = useSelector((state) => state.capList)
-  const { loading, error, capItems } = capList
+  const { loading, error, capItems, itemPage, pages } = capList
 
   useEffect(() => {
-    dispatch(listCapItems())
-  }, [dispatch])
+    dispatch(listCapItems(pageNumber))
+  }, [dispatch, pageNumber])
 
   const isFound = capItems.some((cap) => {
     if (cap._id) {
@@ -96,6 +100,7 @@ const CapScreen = () => {
                   ))}
                 </div>
               </Row>
+              <Paginate itemPage={itemPage} pages={pages} />
             </>
           ) : (
             <div className='container my-5'>
