@@ -8,26 +8,30 @@ import {
   TEEITEMS_DETAILS_FAIL,
 } from '../constants/teeConstants'
 
-export const listTeeItems = () => async (dispatch) => {
-  try {
-    dispatch({ type: TEEITEMS_LIST_REQUEST })
+export const listTeeItems =
+  (keyword = '', pageNumber = '') =>
+  async (dispatch) => {
+    try {
+      dispatch({ type: TEEITEMS_LIST_REQUEST })
 
-    const { data } = await axios.get('/api/categoryItems/tees')
+      const { data } = await axios.get(
+        `/api/categoryItems/tees?keyword=${keyword}&pageNumber=${pageNumber}`
+      )
 
-    dispatch({
-      type: TEEITEMS_LIST_SUCCESS,
-      payload: data,
-    })
-  } catch (error) {
-    dispatch({
-      type: TEEITEMS_LIST_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
-    })
+      dispatch({
+        type: TEEITEMS_LIST_SUCCESS,
+        payload: data,
+      })
+    } catch (error) {
+      dispatch({
+        type: TEEITEMS_LIST_FAIL,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      })
+    }
   }
-}
 
 export const listTeeItemDetails = (id) => async (dispatch) => {
   try {

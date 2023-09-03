@@ -15,7 +15,12 @@ export const footwearItemListReducer = (
     case FOOTWEARITEMS_LIST_REQUEST:
       return { loading: true, footwearItems: [] }
     case FOOTWEARITEMS_LIST_SUCCESS:
-      return { loading: false, footwearItems: action.payload }
+      return {
+        loading: false,
+        footwearItems: action.payload.footwearItems,
+        pages: action.payload.pages,
+        itemPage: action.payload.itemPage,
+      }
     case FOOTWEARITEMS_LIST_FAIL:
       return { loading: false, error: action.payload }
     default:

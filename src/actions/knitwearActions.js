@@ -8,26 +8,30 @@ import {
   KNITWEARITEMS_DETAILS_FAIL,
 } from '../constants/knitwearConstants'
 
-export const listKnitwearItems = () => async (dispatch) => {
-  try {
-    dispatch({ type: KNITWEARITEMS_LIST_REQUEST })
+export const listKnitwearItems =
+  (keyword = '', pageNumber = '') =>
+  async (dispatch) => {
+    try {
+      dispatch({ type: KNITWEARITEMS_LIST_REQUEST })
 
-    const { data } = await axios.get('/api/categoryItems/knitwears')
+      const { data } = await axios.get(
+        `/api/categoryItems/knitwears?keyword=${keyword}&pageNumber=${pageNumber}`
+      )
 
-    dispatch({
-      type: KNITWEARITEMS_LIST_SUCCESS,
-      payload: data,
-    })
-  } catch (error) {
-    dispatch({
-      type: KNITWEARITEMS_LIST_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
-    })
+      dispatch({
+        type: KNITWEARITEMS_LIST_SUCCESS,
+        payload: data,
+      })
+    } catch (error) {
+      dispatch({
+        type: KNITWEARITEMS_LIST_FAIL,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      })
+    }
   }
-}
 
 export const listKnitwearItemDetails = (id) => async (dispatch) => {
   try {

@@ -12,7 +12,12 @@ export const pantItemListReducer = (state = { pantItems: [] }, action) => {
     case PANTITEMS_LIST_REQUEST:
       return { loading: true, pantItems: [] }
     case PANTITEMS_LIST_SUCCESS:
-      return { loading: false, pantItems: action.payload }
+      return {
+        loading: false,
+        pantItems: action.payload.pantItems,
+        pages: action.payload.pages,
+        itemPage: action.payload.itemPage,
+      }
     case PANTITEMS_LIST_FAIL:
       return { loading: false, error: action.payload }
     default:

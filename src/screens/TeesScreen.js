@@ -16,12 +16,6 @@ const TeesScreen = () => {
     dispatch(listTeeItems())
   }, [dispatch])
 
-  const isFound = teeItems.some((tees) => {
-    if (tees._id) {
-      return true
-    }
-    return false
-  })
   return (
     <>
       <Link className='btn btn-light my-3' to='/'>
@@ -33,7 +27,7 @@ const TeesScreen = () => {
         <Message variant='danger'>{error}</Message>
       ) : (
         <>
-          {isFound ? (
+          {teeItems ? (
             <>
               <div className='container my-5'>
                 <div className='row'>

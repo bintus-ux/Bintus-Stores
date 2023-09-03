@@ -12,7 +12,12 @@ export const shortItemListReducer = (state = { shortItems: [] }, action) => {
     case SHORTITEMS_LIST_REQUEST:
       return { loading: true, shortItems: [] }
     case SHORTITEMS_LIST_SUCCESS:
-      return { loading: false, shortItems: action.payload }
+      return {
+        loading: false,
+        shortItems: action.payload.shortItems,
+        pages: action.payload.pages,
+        itemPage: action.payload.itemPage,
+      }
     case SHORTITEMS_LIST_FAIL:
       return { loading: false, error: action.payload }
     default:

@@ -8,26 +8,30 @@ import {
   FOOTWEARITEMS_DETAILS_FAIL,
 } from '../constants/footwearConstants'
 
-export const listFootwearItems = () => async (dispatch) => {
-  try {
-    dispatch({ type: FOOTWEARITEMS_LIST_REQUEST })
+export const listFootwearItems =
+  (keyword = '', pageNumber = '') =>
+  async (dispatch) => {
+    try {
+      dispatch({ type: FOOTWEARITEMS_LIST_REQUEST })
 
-    const { data } = await axios.get('/api/categoryItems/footwears')
+      const { data } = await axios.get(
+        `/api/categoryItems/footwears?keyword=${keyword}&pageNumber=${pageNumber}`
+      )
 
-    dispatch({
-      type: FOOTWEARITEMS_LIST_SUCCESS,
-      payload: data,
-    })
-  } catch (error) {
-    dispatch({
-      type: FOOTWEARITEMS_LIST_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
-    })
+      dispatch({
+        type: FOOTWEARITEMS_LIST_SUCCESS,
+        payload: data,
+      })
+    } catch (error) {
+      dispatch({
+        type: FOOTWEARITEMS_LIST_FAIL,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      })
+    }
   }
-}
 
 export const listFootwearItemDetails = (id) => async (dispatch) => {
   try {

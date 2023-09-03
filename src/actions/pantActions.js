@@ -8,26 +8,30 @@ import {
   PANTITEMS_DETAILS_FAIL,
 } from '../constants/pantConstants'
 
-export const listPantItems = () => async (dispatch) => {
-  try {
-    dispatch({ type: PANTITEMS_LIST_REQUEST })
+export const listPantItems =
+  (keyword = '', pageNumber = '') =>
+  async (dispatch) => {
+    try {
+      dispatch({ type: PANTITEMS_LIST_REQUEST })
 
-    const { data } = await axios.get('/api/categoryItems/pants')
+      const { data } = await axios.get(
+        `/api/categoryItems/pants?keyword=${keyword}&pageNumber=${pageNumber}`
+      )
 
-    dispatch({
-      type: PANTITEMS_LIST_SUCCESS,
-      payload: data,
-    })
-  } catch (error) {
-    dispatch({
-      type: PANTITEMS_LIST_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
-    })
+      dispatch({
+        type: PANTITEMS_LIST_SUCCESS,
+        payload: data,
+      })
+    } catch (error) {
+      dispatch({
+        type: PANTITEMS_LIST_FAIL,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      })
+    }
   }
-}
 
 export const listPantItemDetails = (id) => async (dispatch) => {
   try {

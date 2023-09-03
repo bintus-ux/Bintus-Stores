@@ -12,7 +12,12 @@ export const tshirtItemListReducer = (state = { tshirtItems: [] }, action) => {
     case TSHIRTITEMS_LIST_REQUEST:
       return { loading: true, tshirtItems: [] }
     case TSHIRTITEMS_LIST_SUCCESS:
-      return { loading: false, tshirtItems: action.payload }
+      return {
+        loading: false,
+        tshirtItems: action.payload.tshirtItems,
+        pages: action.payload.pages,
+        itemPage: action.payload.itemPage,
+      }
     case TSHIRTITEMS_LIST_FAIL:
       return { loading: false, error: action.payload }
     default:

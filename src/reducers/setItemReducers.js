@@ -12,7 +12,12 @@ export const setItemListReducer = (state = { setItems: [] }, action) => {
     case SETITEMS_LIST_REQUEST:
       return { loading: true, setItems: [] }
     case SETITEMS_LIST_SUCCESS:
-      return { loading: false, setItems: action.payload }
+      return {
+        loading: false,
+        setItems: action.payload.setItems,
+        pages: action.payload.pages,
+        itemPage: action.payload.itemPage,
+      }
     case SETITEMS_LIST_FAIL:
       return { loading: false, error: action.payload }
     default:

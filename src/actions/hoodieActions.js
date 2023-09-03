@@ -8,26 +8,30 @@ import {
   HOODIEITEMS_DETAILS_FAIL,
 } from '../constants/hoodieConstants'
 
-export const listHoodieItems = () => async (dispatch) => {
-  try {
-    dispatch({ type: HOODIEITEMS_LIST_REQUEST })
+export const listHoodieItems =
+  (keyword = '', pageNumber = '') =>
+  async (dispatch) => {
+    try {
+      dispatch({ type: HOODIEITEMS_LIST_REQUEST })
 
-    const { data } = await axios.get('/api/categoryItems/hoodies')
+      const { data } = await axios.get(
+        `/api/categoryItems/hoodies?keyword=${keyword}&pageNumber=${pageNumber}`
+      )
 
-    dispatch({
-      type: HOODIEITEMS_LIST_SUCCESS,
-      payload: data,
-    })
-  } catch (error) {
-    dispatch({
-      type: HOODIEITEMS_LIST_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
-    })
+      dispatch({
+        type: HOODIEITEMS_LIST_SUCCESS,
+        payload: data,
+      })
+    } catch (error) {
+      dispatch({
+        type: HOODIEITEMS_LIST_FAIL,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      })
+    }
   }
-}
 
 export const listHoodieItemDetails = (id) => async (dispatch) => {
   try {

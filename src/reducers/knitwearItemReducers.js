@@ -15,7 +15,12 @@ export const knitwearItemListReducer = (
     case KNITWEARITEMS_LIST_REQUEST:
       return { loading: true, knitwearItems: [] }
     case KNITWEARITEMS_LIST_SUCCESS:
-      return { loading: false, knitwearItems: action.payload }
+      return {
+        loading: false,
+        knitwearItems: action.payload.knitwearItems,
+        pages: action.payload.pages,
+        itemPage: action.payload.itemPage,
+      }
     case KNITWEARITEMS_LIST_FAIL:
       return { loading: false, error: action.payload }
     default:

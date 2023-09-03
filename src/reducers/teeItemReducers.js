@@ -12,7 +12,12 @@ export const teeItemListReducer = (state = { teeItems: [] }, action) => {
     case TEEITEMS_LIST_REQUEST:
       return { loading: true, teeItems: [] }
     case TEEITEMS_LIST_SUCCESS:
-      return { loading: false, teeItems: action.payload }
+      return {
+        loading: false,
+        teeItems: action.payload.teeItems,
+        pages: action.payload.pages,
+        itemPage: action.payload.itemPage,
+      }
     case TEEITEMS_LIST_FAIL:
       return { loading: false, error: action.payload }
     default:
