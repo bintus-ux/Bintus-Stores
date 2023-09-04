@@ -12,7 +12,7 @@ import {
 import { useParams } from 'react-router-dom'
 import Message from '../../components/Message'
 import Loader from '../../components/Loader'
-import { listTshirtItemDetails } from '../../actions/tshirtActions'
+import { listProductItemDetails } from '../../actions/productActions'
 
 const TshirtItemScreen = () => {
   const { id } = useParams()
@@ -21,17 +21,17 @@ const TshirtItemScreen = () => {
 
   const [qty, setQty] = useState(1)
 
-  const tshirtDetails = useSelector((state) => state.tshirtDetails)
-  const { loading, error, tshirtItem } = tshirtDetails
+  const productDetails = useSelector((state) => state.productDetails)
+  const { loading, error, productItem } = productDetails
 
   useEffect(() => {
-    dispatch(listTshirtItemDetails(id))
+    dispatch(listProductItemDetails(id))
   }, [dispatch, id])
 
   const addToCartFunction = () => {
     navigate(`/cart/${id}?qty=${qty}`)
   }
-  const max = tshirtItem.countInStock
+  const max = productItem.countInStock
 
   const handleIncrement = () => {
     if (qty < max) {
@@ -55,28 +55,28 @@ const TshirtItemScreen = () => {
         <Message variant='danger'>{error}</Message>
       ) : (
         <>
-          {tshirtItem && (
+          {productItem && (
             <>
               <Row>
                 <Col md={6}>
-                  <Image src={tshirtItem.image} alt={tshirtItem.name} fluid />
+                  <Image src={productItem.image} alt={productItem.name} fluid />
                 </Col>
                 <Col md={6}>
                   <ListGroup variant='flush'>
                     <ListGroupItem
                       className='text-center'
                       style={{ border: 'none' }}>
-                      <h3>{tshirtItem.name}</h3>
+                      <h3>{productItem.name}</h3>
                     </ListGroupItem>
                     <ListGroupItem
                       className='text-center'
                       style={{ border: 'none' }}>
-                      {tshirtItem.countInStock > 1 &&
-                      tshirtItem.countInStock <= 5 ? (
+                      {productItem.countInStock > 1 &&
+                      productItem.countInStock <= 5 ? (
                         <i
                           className='fa-solid fa-circle fa-beat'
                           style={{ color: '#b19c17' }}></i>
-                      ) : tshirtItem.countInStock > 0 ? (
+                      ) : productItem.countInStock > 0 ? (
                         <i
                           className='fa-solid fa-circle fa-beat'
                           style={{ color: '#50d731' }}></i>
@@ -85,15 +85,15 @@ const TshirtItemScreen = () => {
                           className='fa-solid fa-circle'
                           style={{ color: '#a63647' }}></i>
                       )}{' '}
-                      {tshirtItem.countInStock} {tshirtItem.category}{' '}
-                      {tshirtItem.countInStock > 0
+                      {productItem.countInStock} {productItem.category}{' '}
+                      {productItem.countInStock > 0
                         ? 'in Stock!'
                         : 'out of Stock.'}
                     </ListGroupItem>
                     <ListGroupItem
                       className='text-center'
                       style={{ border: 'none' }}>
-                      {tshirtItem.countInStock >= 1 && (
+                      {productItem.countInStock >= 1 && (
                         <>
                           <p>Quantity:</p>
                           <div className='number-input'>
@@ -117,7 +117,7 @@ const TshirtItemScreen = () => {
                                 onChange={(e) => {
                                   const newValue = parseInt(
                                     e.target.qty,
-                                    tshirtItem.countInStock
+                                    productItem.countInStock
                                   )
                                   if (!isNaN(newValue) && newValue <= max) {
                                     setQty(newValue)
@@ -143,19 +143,19 @@ const TshirtItemScreen = () => {
                     <ListGroupItem
                       className='text-center'
                       style={{ border: 'none' }}>
-                      <h3>₦{tshirtItem.price}</h3>
+                      <h3>₦{productItem.price}</h3>
                     </ListGroupItem>
                     <ListGroupItem
                       className='text-center'
                       style={{ border: 'none' }}>
-                      <p>{tshirtItem.info}</p>
+                      <p>{productItem.info}</p>
                     </ListGroupItem>
                     <ListGroupItem style={{ border: 'none' }}>
                       <Button
                         onClick={addToCartFunction}
                         className='btn-block btn-xl'
                         type='button'
-                        disabled={tshirtItem.countInStock === 0}>
+                        disabled={productItem.countInStock === 0}>
                         Add To Cart
                       </Button>
                     </ListGroupItem>
@@ -163,7 +163,7 @@ const TshirtItemScreen = () => {
                       <Button
                         className='btn-block btn-light btn-xl'
                         type='button'
-                        disabled={tshirtItem.countInStock === 0}>
+                        disabled={productItem.countInStock === 0}>
                         Buy Now!
                       </Button>
                     </ListGroupItem>

@@ -1,23 +1,29 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Dropdown } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { Row, Image } from 'react-bootstrap'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
-import { listPantItems } from '../actions/pantActions'
+import { listProductItems } from '../actions/productActions'
 
 const PantsScreen = () => {
   const dispatch = useDispatch()
 
-  const pantList = useSelector((state) => state.pantList)
-  const { loading, error, pantItems } = pantList
+  const productList = useSelector((state) => state.productList)
+  const { loading, error, data } = productList
+
+  console.log(productList)
+
+  let { pageNumber } = useParams() || 1
+
+  let { category } = useParams()
 
   useEffect(() => {
-    dispatch(listPantItems())
-  }, [dispatch])
+    dispatch(listProductItems(pageNumber, category))
+  }, [dispatch, pageNumber])
 
-  const isFound = pantItems.some((pant) => {
+  const isFound = data?.some((pant) => {
     if (pant._id) {
       return true
     }
@@ -41,24 +47,18 @@ const PantsScreen = () => {
                 <div className='row'>
                   <div className='col-12'>
                     <h2 className='display-4 text-center text-capitalize font-italic'>
-                      Pants
+                      {category}
                     </h2>
                     <hr className='border border-primary ' />
                   </div>
                 </div>
               </div>
-
               <Row>
                 <div className='custom-margin'>
-                  {pantItems.map((pantsItem) => (
-                    <div
-                      xs={6}
-                      md={4}
-                      key={pantsItem._id}
-                      className='text-center'>
-                      <Link
-                        to={`/categoryItems/${pantsItem.category}/${pantsItem._id}`}>
-                        {pantsItem.countInStock === 0 ? (
+                  {data.map((item) => (
+                    <div xs={6} md={4} key={item._id} className='text-center'>
+                      <Link to={`/categoryItems/${item.category}/${item._id}`}>
+                        {item.countInStock === 0 ? (
                           <>
                             <div className='row justify-content-left'>
                               <div className='circle d-flex align-items-center justify-content-center'>
@@ -69,14 +69,14 @@ const PantsScreen = () => {
                               </div>
                             </div>
                             <Image
-                              src={pantsItem.image}
+                              src={item.image}
                               className='img-fluid component-images lighter'
                               style={{ height: '450px', width: 'auto' }}
                             />
                           </>
                         ) : (
                           <Image
-                            src={pantsItem.image}
+                            src={item.image}
                             className='img-fluid component-images darker'
                             style={{ height: '450px', width: 'auto' }}
                           />
@@ -85,16 +85,14 @@ const PantsScreen = () => {
 
                       <div>
                         <Link
-                          to={`/categoryItems/${pantsItem.category}/${pantsItem._id}`}
+                          to={`/categoryItems/${item.category}/${item._id}`}
                           style={{ textDecoration: 'none' }}>
                           <h4
                             style={{ color: 'black' }}
-                            className='text-capitalize my-3'>
-                            {pantsItem.name}
+                            className='text-teesitalize my-3'>
+                            {item.name}
                           </h4>
-                          <h4 style={{ color: 'black' }}>
-                            - ₦{pantsItem.price}
-                          </h4>
+                          <h4 style={{ color: 'black' }}>- ₦{item.price}</h4>
                         </Link>
                       </div>
                     </div>
@@ -107,7 +105,7 @@ const PantsScreen = () => {
               <div className='row'>
                 <div className='col-12'>
                   <p className='display-4 text-center font-italic'>
-                    Sorry, there are no available items in this collection.
+                    Sorry, there are no available items in this collection
                   </p>
                 </div>
               </div>

@@ -12,7 +12,7 @@ import {
 import { useParams } from 'react-router-dom'
 import Message from '../../components/Message'
 import Loader from '../../components/Loader'
-import { listKnitwearItemDetails } from '../../actions/knitwearActions'
+import { listProductItemDetails } from '../../actions/productActions'
 
 const KnitwearItemScreen = () => {
   const { id } = useParams()
@@ -21,16 +21,17 @@ const KnitwearItemScreen = () => {
 
   const [qty, setQty] = useState(1)
 
-  const knitwearDetails = useSelector((state) => state.knitwearDetails)
-  const { loading, error, knitwearItem } = knitwearDetails
+  const productDetails = useSelector((state) => state.productDetails)
+  const { loading, error, productItem } = productDetails
+
   useEffect(() => {
-    dispatch(listKnitwearItemDetails(id))
+    dispatch(listProductItemDetails(id))
   }, [dispatch, id])
 
   const addToCartFunction = () => {
     navigate(`/cart/${id}?qty=${qty}`)
   }
-  const max = knitwearItem.countInStock
+  const max = productItem.countInStock
 
   const handleIncrement = () => {
     if (qty < max) {
@@ -54,32 +55,28 @@ const KnitwearItemScreen = () => {
         <Message variant='danger'>{error}</Message>
       ) : (
         <>
-          {knitwearItem && (
+          {productItem && (
             <>
               <Row>
                 <Col md={6}>
-                  <Image
-                    src={knitwearItem.image}
-                    alt={knitwearItem.name}
-                    fluid
-                  />
+                  <Image src={productItem.image} alt={productItem.name} fluid />
                 </Col>
                 <Col md={6}>
                   <ListGroup variant='flush'>
                     <ListGroupItem
                       className='text-center'
                       style={{ border: 'none' }}>
-                      <h3>{knitwearItem.name}</h3>
+                      <h3>{productItem.name}</h3>
                     </ListGroupItem>
                     <ListGroupItem
                       className='text-center'
                       style={{ border: 'none' }}>
-                      {knitwearItem.countInStock > 1 &&
-                      knitwearItem.countInStock <= 5 ? (
+                      {productItem.countInStock > 1 &&
+                      productItem.countInStock <= 5 ? (
                         <i
                           className='fa-solid fa-circle fa-beat'
                           style={{ color: '#b19c17' }}></i>
-                      ) : knitwearItem.countInStock > 0 ? (
+                      ) : productItem.countInStock > 0 ? (
                         <i
                           className='fa-solid fa-circle fa-beat'
                           style={{ color: '#50d731' }}></i>
@@ -88,15 +85,15 @@ const KnitwearItemScreen = () => {
                           className='fa-solid fa-circle'
                           style={{ color: '#a63647' }}></i>
                       )}{' '}
-                      {knitwearItem.countInStock} {knitwearItem.category}{' '}
-                      {knitwearItem.countInStock > 0
+                      {productItem.countInStock} {productItem.category}{' '}
+                      {productItem.countInStock > 0
                         ? 'in Stock!'
                         : 'out of Stock.'}
                     </ListGroupItem>
                     <ListGroupItem
                       className='text-center'
                       style={{ border: 'none' }}>
-                      {knitwearItem.countInStock >= 1 && (
+                      {productItem.countInStock >= 1 && (
                         <>
                           <p>Quantity:</p>
                           <div className='number-input'>
@@ -120,7 +117,7 @@ const KnitwearItemScreen = () => {
                                 onChange={(e) => {
                                   const newValue = parseInt(
                                     e.target.qty,
-                                    knitwearItem.countInStock
+                                    productItem.countInStock
                                   )
                                   if (!isNaN(newValue) && newValue <= max) {
                                     setQty(newValue)
@@ -146,19 +143,19 @@ const KnitwearItemScreen = () => {
                     <ListGroupItem
                       className='text-center'
                       style={{ border: 'none' }}>
-                      <h3>₦{knitwearItem.price}</h3>
+                      <h3>₦{productItem.price}</h3>
                     </ListGroupItem>
                     <ListGroupItem
                       className='text-center'
                       style={{ border: 'none' }}>
-                      <p>{knitwearItem.info}</p>
+                      <p>{productItem.info}</p>
                     </ListGroupItem>
                     <ListGroupItem style={{ border: 'none' }}>
                       <Button
                         onClick={addToCartFunction}
                         className='btn-block btn-xl'
                         type='button'
-                        disabled={knitwearItem.countInStock === 0}>
+                        disabled={productItem.countInStock === 0}>
                         Add To Cart
                       </Button>
                     </ListGroupItem>
@@ -166,7 +163,7 @@ const KnitwearItemScreen = () => {
                       <Button
                         className='btn-block btn-light btn-xl'
                         type='button'
-                        disabled={knitwearItem.countInStock === 0}>
+                        disabled={productItem.countInStock === 0}>
                         Buy Now!
                       </Button>
                     </ListGroupItem>

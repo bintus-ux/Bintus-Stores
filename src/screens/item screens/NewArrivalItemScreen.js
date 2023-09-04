@@ -12,7 +12,7 @@ import {
 import { useParams } from 'react-router-dom'
 import Message from '../../components/Message'
 import Loader from '../../components/Loader'
-import { listNewArrivalItemDetails } from '../../actions/newArrivalActions'
+import { listProductItemDetails } from '../../actions/productActions'
 
 const NewArrivalItemScreen = () => {
   const { id } = useParams()
@@ -21,17 +21,17 @@ const NewArrivalItemScreen = () => {
 
   const [qty, setQty] = useState(1)
 
-  const newArrivalDetails = useSelector((state) => state.newArrivalDetails)
-  const { loading, error, newArrivalItem } = newArrivalDetails
+  const productDetails = useSelector((state) => state.productDetails)
+  const { loading, error, productItem } = productDetails
 
   useEffect(() => {
-    dispatch(listNewArrivalItemDetails(id))
+    dispatch(listProductItemDetails(id))
   }, [dispatch, id])
 
   const addToCartFunction = () => {
     navigate(`/cart/${id}?qty=${qty}`)
   }
-  const max = newArrivalItem.countInStock
+  const max = productItem.countInStock
 
   const handleIncrement = () => {
     if (qty < max) {
@@ -55,32 +55,28 @@ const NewArrivalItemScreen = () => {
         <Message variant='danger'>{error}</Message>
       ) : (
         <>
-          {newArrivalItem && (
+          {productItem && (
             <>
               <Row>
                 <Col md={6}>
-                  <Image
-                    src={newArrivalItem.image}
-                    alt={newArrivalItem.name}
-                    fluid
-                  />
+                  <Image src={productItem.image} alt={productItem.name} fluid />
                 </Col>
                 <Col md={6}>
                   <ListGroup variant='flush'>
                     <ListGroupItem
                       className='text-center'
                       style={{ border: 'none' }}>
-                      <h3>{newArrivalItem.name}</h3>
+                      <h3>{productItem.name}</h3>
                     </ListGroupItem>
                     <ListGroupItem
                       className='text-center'
                       style={{ border: 'none' }}>
-                      {newArrivalItem.countInStock > 1 &&
-                      newArrivalItem.countInStock <= 5 ? (
+                      {productItem.countInStock > 1 &&
+                      productItem.countInStock <= 5 ? (
                         <i
                           className='fa-solid fa-circle fa-beat'
                           style={{ color: '#b19c17' }}></i>
-                      ) : newArrivalItem.countInStock > 0 ? (
+                      ) : productItem.countInStock > 0 ? (
                         <i
                           className='fa-solid fa-circle fa-beat'
                           style={{ color: '#50d731' }}></i>
@@ -89,15 +85,15 @@ const NewArrivalItemScreen = () => {
                           className='fa-solid fa-circle'
                           style={{ color: '#a63647' }}></i>
                       )}{' '}
-                      {newArrivalItem.countInStock} {newArrivalItem.category}{' '}
-                      {newArrivalItem.countInStock > 0
+                      {productItem.countInStock} {productItem.category}{' '}
+                      {productItem.countInStock > 0
                         ? 'in Stock!'
                         : 'out of Stock.'}
                     </ListGroupItem>
                     <ListGroupItem
                       className='text-center'
                       style={{ border: 'none' }}>
-                      {newArrivalItem.countInStock >= 1 && (
+                      {productItem.countInStock >= 1 && (
                         <>
                           <p>Quantity:</p>
                           <div className='number-input'>
@@ -121,7 +117,7 @@ const NewArrivalItemScreen = () => {
                                 onChange={(e) => {
                                   const newValue = parseInt(
                                     e.target.qty,
-                                    newArrivalItem.countInStock
+                                    productItem.countInStock
                                   )
                                   if (!isNaN(newValue) && newValue <= max) {
                                     setQty(newValue)
@@ -147,19 +143,19 @@ const NewArrivalItemScreen = () => {
                     <ListGroupItem
                       className='text-center'
                       style={{ border: 'none' }}>
-                      <h3>₦{newArrivalItem.price}</h3>
+                      <h3>₦{productItem.price}</h3>
                     </ListGroupItem>
                     <ListGroupItem
                       className='text-center'
                       style={{ border: 'none' }}>
-                      <p>{newArrivalItem.info}</p>
+                      <p>{productItem.info}</p>
                     </ListGroupItem>
                     <ListGroupItem style={{ border: 'none' }}>
                       <Button
                         onClick={addToCartFunction}
                         className='btn-block btn-xl'
                         type='button'
-                        disabled={newArrivalItem.countInStock === 0}>
+                        disabled={productItem.countInStock === 0}>
                         Add To Cart
                       </Button>
                     </ListGroupItem>
@@ -167,7 +163,7 @@ const NewArrivalItemScreen = () => {
                       <Button
                         className='btn-block btn-light btn-xl'
                         type='button'
-                        disabled={newArrivalItem.countInStock === 0}>
+                        disabled={productItem.countInStock === 0}>
                         Buy Now!
                       </Button>
                     </ListGroupItem>

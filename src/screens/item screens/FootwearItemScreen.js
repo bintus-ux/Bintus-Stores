@@ -12,7 +12,7 @@ import {
 import { useParams } from 'react-router-dom'
 import Message from '../../components/Message'
 import Loader from '../../components/Loader'
-import { listFootwearItemDetails } from '../../actions/footwearActions'
+import { listProductItemDetails } from '../../actions/productActions'
 
 const FootwearItemScreen = () => {
   const { id } = useParams()
@@ -20,17 +20,17 @@ const FootwearItemScreen = () => {
   const dispatch = useDispatch()
   const [qty, setQty] = useState(1)
 
-  const footwearDetails = useSelector((state) => state.footwearDetails)
-  const { loading, error, footwearItem } = footwearDetails
+  const productDetails = useSelector((state) => state.productDetails)
+  const { loading, error, productItem } = productDetails
 
   useEffect(() => {
-    dispatch(listFootwearItemDetails(id))
+    dispatch(listProductItemDetails(id))
   }, [dispatch, id])
 
   const addToCartFunction = () => {
     navigate(`/cart/${id}?qty=${qty}`)
   }
-  const max = footwearItem.countInStock
+  const max = productItem.countInStock
 
   const handleIncrement = () => {
     if (qty < max) {
@@ -53,32 +53,28 @@ const FootwearItemScreen = () => {
         <Message variant='danger'>{error}</Message>
       ) : (
         <>
-          {footwearItem && (
+          {productItem && (
             <>
               <Row>
                 <Col md={6}>
-                  <Image
-                    src={footwearItem.image}
-                    alt={footwearItem.name}
-                    fluid
-                  />
+                  <Image src={productItem.image} alt={productItem.name} fluid />
                 </Col>
                 <Col md={6}>
                   <ListGroup variant='flush'>
                     <ListGroupItem
                       className='text-center'
                       style={{ border: 'none' }}>
-                      <h3>{footwearItem.name}</h3>
+                      <h3>{productItem.name}</h3>
                     </ListGroupItem>
                     <ListGroupItem
                       className='text-center'
                       style={{ border: 'none' }}>
-                      {footwearItem.countInStock > 1 &&
-                      footwearItem.countInStock <= 5 ? (
+                      {productItem.countInStock > 1 &&
+                      productItem.countInStock <= 5 ? (
                         <i
                           className='fa-solid fa-circle fa-beat'
                           style={{ color: '#b19c17' }}></i>
-                      ) : footwearItem.countInStock > 0 ? (
+                      ) : productItem.countInStock > 0 ? (
                         <i
                           className='fa-solid fa-circle fa-beat'
                           style={{ color: '#50d731' }}></i>
@@ -87,15 +83,15 @@ const FootwearItemScreen = () => {
                           className='fa-solid fa-circle'
                           style={{ color: '#a63647' }}></i>
                       )}{' '}
-                      {footwearItem.countInStock} {footwearItem.category}{' '}
-                      {footwearItem.countInStock > 0
+                      {productItem.countInStock} {productItem.category}{' '}
+                      {productItem.countInStock > 0
                         ? 'in Stock!'
                         : 'out of Stock.'}
                     </ListGroupItem>
                     <ListGroupItem
                       className='text-center'
                       style={{ border: 'none' }}>
-                      {footwearItem.countInStock >= 1 && (
+                      {productItem.countInStock >= 1 && (
                         <>
                           <p>Quantity:</p>
                           <div className='number-input'>
@@ -119,7 +115,7 @@ const FootwearItemScreen = () => {
                                 onChange={(e) => {
                                   const newValue = parseInt(
                                     e.target.qty,
-                                    footwearItem.countInStock
+                                    productItem.countInStock
                                   )
                                   if (!isNaN(newValue) && newValue <= max) {
                                     setQty(newValue)
@@ -145,19 +141,19 @@ const FootwearItemScreen = () => {
                     <ListGroupItem
                       className='text-center'
                       style={{ border: 'none' }}>
-                      <h3>₦{footwearItem.price}</h3>
+                      <h3>₦{productItem.price}</h3>
                     </ListGroupItem>
                     <ListGroupItem
                       className='text-center'
                       style={{ border: 'none' }}>
-                      <p>{footwearItem.info}</p>
+                      <p>{productItem.info}</p>
                     </ListGroupItem>
                     <ListGroupItem style={{ border: 'none' }}>
                       <Button
                         onClick={addToCartFunction}
                         className='btn-block btn-xl'
                         type='button'
-                        disabled={footwearItem.countInStock === 0}>
+                        disabled={productItem.countInStock === 0}>
                         Add To Cart
                       </Button>
                     </ListGroupItem>
@@ -165,7 +161,7 @@ const FootwearItemScreen = () => {
                       <Button
                         className='btn-block btn-light btn-xl'
                         type='button'
-                        disabled={footwearItem.countInStock === 0}>
+                        disabled={productItem.countInStock === 0}>
                         Buy Now!
                       </Button>
                     </ListGroupItem>

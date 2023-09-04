@@ -12,7 +12,7 @@ import {
 import { useParams } from 'react-router-dom'
 import Message from '../../components/Message'
 import Loader from '../../components/Loader'
-import { listPantItemDetails } from '../../actions/pantActions'
+import { listProductItemDetails } from '../../actions/productActions'
 
 const PantItemScreen = () => {
   const { id } = useParams()
@@ -21,16 +21,17 @@ const PantItemScreen = () => {
 
   const [qty, setQty] = useState(1)
 
-  const pantDetails = useSelector((state) => state.pantDetails)
-  const { loading, error, pantItem } = pantDetails
+  const productDetails = useSelector((state) => state.productDetails)
+  const { loading, error, productItem } = productDetails
+
   useEffect(() => {
-    dispatch(listPantItemDetails(id))
+    dispatch(listProductItemDetails(id))
   }, [dispatch, id])
 
   const addToCartFunction = () => {
     navigate(`/cart/${id}?qty=${qty}`)
   }
-  const max = pantItem.countInStock
+  const max = productItem.countInStock
 
   const handleIncrement = () => {
     if (qty < max) {
@@ -54,28 +55,28 @@ const PantItemScreen = () => {
         <Message variant='danger'>{error}</Message>
       ) : (
         <>
-          {pantItem && (
+          {productItem && (
             <>
               <Row>
                 <Col md={6}>
-                  <Image src={pantItem.image} alt={pantItem.name} fluid />
+                  <Image src={productItem.image} alt={productItem.name} fluid />
                 </Col>
                 <Col md={6}>
                   <ListGroup variant='flush'>
                     <ListGroupItem
                       className='text-center'
                       style={{ border: 'none' }}>
-                      <h3>{pantItem.name}</h3>
+                      <h3>{productItem.name}</h3>
                     </ListGroupItem>
                     <ListGroupItem
                       className='text-center'
                       style={{ border: 'none' }}>
-                      {pantItem.countInStock > 1 &&
-                      pantItem.countInStock <= 5 ? (
+                      {productItem.countInStock > 1 &&
+                      productItem.countInStock <= 5 ? (
                         <i
                           className='fa-solid fa-circle fa-beat'
                           style={{ color: '#b19c17' }}></i>
-                      ) : pantItem.countInStock > 0 ? (
+                      ) : productItem.countInStock > 0 ? (
                         <i
                           className='fa-solid fa-circle fa-beat'
                           style={{ color: '#50d731' }}></i>
@@ -84,15 +85,15 @@ const PantItemScreen = () => {
                           className='fa-solid fa-circle'
                           style={{ color: '#a63647' }}></i>
                       )}{' '}
-                      {pantItem.countInStock} {pantItem.category}{' '}
-                      {pantItem.countInStock > 0
+                      {productItem.countInStock} {productItem.category}{' '}
+                      {productItem.countInStock > 0
                         ? 'in Stock!'
                         : 'out of Stock.'}
                     </ListGroupItem>
                     <ListGroupItem
                       className='text-center'
                       style={{ border: 'none' }}>
-                      {pantItem.countInStock >= 1 && (
+                      {productItem.countInStock >= 1 && (
                         <>
                           <p>Quantity:</p>
                           <div className='number-input'>
@@ -116,7 +117,7 @@ const PantItemScreen = () => {
                                 onChange={(e) => {
                                   const newValue = parseInt(
                                     e.target.qty,
-                                    pantItem.countInStock
+                                    productItem.countInStock
                                   )
                                   if (!isNaN(newValue) && newValue <= max) {
                                     setQty(newValue)
@@ -142,19 +143,19 @@ const PantItemScreen = () => {
                     <ListGroupItem
                       className='text-center my-3'
                       style={{ border: 'none' }}>
-                      <h4>₦{pantItem.price}</h4>
+                      <h4>₦{productItem.price}</h4>
                     </ListGroupItem>
                     <ListGroupItem
                       className='text-center'
                       style={{ border: 'none' }}>
-                      <p>{pantItem.info}</p>
+                      <p>{productItem.info}</p>
                     </ListGroupItem>
                     <ListGroupItem style={{ border: 'none' }}>
                       <Button
                         onClick={addToCartFunction}
                         className='btn-block btn-xl'
                         type='button'
-                        disabled={pantItem.countInStock === 0}>
+                        disabled={productItem.countInStock === 0}>
                         Add To Cart
                       </Button>
                     </ListGroupItem>
@@ -162,7 +163,7 @@ const PantItemScreen = () => {
                       <Button
                         className='btn-block btn-light btn-xl'
                         type='button'
-                        disabled={pantItem.countInStock === 0}>
+                        disabled={productItem.countInStock === 0}>
                         Buy Now!
                       </Button>
                     </ListGroupItem>

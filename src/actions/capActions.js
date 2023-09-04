@@ -9,15 +9,15 @@ import {
 } from '../constants/capConstants'
 
 export const listCapItems =
-  (keyword = '', pageNumber = '') =>
+  (pageNumber = '') =>
   async (dispatch) => {
     try {
       dispatch({ type: CAPITEMS_LIST_REQUEST })
-
+      console.log(pageNumber)
       const { data } = await axios.get(
-        `/api/categoryItems/caps?keyword=${keyword}&pageNumber=${pageNumber}`
+        `/api/categoryItems/caps?pageNumber=${pageNumber}`
       )
-
+      console.log(data)
       dispatch({
         type: CAPITEMS_LIST_SUCCESS,
         payload: data,

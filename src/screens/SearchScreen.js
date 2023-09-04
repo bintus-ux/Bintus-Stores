@@ -3,62 +3,69 @@ import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Row, Image } from 'react-bootstrap'
-import { listCapItems } from '../actions/capActions'
-import { listTeeItems } from '../actions/teeActions'
-import { listTshirtItems } from '../actions/tshirtActions'
-import { listPantItems } from '../actions/pantActions'
-import { listSetItems } from '../actions/setActions'
-import { listFootwearItems } from '../actions/footwearActions'
-import { listKnitwearItems } from '../actions/knitwearActions'
-import { listHoodieItems } from '../actions/hoodieActions'
-import { listShortItems } from '../actions/shortActions'
+import { searchProducts } from '../actions/productActions'
 
 const SearchScreen = () => {
   let { keyword } = useParams()
-  console.log(keyword)
   const dispatch = useDispatch()
 
-  const capList = useSelector((state) => state.capList)
-  const { capItems, itemPage, pages } = capList
+  const searchProduct = useSelector((state) => state.productSearch)
+  const { data } = searchProduct
 
-  const teeList = useSelector((state) => state.teeList)
-  const { teeItems } = teeList
-
-  const tshirtList = useSelector((state) => state.tshirtList)
-  const { tshirtItems } = tshirtList
-
-  const pantList = useSelector((state) => state.pantList)
-  const { pantItems } = pantList
-
-  const setList = useSelector((state) => state.setList)
-  const { setItems } = setList
-
-  const footwearList = useSelector((state) => state.footwearList)
-  const { footwearItems } = footwearList
-
-  const knitwearList = useSelector((state) => state.knitwearList)
-  const { knitwearItems } = knitwearList
-
-  const hoodieList = useSelector((state) => state.hoodieList)
-  const { hoodieItems } = hoodieList
-
-  const shortList = useSelector((state) => state.shortList)
-  const { shortItems } = shortList
+  console.log(searchProduct)
 
   useEffect(() => {
-    dispatch(listCapItems(keyword))
-    dispatch(listTeeItems(keyword))
-    dispatch(listTshirtItems(keyword))
-    dispatch(listPantItems(keyword))
-    dispatch(listSetItems(keyword))
-    dispatch(listFootwearItems(keyword))
-    dispatch(listKnitwearItems(keyword))
-    dispatch(listHoodieItems(keyword))
-    dispatch(listShortItems(keyword))
-  }, [dispatch, keyword])
+    dispatch(searchProducts(keyword))
+  }, [keyword, dispatch])
   return (
     <>
       <Row>
+        <div className='custom-margin'>
+          {data?.map((item) => (
+            <div xs={6} md={4} key={item._id} className='text-center'>
+              <Link to={`/categoryItems/${item.category}/${item._id}`}>
+                {item.countInStock === 0 ? (
+                  <>
+                    <div className='row justify-content-left'>
+                      <div className='circle d-flex align-items-center justify-content-center'>
+                        <p className='circle-text position-absolute'>
+                          Sold
+                          <br /> Out
+                        </p>
+                      </div>
+                    </div>
+                    <Image
+                      src={item.image}
+                      className='img-fluid component-images lighter'
+                      style={{ height: '450px', width: 'auto' }}
+                    />
+                  </>
+                ) : (
+                  <Image
+                    src={item.image}
+                    className='img-fluid component-images darker'
+                    style={{ height: '450px', width: 'auto' }}
+                  />
+                )}
+              </Link>
+
+              <div>
+                <Link
+                  to={`/categoryItems/${item.category}/${item._id}`}
+                  style={{ textDecoration: 'none' }}>
+                  <h4
+                    style={{ color: 'black' }}
+                    className='text-capitalize my-3'>
+                    {item.name}
+                  </h4>
+                  <h4 style={{ color: 'black' }}>- ₦{item.price}</h4>
+                </Link>
+              </div>
+            </div>
+          ))}
+        </div>
+      </Row>
+      {/* <Row>
         {capItems && (
           <div className='custom-margin'>
             {capItems.map((capItem) => (
@@ -479,7 +486,7 @@ const SearchScreen = () => {
             ))}
           </div>
         )}
-      </Row>
+      </Row> */}
     </>
   )
 }

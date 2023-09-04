@@ -1,23 +1,30 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
+import { Row, Image } from 'react-bootstrap'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
-import { Container, Row, Col, Image } from 'react-bootstrap'
-import { listSetItems } from '../actions/setActions'
+import { listProductItems } from '../actions/productActions'
 
 const SetsScreen = () => {
   const dispatch = useDispatch()
 
-  const setList = useSelector((state) => state.setList)
-  const { loading, error, setItems } = setList
+  const productList = useSelector((state) => state.productList)
+  const { loading, error, data } = productList
+
+  console.log(productList)
+
+  let { pageNumber } = useParams() || 1
+
+  let { category } = useParams()
 
   useEffect(() => {
-    dispatch(listSetItems())
-  }, [dispatch])
+    dispatch(listProductItems(pageNumber, category))
+  }, [dispatch, pageNumber])
 
-  const isFound = setItems.some((set) => {
-    if (set._id) {
+  const isFound = data?.some((cap) => {
+    if (cap._id) {
       return true
     }
     return false
@@ -40,7 +47,7 @@ const SetsScreen = () => {
                 <div className='row'>
                   <div className='col-12'>
                     <h2 className='display-4 text-center text-capitalize font-italic'>
-                      Sets
+                      {category}
                     </h2>
                     <hr className='border border-primary ' />
                   </div>
@@ -48,15 +55,10 @@ const SetsScreen = () => {
               </div>
               <Row>
                 <div className='custom-margin'>
-                  {setItems.map((setsItem) => (
-                    <div
-                      xs={6}
-                      md={4}
-                      key={setsItem._id}
-                      className='text-center'>
-                      <Link
-                        to={`/categoryItems/${setsItem.category}/${setsItem._id}`}>
-                        {setsItem.countInStock === 0 ? (
+                  {data.map((item) => (
+                    <div xs={6} md={4} key={item._id} className='text-center'>
+                      <Link to={`/categoryItems/${item.category}/${item._id}`}>
+                        {item.countInStock === 0 ? (
                           <>
                             <div className='row justify-content-left'>
                               <div className='circle d-flex align-items-center justify-content-center'>
@@ -67,14 +69,14 @@ const SetsScreen = () => {
                               </div>
                             </div>
                             <Image
-                              src={setsItem.image}
+                              src={item.image}
                               className='img-fluid component-images lighter'
                               style={{ height: '450px', width: 'auto' }}
                             />
                           </>
                         ) : (
                           <Image
-                            src={setsItem.image}
+                            src={item.image}
                             className='img-fluid component-images darker'
                             style={{ height: '450px', width: 'auto' }}
                           />
@@ -83,16 +85,14 @@ const SetsScreen = () => {
 
                       <div>
                         <Link
-                          to={`/categoryItems/${setsItem.category}/${setsItem._id}`}
+                          to={`/categoryItems/${item.category}/${item._id}`}
                           style={{ textDecoration: 'none' }}>
                           <h4
                             style={{ color: 'black' }}
-                            className='text-capitalize my-3'>
-                            {setsItem.name}
+                            className='text-teesitalize my-3'>
+                            {item.name}
                           </h4>
-                          <h4 style={{ color: 'black' }}>
-                            - ₦{setsItem.price}
-                          </h4>
+                          <h4 style={{ color: 'black' }}>- ₦{item.price}</h4>
                         </Link>
                       </div>
                     </div>
@@ -105,7 +105,7 @@ const SetsScreen = () => {
               <div className='row'>
                 <div className='col-12'>
                   <p className='display-4 text-center font-italic'>
-                    Sorry, there are no available items in this collection.
+                    Sorry, there are no available items in this collection
                   </p>
                 </div>
               </div>

@@ -1,27 +1,35 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
+import { Row, Image } from 'react-bootstrap'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
-import { Container, Row, Col, Image } from 'react-bootstrap'
-import { listKnitwearItems } from '../actions/knitwearActions'
+import { listProductItems } from '../actions/productActions'
 
 const KnitwearScreen = () => {
   const dispatch = useDispatch()
 
-  const knitwearList = useSelector((state) => state.knitwearList)
-  const { loading, error, knitwearItems } = knitwearList
+  const productList = useSelector((state) => state.productList)
+  const { loading, error, data } = productList
+
+  console.log(productList)
+
+  let { pageNumber } = useParams() || 1
+
+  let { category } = useParams()
 
   useEffect(() => {
-    dispatch(listKnitwearItems())
-  }, [dispatch])
+    dispatch(listProductItems(pageNumber, category))
+  }, [dispatch, pageNumber])
 
-  const isFound = knitwearItems.some((knitwear) => {
-    if (knitwear._id) {
+  const isFound = data?.some((knitWear) => {
+    if (knitWear._id) {
       return true
     }
     return false
   })
+
   return (
     <>
       <Link className='btn btn-light my-3' to='/'>
@@ -39,7 +47,7 @@ const KnitwearScreen = () => {
                 <div className='row'>
                   <div className='col-12'>
                     <h2 className='display-4 text-center text-capitalize font-italic'>
-                      Knitwears
+                      {category}
                     </h2>
                     <hr className='border border-primary ' />
                   </div>
@@ -47,15 +55,10 @@ const KnitwearScreen = () => {
               </div>
               <Row>
                 <div className='custom-margin'>
-                  {knitwearItems.map((knitwearItem) => (
-                    <div
-                      xs={6}
-                      md={4}
-                      key={knitwearItem._id}
-                      className='text-center'>
-                      <Link
-                        to={`/categoryItems/${knitwearItem.category}/${knitwearItem._id}`}>
-                        {knitwearItem.countInStock === 0 ? (
+                  {data.map((item) => (
+                    <div xs={6} md={4} key={item._id} className='text-center'>
+                      <Link to={`/categoryItems/${item.category}/${item._id}`}>
+                        {item.countInStock === 0 ? (
                           <>
                             <div className='row justify-content-left'>
                               <div className='circle d-flex align-items-center justify-content-center'>
@@ -66,14 +69,14 @@ const KnitwearScreen = () => {
                               </div>
                             </div>
                             <Image
-                              src={knitwearItem.image}
+                              src={item.image}
                               className='img-fluid component-images lighter'
                               style={{ height: '450px', width: 'auto' }}
                             />
                           </>
                         ) : (
                           <Image
-                            src={knitwearItem.image}
+                            src={item.image}
                             className='img-fluid component-images darker'
                             style={{ height: '450px', width: 'auto' }}
                           />
@@ -82,16 +85,14 @@ const KnitwearScreen = () => {
 
                       <div>
                         <Link
-                          to={`/categoryItems/${knitwearItem.category}/${knitwearItem._id}`}
+                          to={`/categoryItems/${item.category}/${item._id}`}
                           style={{ textDecoration: 'none' }}>
                           <h4
                             style={{ color: 'black' }}
-                            className='text-capitalize my-3'>
-                            {knitwearItem.name}
+                            className='text-teesitalize my-3'>
+                            {item.name}
                           </h4>
-                          <h4 style={{ color: 'black' }}>
-                            - ₦{knitwearItem.price}
-                          </h4>
+                          <h4 style={{ color: 'black' }}>- ₦{item.price}</h4>
                         </Link>
                       </div>
                     </div>

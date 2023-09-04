@@ -12,7 +12,7 @@ import {
 import { useParams } from 'react-router-dom'
 import Message from '../../components/Message'
 import Loader from '../../components/Loader'
-import { listHoodieItemDetails } from '../../actions/hoodieActions'
+import { listProductItemDetails } from '../../actions/productActions'
 
 const HoodieItemScreen = () => {
   const { id } = useParams()
@@ -20,16 +20,17 @@ const HoodieItemScreen = () => {
   const dispatch = useDispatch()
   const [qty, setQty] = useState(1)
 
-  const hoodieDetails = useSelector((state) => state.hoodieDetails)
-  const { loading, error, hoodieItem } = hoodieDetails
+  const productDetails = useSelector((state) => state.productDetails)
+  const { loading, error, productItem } = productDetails
+
   useEffect(() => {
-    dispatch(listHoodieItemDetails(id))
+    dispatch(listProductItemDetails(id))
   }, [dispatch, id])
 
   const addToCartFunction = () => {
     navigate(`/cart/${id}?qty=${qty}`)
   }
-  const max = hoodieItem.countInStock
+  const max = productItem.countInStock
 
   const handleIncrement = () => {
     if (qty < max) {
@@ -53,28 +54,28 @@ const HoodieItemScreen = () => {
         <Message variant='danger'>{error}</Message>
       ) : (
         <>
-          {hoodieItem && (
+          {productItem && (
             <>
               <Row>
                 <Col md={6}>
-                  <Image src={hoodieItem.image} alt={hoodieItem.name} fluid />
+                  <Image src={productItem.image} alt={productItem.name} fluid />
                 </Col>
                 <Col md={6}>
                   <ListGroup variant='flush'>
                     <ListGroupItem
                       className='text-center'
                       style={{ border: 'none' }}>
-                      <h3>{hoodieItem.name}</h3>
+                      <h3>{productItem.name}</h3>
                     </ListGroupItem>
                     <ListGroupItem
                       className='text-center'
                       style={{ border: 'none' }}>
-                      {hoodieItem.countInStock > 1 &&
-                      hoodieItem.countInStock <= 5 ? (
+                      {productItem.countInStock > 1 &&
+                      productItem.countInStock <= 5 ? (
                         <i
                           className='fa-solid fa-circle fa-beat'
                           style={{ color: '#b19c17' }}></i>
-                      ) : hoodieItem.countInStock > 0 ? (
+                      ) : productItem.countInStock > 0 ? (
                         <i
                           className='fa-solid fa-circle fa-beat'
                           style={{ color: '#50d731' }}></i>
@@ -83,15 +84,15 @@ const HoodieItemScreen = () => {
                           className='fa-solid fa-circle'
                           style={{ color: '#a63647' }}></i>
                       )}{' '}
-                      {hoodieItem.countInStock} {hoodieItem.category}{' '}
-                      {hoodieItem.countInStock > 0
+                      {productItem.countInStock} {productItem.category}{' '}
+                      {productItem.countInStock > 0
                         ? 'in Stock!'
                         : 'out of Stock.'}
                     </ListGroupItem>
                     <ListGroupItem
                       className='text-center'
                       style={{ border: 'none' }}>
-                      {hoodieItem.countInStock >= 1 && (
+                      {productItem.countInStock >= 1 && (
                         <>
                           <p>Quantity:</p>
                           <div className='number-input'>
@@ -115,7 +116,7 @@ const HoodieItemScreen = () => {
                                 onChange={(e) => {
                                   const newValue = parseInt(
                                     e.target.qty,
-                                    hoodieItem.countInStock
+                                    productItem.countInStock
                                   )
                                   if (!isNaN(newValue) && newValue <= max) {
                                     setQty(newValue)
@@ -141,19 +142,19 @@ const HoodieItemScreen = () => {
                     <ListGroupItem
                       className='text-center'
                       style={{ border: 'none' }}>
-                      <h3>₦{hoodieItem.price}</h3>
+                      <h3>₦{productItem.price}</h3>
                     </ListGroupItem>
                     <ListGroupItem
                       className='text-center'
                       style={{ border: 'none' }}>
-                      <p>{hoodieItem.info}</p>
+                      <p>{productItem.info}</p>
                     </ListGroupItem>
                     <ListGroupItem style={{ border: 'none' }}>
                       <Button
                         onClick={addToCartFunction}
                         className='btn-block btn-xl'
                         type='button'
-                        disabled={hoodieItem.countInStock === 0}>
+                        disabled={productItem.countInStock === 0}>
                         Add To Cart
                       </Button>
                     </ListGroupItem>
@@ -161,18 +162,18 @@ const HoodieItemScreen = () => {
                       <Button
                         className='btn-block btn-light btn-xl'
                         type='button'
-                        disabled={hoodieItem.countInStock === 0}>
+                        disabled={productItem.countInStock === 0}>
                         Buy Now!
                       </Button>
                     </ListGroupItem>
                     <ListGroupItem className='mt-5' style={{ border: 'none' }}>
-                      <p>{hoodieItem.desc_1}</p>
+                      <p>{productItem.desc_1}</p>
                     </ListGroupItem>
                     <ListGroupItem style={{ border: 'none' }}>
-                      <p>{hoodieItem.desc_2}</p>
+                      <p>{productItem.desc_2}</p>
                     </ListGroupItem>
                     <ListGroupItem style={{ border: 'none' }}>
-                      <p>{hoodieItem.desc_3}</p>
+                      <p>{productItem.desc_3}</p>
                     </ListGroupItem>
                   </ListGroup>
                   <hr />

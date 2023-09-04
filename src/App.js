@@ -45,57 +45,56 @@ const App = () => {
           <Routes>
             <Route path='/catalog' element={<CatalogScreen />} exact />
             {/* <Route path='/categories/:id' element={<CategoryItems />} /> */}
-            <Route
-              path='/categoryItems/footwears'
+            {/* <Route
+              path='/categoryItems/footwears/page/:pageNumber'
               element={<FootwearScreen />}
             />
+  */}
             <Route
-              path='/categoryItems/footwears/:id'
-              element={<FootwearItemScreen />}
+              path='/categoryItems/:category'
+              element={<HoodiesScreen />}
             />
             <Route
-              path='/categoryItems/knitwears'
+              path='/categoryItems/hoodies/:id'
+              element={<HoodieItemScreen />}
+            />
+            <Route path='/categoryItems/:category' element={<TshirtScreen />} />
+            <Route
+              path='/categoryItems/tshirts/:id'
+              element={<TshirtItemScreen />}
+            />
+            <Route path='/categoryItems/:category' element={<ShortScreen />} />
+            <Route
+              path='/categoryItems/shorts/:id'
+              element={<ShortItemScreen />}
+            />
+            <Route path='/categoryItems/:category' element={<SetsScreen />} />
+            <Route path='/categoryItems/sets/:id' element={<SetItemScreen />} />
+            <Route path='/categoryItems/:category' element={<PantsScreen />} />
+            <Route
+              path='/categoryItems/pants/:id'
+              element={<PantItemScreen />}
+            />
+            <Route
+              path='/categoryItems/:category'
               element={<KnitwearScreen />}
             />
             <Route
               path='/categoryItems/knitwears/:id'
               element={<KnitwearItemScreen />}
             />
-            <Route path='/categoryItems/hoodies' element={<HoodiesScreen />} />
             <Route
-              path='/categoryItems/hoodies/:id'
-              element={<HoodieItemScreen />}
+              path='/categoryItems/:category'
+              element={<FootwearScreen />}
             />
-            <Route path='/categoryItems/Caps' element={<CapScreen />} />
             <Route
-              path='/categoryItems/Caps/itemPage/:pageNumber'
-              element={<CapScreen />}
+              path='/categoryItems/footwears/:id'
+              element={<FootwearItemScreen />}
             />
-            <Route path='/categoryItems/Caps/:id' element={<CapItemScreen />} />
-            <Route path='/categoryItems/tees' element={<TeesScreen />} />
-            <Route path='/categoryItems/tees/:id' element={<TeeItemScreen />} />
-            <Route path='/categoryItems/tshirts' element={<TshirtScreen />} />
-            <Route
-              path='/categoryItems/tshirts/:id'
-              element={<TshirtItemScreen />}
-            />
-            <Route path='/categoryItems/shorts' element={<ShortScreen />} />
-            <Route
-              path='/categoryItems/shorts/:id'
-              element={<ShortItemScreen />}
-            />
-
-            <Route path='/categoryItems/pants' element={<PantsScreen />} />
-            <Route
-              path='/categoryItems/pants/:id'
-              element={<PantItemScreen />}
-            />
-            <Route path='/categoryItems/sets' element={<SetsScreen />} />
-            <Route path='/categoryItems/sets/:id' element={<SetItemScreen />} />
-            <Route
-              path='/categoryItems/New-Arrivals/:id'
-              element={<NewArrivalItemScreen />}
-            />
+            <Route path='/categoryItems/:category' element={<CapScreen />} />
+            <Route path='/categoryItems/caps/:id' element={<CapItemScreen />} />
+            <Route path='/categoryItems/:category' element={<TeesScreen />} />
+            <Route path='/categoryItems/Tees/:id' element={<TeeItemScreen />} />
             <Route path='/cart/:id?' element={<CartScreen />} />
             <Route path='/order/:id' element={<OrderScreen />} />
             <Route path='/shipping' element={<ShippingScreen />} />

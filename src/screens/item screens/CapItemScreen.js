@@ -12,7 +12,7 @@ import {
 import { useParams } from 'react-router-dom'
 import Message from '../../components/Message'
 import Loader from '../../components/Loader'
-import { listCapItemDetails } from '../../actions/capActions'
+import { listProductItemDetails } from '../../actions/productActions'
 
 const CapItemScreen = () => {
   const [qty, setQty] = useState(1)
@@ -21,17 +21,17 @@ const CapItemScreen = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
-  const capDetails = useSelector((state) => state.capDetails)
-  const { loading, error, capItem } = capDetails
+  const productDetails = useSelector((state) => state.productDetails)
+  const { loading, error, productItem } = productDetails
 
   useEffect(() => {
-    dispatch(listCapItemDetails(id))
+    dispatch(listProductItemDetails(id))
   }, [dispatch, id])
 
   const addToCartFunction = () => {
     navigate(`/cart/${id}?qty=${qty}`)
   }
-  const max = capItem.countInStock
+  const max = productItem.countInStock
 
   const handleIncrement = () => {
     if (qty < max) {
@@ -55,27 +55,28 @@ const CapItemScreen = () => {
         <Message variant='danger'>{error}</Message>
       ) : (
         <>
-          {capItem && (
+          {productItem && (
             <>
               <Row>
                 <Col md={6}>
-                  <Image src={capItem.image} alt={capItem.name} fluid />
+                  <Image src={productItem.image} alt={productItem.name} fluid />
                 </Col>
                 <Col md={6}>
                   <ListGroup variant='flush'>
                     <ListGroupItem
                       className='text-center'
                       style={{ border: 'none' }}>
-                      <h3>{capItem.name}</h3>
+                      <h3>{productItem.name}</h3>
                     </ListGroupItem>
                     <ListGroupItem
                       className='text-center'
                       style={{ border: 'none' }}>
-                      {capItem.countInStock > 1 && capItem.countInStock <= 5 ? (
+                      {productItem.countInStock > 1 &&
+                      productItem.countInStock <= 5 ? (
                         <i
                           className='fa-solid fa-circle fa-beat'
                           style={{ color: '#b19c17' }}></i>
-                      ) : capItem.countInStock > 0 ? (
+                      ) : productItem.countInStock > 0 ? (
                         <i
                           className='fa-solid fa-circle fa-beat'
                           style={{ color: '#50d731' }}></i>
@@ -84,13 +85,15 @@ const CapItemScreen = () => {
                           className='fa-solid fa-circle'
                           style={{ color: '#a63647' }}></i>
                       )}{' '}
-                      {capItem.countInStock} {capItem.category}{' '}
-                      {capItem.countInStock > 0 ? 'in Stock!' : 'out of Stock.'}
+                      {productItem.countInStock} {productItem.category}{' '}
+                      {productItem.countInStock > 0
+                        ? 'in Stock!'
+                        : 'out of Stock.'}
                     </ListGroupItem>
                     <ListGroupItem
                       className='text-center'
                       style={{ border: 'none' }}>
-                      {capItem.countInStock >= 1 && (
+                      {productItem.countInStock >= 1 && (
                         <>
                           <p>Quantity:</p>
                           <div className='number-input'>
@@ -114,7 +117,7 @@ const CapItemScreen = () => {
                                 onChange={(e) => {
                                   const newValue = parseInt(
                                     e.target.qty,
-                                    capItem.countInStock
+                                    productItem.countInStock
                                   )
                                   if (!isNaN(newValue) && newValue <= max) {
                                     setQty(newValue)
@@ -140,12 +143,12 @@ const CapItemScreen = () => {
                     <ListGroupItem
                       className='text-center'
                       style={{ border: 'none' }}>
-                      <h3>₦{capItem.price}</h3>
+                      <h3>₦{productItem.price}</h3>
                     </ListGroupItem>
                     <ListGroupItem
                       className='text-center'
                       style={{ border: 'none' }}>
-                      <p>{capItem.info}</p>
+                      <p>{productItem.info}</p>
                     </ListGroupItem>
                     <hr />
                     <ListGroupItem style={{ border: 'none' }}>
@@ -153,7 +156,7 @@ const CapItemScreen = () => {
                         onClick={addToCartFunction}
                         className='btn-block btn-xl'
                         type='button'
-                        disabled={capItem.countInStock === 0}>
+                        disabled={productItem.countInStock === 0}>
                         Add To Cart
                       </Button>
                     </ListGroupItem>
@@ -161,7 +164,7 @@ const CapItemScreen = () => {
                       <Button
                         className='btn-block btn-light btn-xl'
                         type='button'
-                        disabled={capItem.countInStock === 0}>
+                        disabled={productItem.countInStock === 0}>
                         Buy Now!
                       </Button>
                     </ListGroupItem>

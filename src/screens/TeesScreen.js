@@ -1,20 +1,34 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { Row, Image } from 'react-bootstrap'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
-import { listTeeItems } from '../actions/teeActions'
+import { listProductItems } from '../actions/productActions'
 
 const TeesScreen = () => {
   const dispatch = useDispatch()
 
-  const teeList = useSelector((state) => state.teeList)
-  const { loading, error, teeItems } = teeList
+  const productList = useSelector((state) => state.productList)
+  const { loading, error, data } = productList
+
+  console.log(productList)
+
+  let { pageNumber } = useParams() || 1
+
+  let { category } = useParams()
 
   useEffect(() => {
-    dispatch(listTeeItems())
-  }, [dispatch])
+    dispatch(listProductItems(pageNumber, category))
+  }, [dispatch, pageNumber])
+
+  const isFound = data?.some((tee) => {
+    if (tee._id) {
+      return true
+    }
+    return false
+  })
 
   return (
     <>
@@ -27,13 +41,13 @@ const TeesScreen = () => {
         <Message variant='danger'>{error}</Message>
       ) : (
         <>
-          {teeItems ? (
+          {isFound ? (
             <>
               <div className='container my-5'>
                 <div className='row'>
                   <div className='col-12'>
                     <h2 className='display-4 text-center text-capitalize font-italic'>
-                      Tees
+                      {category}
                     </h2>
                     <hr className='border border-primary ' />
                   </div>
@@ -41,15 +55,10 @@ const TeesScreen = () => {
               </div>
               <Row>
                 <div className='custom-margin'>
-                  {teeItems.map((teesItem) => (
-                    <div
-                      xs={6}
-                      md={4}
-                      key={teesItem._id}
-                      className='text-center'>
-                      <Link
-                        to={`/categoryItems/${teesItem.category}/${teesItem._id}`}>
-                        {teesItem.countInStock === 0 ? (
+                  {data.map((item) => (
+                    <div xs={6} md={4} key={item._id} className='text-center'>
+                      <Link to={`/categoryItems/${item.category}/${item._id}`}>
+                        {item.countInStock === 0 ? (
                           <>
                             <div className='row justify-content-left'>
                               <div className='circle d-flex align-items-center justify-content-center'>
@@ -60,14 +69,14 @@ const TeesScreen = () => {
                               </div>
                             </div>
                             <Image
-                              src={teesItem.image}
+                              src={item.image}
                               className='img-fluid component-images lighter'
                               style={{ height: '450px', width: 'auto' }}
                             />
                           </>
                         ) : (
                           <Image
-                            src={teesItem.image}
+                            src={item.image}
                             className='img-fluid component-images darker'
                             style={{ height: '450px', width: 'auto' }}
                           />
@@ -76,16 +85,14 @@ const TeesScreen = () => {
 
                       <div>
                         <Link
-                          to={`/categoryItems/${teesItem.category}/${teesItem._id}`}
+                          to={`/categoryItems/${item.category}/${item._id}`}
                           style={{ textDecoration: 'none' }}>
                           <h4
                             style={{ color: 'black' }}
                             className='text-teesitalize my-3'>
-                            {teesItem.name}
+                            {item.name}
                           </h4>
-                          <h4 style={{ color: 'black' }}>
-                            - ₦{teesItem.price}
-                          </h4>
+                          <h4 style={{ color: 'black' }}>- ₦{item.price}</h4>
                         </Link>
                       </div>
                     </div>
