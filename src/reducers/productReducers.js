@@ -19,7 +19,7 @@ export const productListReducer = (state = { data: [] }, action) => {
         loading: false,
         data: action.payload.data,
         pages: action.payload.pages,
-        itemPage: action.payload.itemPage,
+        page: action.payload.page,
       }
     case PRODUCT_LIST_FAIL:
       return { loading: false, error: action.payload }
@@ -52,7 +52,7 @@ export const searchProducts = (state = { data: [] }, action) => {
         loading: false,
         data: action.payload,
         pages: action.payload.pages,
-        itemPage: action.payload.itemPage,
+        page: action.payload.page,
       }
     case PRODUCT_SEARCH_FAIL:
       return { loading: false, error: action.payload }

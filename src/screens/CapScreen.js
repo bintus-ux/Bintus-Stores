@@ -17,12 +17,13 @@ const CapScreen = () => {
   console.log(productList)
 
   let { pageNumber } = useParams() || 1
+  console.log(pageNumber)
 
   let { category } = useParams()
 
   useEffect(() => {
     dispatch(listProductItems(pageNumber, category))
-  }, [dispatch, pageNumber])
+  }, [dispatch, pageNumber, category])
 
   const isFound = data?.some((cap) => {
     if (cap._id) {
