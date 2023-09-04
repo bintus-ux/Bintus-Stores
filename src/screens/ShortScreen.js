@@ -13,8 +13,6 @@ const ShortScreen = () => {
   const productList = useSelector((state) => state.productList)
   const { loading, error, data } = productList
 
-  console.log(productList)
-
   let { pageNumber } = useParams() || 1
 
   let { category } = useParams()

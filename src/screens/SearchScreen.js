@@ -12,8 +12,6 @@ const SearchScreen = () => {
   const searchProduct = useSelector((state) => state.productSearch)
   const { data } = searchProduct
 
-  console.log(searchProduct)
-
   useEffect(() => {
     dispatch(searchProducts(keyword))
   }, [keyword, dispatch])

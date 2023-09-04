@@ -40,7 +40,6 @@ export const searchProducts = (keyword) => async (dispatch) => {
     dispatch({ type: PRODUCT_SEARCH_REQUEST })
 
     const { data } = await axios.get(`/api/product/search/${keyword}`)
-    console.log(data)
     dispatch({
       type: PRODUCT_SEARCH_SUCCESS,
       payload: data,
@@ -59,7 +58,6 @@ export const searchProducts = (keyword) => async (dispatch) => {
 export const listProductItemDetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_DETAILS_REQUEST })
-    console.log(id)
     const { data } = await axios.get(`/api/product/${id}`)
     dispatch({
       type: PRODUCT_DETAILS_SUCCESS,
