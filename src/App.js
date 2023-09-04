@@ -55,6 +55,10 @@ const App = () => {
               element={<HoodiesScreen />}
             />
             <Route
+              path='/categoryItems/new-Arrivals/:id'
+              element={<NewArrivalItemScreen />}
+            />
+            <Route
               path='/categoryItems/hoodies/:id'
               element={<HoodieItemScreen />}
             />
