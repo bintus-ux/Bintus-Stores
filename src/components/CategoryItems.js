@@ -15,7 +15,7 @@ const CategoryItems = ({ categoryItem }) => {
 
         <div className='position-absolute top-50 start-50 translate-middle text-center'>
           <Link
-            to={`/categoryItems/${categoryItem.text}`}
+            to={`/categoryItems/${categoryItem.text}/page/1`}
             style={{ textDecoration: 'none' }}>
             <h3 className='text-light'>{categoryItem.text}</h3>
           </Link>
