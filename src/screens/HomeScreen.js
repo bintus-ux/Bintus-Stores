@@ -83,14 +83,14 @@ const HomeScreen = () => {
                     <Image
                       src={newArrival.image}
                       className='img-fluid component-images lighter'
-                      style={{ height: '450px', width: 'auto' }}
+                      style={{ height: '350px', width: 'auto' }}
                     />
                   </>
                 ) : (
                   <Image
                     src={newArrival.image}
                     className='img-fluid component-images darker'
-                    style={{ height: '450px', width: 'auto' }}
+                    style={{ height: '350px', width: 'auto' }}
                   />
                 )}
               </Link>
@@ -102,7 +102,6 @@ const HomeScreen = () => {
                   <h4
                     style={{
                       color: 'black',
-
                       width: '400px',
                     }}
                     className='text-capitalize my-3'>

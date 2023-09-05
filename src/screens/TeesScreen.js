@@ -86,7 +86,7 @@ const TeesScreen = () => {
                           to={`/categoryItems/${item.category}/${item._id}`}
                           style={{ textDecoration: 'none' }}>
                           <h4
-                            style={{ color: 'black' }}
+                            style={{ color: 'black', width: '400px' }}
                             className='text-teesitalize my-3'>
                             {item.name}
                           </h4>

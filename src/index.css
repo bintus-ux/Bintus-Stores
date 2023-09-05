@@ -132,8 +132,9 @@ img.darker:hover {
   padding: 12px 8px 1px 9px;
   border-radius: 50%;
   border: 1px solid #1f2021;
-  color: #000; /* Text color */
-  font-size: 12px; /* Text font size */
+  color: #000; 
+  font-size: 12px;
+  margin-left: 40px;
 }
 .circle-text {
   text-align: center;
