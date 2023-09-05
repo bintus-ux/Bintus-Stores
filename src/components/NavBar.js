@@ -107,7 +107,7 @@ const Header = () => {
               </Link>
             )}
             <Link to='/cart'>
-              <i className='fa-sharp fa-solid fa-cart-shopping mx-3'></i>
+              <i className='fa-sharp fa-solid fa-cart-shopping mx-2'></i>
             </Link>
           </div>
         </Container>

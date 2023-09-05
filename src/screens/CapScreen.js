@@ -12,15 +12,15 @@ const CapScreen = () => {
   const dispatch = useDispatch()
 
   const productList = useSelector((state) => state.productList)
-  const { loading, error, data } = productList
+  const { loading, error, data, pages, page } = productList
 
-  let { pageNumber } = useParams() || 1
+  let { pageNumber } = useParams()
 
   let { category } = useParams()
 
   useEffect(() => {
     dispatch(listProductItems(pageNumber, category))
-  }, [dispatch, pageNumber, category])
+  }, [dispatch, pageNumber])
 
   const isFound = data?.some((cap) => {
     if (cap._id) {
@@ -98,7 +98,7 @@ const CapScreen = () => {
                   ))}
                 </div>
               </Row>
-              <Paginate pages={pages} page={page} />
+              <Paginate pages={pages} page={page} category={category} />
             </>
           ) : (
             <div className='container my-5'>

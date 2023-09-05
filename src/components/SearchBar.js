@@ -22,7 +22,7 @@ const SearchBar = ({ navigate }) => {
         type='text'
         name='q'
         onChange={(e) => setKeyword(e.target.value)}
-        placeholder='search products...'
+        placeholder='Search products...'
         style={{ height: 'auto' }}
         className='mr-sm-2 ml-sm-5'></Form.Control>
 

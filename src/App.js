@@ -44,12 +44,7 @@ const App = () => {
         <Container>
           <Routes>
             <Route path='/catalog' element={<CatalogScreen />} exact />
-            {/* <Route path='/categories/:id' element={<CategoryItems />} /> */}
-            {/* <Route
-              path='/categoryItems/footwears/page/:pageNumber'
-              element={<FootwearScreen />}
-            />
-  */}
+
             <Route
               path='/categoryItems/:category'
               element={<HoodiesScreen />}
@@ -96,7 +91,7 @@ const App = () => {
               element={<FootwearItemScreen />}
             />
             <Route
-              path='/categoryItems/caps/page/:pageNumber'
+              path='/categoryItems/:category/page/:pageNumber'
               element={<CapScreen />}
             />
             <Route path='/categoryItems/:category' element={<CapScreen />} />
