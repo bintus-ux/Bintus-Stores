@@ -6,7 +6,7 @@ const CategoryItems = ({ categoryItem }) => {
   return (
     <>
       <div xs={6} md={4} className='position-relative row'>
-        <Link to={`/categoryItems/${categoryItem.text}`}>
+        <Link to={`/categoryItems/${categoryItem.text}/page/1`}>
           <Image
             src={categoryItem.image}
             className='img-fluid component-images darker'

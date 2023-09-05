@@ -299,3 +299,9 @@ input{
 #table-head {
   background-color: rgb(229, 224, 224);
 }
+.paginate-wrapper {
+  text-align: center;
+  justify-content: center;
+  width: 100%;
+  margin: 60px 0 20px 0
+}

@@ -97,8 +97,8 @@ const CapScreen = () => {
                     </div>
                   ))}
                 </div>
+                <Paginate pages={pages} page={page} category={category} />
               </Row>
-              <Paginate pages={pages} page={page} category={category} />
             </>
           ) : (
             <div className='container my-5'>

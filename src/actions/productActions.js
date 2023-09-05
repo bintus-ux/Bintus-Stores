@@ -18,7 +18,7 @@ export const listProductItems =
       dispatch({ type: PRODUCT_LIST_REQUEST })
 
       const { data } = await axios.get(
-        `/api/product?pageNumber=${pageNumber || 1}&category=${category}`
+        `/api/product?pageNumber=${pageNumber}&category=${category}`
       )
       console.log(data)
       dispatch({

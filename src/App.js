@@ -94,7 +94,6 @@ const App = () => {
               path='/categoryItems/:category/page/:pageNumber'
               element={<CapScreen />}
             />
-            <Route path='/categoryItems/:category' element={<CapScreen />} />
             <Route path='/categoryItems/caps/:id' element={<CapItemScreen />} />
             <Route path='/categoryItems/:category' element={<TeesScreen />} />
             <Route path='/categoryItems/Tees/:id' element={<TeeItemScreen />} />
