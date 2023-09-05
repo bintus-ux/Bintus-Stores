@@ -28,16 +28,32 @@ const ShortItemScreen = () => {
     dispatch(listProductItemDetails(id))
   }, [dispatch, id])
 
+  // handle add to cart function
+
   const addToCartFunction = () => {
     navigate(`/cart/${id}?qty=${qty}`)
   }
+
+  // handle pay now function
+
+  const paymentFunction = () => {
+    navigate('/shipping')
+  }
+
+  // defining item quantity
+
   const max = productItem.countInStock
+
+  // function for plus/add quantity sign
 
   const handleIncrement = () => {
     if (qty < max) {
       setQty(qty + 1)
     }
   }
+
+  // function for minus/subtract quantity sign
+
   const handleDecrement = () => {
     if (qty > 0) {
       setQty(Math.max(qty - 1, 0))
@@ -45,7 +61,7 @@ const ShortItemScreen = () => {
   }
   return (
     <>
-      <button className='btn btn-light my-3' onClick={() => navigate(-1)}>
+      <button className='btn btn-light my-5' onClick={() => navigate(-1)}>
         Go Back
       </button>
       {loading ? (
@@ -160,6 +176,7 @@ const ShortItemScreen = () => {
                     </ListGroupItem>
                     <ListGroupItem style={{ border: 'none' }}>
                       <Button
+                        onClick={paymentFunction}
                         className='btn-block btn-light btn-xl'
                         type='button'
                         disabled={productItem.countInStock === 0}>
@@ -171,7 +188,7 @@ const ShortItemScreen = () => {
                 </Col>
               </Row>
               <Row>
-                <Col md={12} className='text-center my-4'>
+                <Col md={12} className='text-center my-5'>
                   <h3>Customer Reviews</h3>
                 </Col>
               </Row>

@@ -102,13 +102,15 @@ const HomeScreen = () => {
                   <h4
                     style={{
                       color: 'black',
-                      border: '1px red solid',
-                      width: 'auto',
+
+                      width: '400px',
                     }}
                     className='text-capitalize my-3'>
                     {newArrival.name}
                   </h4>
-                  <h3 style={{ color: 'black' }}>- ₦{newArrival.price}</h3>
+                  <h3 style={{ color: 'black' }}>
+                    - ₦{newArrival.price.toLocaleString('en-US')}
+                  </h3>
                 </Link>
               </div>
             </div>
