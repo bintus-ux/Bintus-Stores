@@ -17,19 +17,25 @@ const SearchBar = ({ navigate }) => {
   }
 
   return (
-    <Form onSubmit={submitHandler} className='d-flex'>
-      <Form.Control
-        type='text'
-        name='q'
-        onChange={(e) => setKeyword(e.target.value)}
-        placeholder='Search products...'
-        style={{ height: 'auto' }}
-        className='mr-sm-2 ml-sm-5'></Form.Control>
+    <div className='container'>
+      <div className='row justify-content-center'>
+        <div style={{ width: 'auto' }}>
+          <Form onSubmit={submitHandler} className='d-flex'>
+            <Form.Control
+              type='text'
+              name='q'
+              onChange={(e) => setKeyword(e.target.value)}
+              placeholder='Search products...'
+              style={{ height: 'auto' }}
+              className='mr-sm-2 ml-sm-5'></Form.Control>
 
-      <Button type='submit' variant='outline-success' className='p-2'>
-        Search
-      </Button>
-    </Form>
+            <Button type='submit' variant='outline-success' className='p-2'>
+              Search
+            </Button>
+          </Form>
+        </div>
+      </div>
+    </div>
   )
 }
 

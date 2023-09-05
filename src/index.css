@@ -112,6 +112,18 @@ margin: 100px 0 0 520px;
     margin: auto;
     cursor: pointer;
 }
+@media screen and (max-width: 767px) {
+  .component-images {
+    height: 140px;
+    width: 140px;
+  }
+  .text-light {
+    font-size: medium;
+  }
+  .slide-image {
+    height: auto;
+  }
+}
 .text-light {
     cursor: pointer;
 }
