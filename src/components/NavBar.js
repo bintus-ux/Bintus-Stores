@@ -1,8 +1,6 @@
 import React from 'react'
-import Button from 'react-bootstrap/Button'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import Form from 'react-bootstrap/Form'
 import { Link } from 'react-router-dom'
 import { LinkContainer } from 'react-router-bootstrap'
 import Offcanvas from 'react-bootstrap/Offcanvas'
@@ -90,6 +88,9 @@ const Header = () => {
             />
           </Link>
           <div className='d-inline-flex'>
+            <Link to='/search'>
+              <i className='fa-solid fa-magnifying-glass mx-2'></i>{' '}
+            </Link>
             {userInfo ? (
               <NavDropdown title={userInfo.name} id='username'>
                 <NavDropdown.Item>

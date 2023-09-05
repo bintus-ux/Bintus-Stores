@@ -9,24 +9,10 @@ const SearchBar = ({ navigate }) => {
   const submitHandler = (e) => {
     e.preventDefault()
 
-    // try {
-    //   const response = await fetch(
-    //     `https://bintus-commerce.onrender.com/api/search/${searchQuery}`
-    //   )
-    //   if (response.ok) {
-    //     const data = await response.json()
-    //     setSearchResults(data.results)
-    //   } else {
-    //     navigate('/')
-    //   }
-    // } catch (error) {
-    //   console.error('Error:', error)
-    // }
-
     if (keyword.trim()) {
       navigate(`/search/${keyword}`)
     } else {
-      navigate('/')
+      navigate('/search')
     }
   }
 
