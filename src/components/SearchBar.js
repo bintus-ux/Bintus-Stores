@@ -1,7 +1,5 @@
-import axios from 'axios'
 import React, { useState } from 'react'
 import { Form, Button, FormControl } from 'react-bootstrap'
-import { createSearchParams, useNavigate } from 'react-router-dom'
 
 const SearchBar = ({ navigate }) => {
   const [keyword, setKeyword] = useState('')

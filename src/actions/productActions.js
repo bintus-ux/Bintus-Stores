@@ -18,7 +18,7 @@ export const listProductItems =
       dispatch({ type: PRODUCT_LIST_REQUEST })
 
       const { data } = await axios.get(
-        `/api/product?pageNumber=${pageNumber}&category=${category}`
+        `https://bintus-ecommerce-store-application.onrender.com/api/product?pageNumber=${pageNumber}&category=${category}`
       )
       console.log(data)
       dispatch({
@@ -39,7 +39,9 @@ export const searchProducts = (keyword) => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_SEARCH_REQUEST })
 
-    const { data } = await axios.get(`/api/product/search/${keyword}`)
+    const { data } = await axios.get(
+      `https://bintus-ecommerce-store-application.onrender.com/api/product/search/${keyword}`
+    )
     dispatch({
       type: PRODUCT_SEARCH_SUCCESS,
       payload: data,
@@ -58,7 +60,9 @@ export const searchProducts = (keyword) => async (dispatch) => {
 export const listProductItemDetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_DETAILS_REQUEST })
-    const { data } = await axios.get(`/api/product/${id}`)
+    const { data } = await axios.get(
+      `https://bintus-ecommerce-store-application.onrender.com/api/product/${id}`
+    )
     dispatch({
       type: PRODUCT_DETAILS_SUCCESS,
       payload: data,
