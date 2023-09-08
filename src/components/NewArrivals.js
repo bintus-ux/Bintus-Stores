@@ -24,10 +24,10 @@ const NewArrivals = () => {
             <Link
               to={`/categoryItems/${newArrival.category}/${newArrival._id}`}>
               {newArrival.countInStock === 0 ? (
-                <>
-                  <div className='row justify-content-left'>
+                <div position-relative>
+                  <div className='row position-absolute right-0'>
                     <div className='circle d-flex align-items-center justify-content-center'>
-                      <p className='circle-text position-absolute'>
+                      <p className='circle-text '>
                         Sold
                         <br /> Out
                       </p>
@@ -38,7 +38,7 @@ const NewArrivals = () => {
                     className='img-fluid component-images lighter'
                     style={{ height: '350px', width: 'auto' }}
                   />
-                </>
+                </div>
               ) : (
                 <Image
                   src={newArrival.image}
