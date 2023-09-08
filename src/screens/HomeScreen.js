@@ -1,30 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Container, Row, Image } from 'react-bootstrap'
+import { Container, Row } from 'react-bootstrap'
 import { products_0 } from '../products_folder/products'
 import Slideshow from '../components/Slideshow'
 import CategoryItems from '../components/CategoryItems'
-import axios from 'axios'
+import NewArrivals from '../components/NewArrivals'
 
-const HomeScreen = () => {
-  const [categoryItems, setCategoryItems] = useState([])
-  const [newArrivalItems, setNewArrivalItems] = useState([])
-
-  const fetchNewArrivalItems = async () => {
-    const { data } = await axios.get('/api/categoryItems/new-arrivals')
-    setNewArrivalItems(data.data)
-  }
-
-  useEffect(() => {
-    const fetchCategoryItems = async () => {
-      const { data } = await axios.get('/api/categoryItems')
-      setCategoryItems(data)
-    }
-
-    fetchCategoryItems()
-    fetchNewArrivalItems()
-  }, [])
-
+const HomeScreen = ({ categoryItems, newArrivalItems }) => {
   return (
     <Container fluid>
       <div className='row my-4'>
@@ -47,11 +29,7 @@ const HomeScreen = () => {
         </div>
       </div>
       <Row>
-        <div className='custom-margin'>
-          {categoryItems.map((categoryItem) => (
-            <CategoryItems key={categoryItem._id} categoryItem={categoryItem} />
-          ))}
-        </div>
+        <CategoryItems CategoryItems={categoryItems} />
       </Row>
       <div className='container my-5'>
         <div className='row'>
@@ -64,56 +42,7 @@ const HomeScreen = () => {
         </div>
       </div>
       <Row>
-        <div className='custom-margin'>
-          {newArrivalItems.map((newArrival) => (
-            <div xs={6} md={4} key={newArrival._id} className='text-center'>
-              <Link
-                to={`/categoryItems/${newArrival.category}/${newArrival._id}`}>
-                {newArrival.countInStock === 0 ? (
-                  <>
-                    <div className='row justify-content-left'>
-                      <div className='circle d-flex align-items-center justify-content-center'>
-                        <p className='circle-text position-absolute'>
-                          Sold
-                          <br /> Out
-                        </p>
-                      </div>
-                    </div>
-                    <Image
-                      src={newArrival.image}
-                      className='img-fluid component-images lighter'
-                      style={{ height: '350px', width: 'auto' }}
-                    />
-                  </>
-                ) : (
-                  <Image
-                    src={newArrival.image}
-                    className='img-fluid component-images darker'
-                    style={{ height: '350px', width: 'auto' }}
-                  />
-                )}
-              </Link>
-
-              <div>
-                <Link
-                  to={`/categoryItems/${newArrival.category}/${newArrival._id}`}
-                  style={{ textDecoration: 'none' }}>
-                  <h4
-                    style={{
-                      color: 'black',
-                      width: '350px',
-                    }}
-                    className='text-capitalize my-3'>
-                    {newArrival.name}
-                  </h4>
-                  <h3 style={{ color: 'black' }}>
-                    - ₦{newArrival.price.toLocaleString('en-US')}
-                  </h3>
-                </Link>
-              </div>
-            </div>
-          ))}
-        </div>
+        <NewArrivals newArrivalItems={newArrivalItems} />
       </Row>
       <div className='container my-5'>
         <div className='row'>

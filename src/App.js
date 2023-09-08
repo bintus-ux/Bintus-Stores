@@ -49,6 +49,7 @@ const App = () => {
               path='/categoryItems/:category'
               element={<HoodiesScreen />}
             />
+
             <Route
               path='/categoryItems/new-Arrivals/:id'
               element={<NewArrivalItemScreen />}
@@ -107,6 +108,10 @@ const App = () => {
             <Route path='/profile' element={<ProfileScreen />} />
             <Route path='/search' element={<SearchScreen />} />
             <Route path='/search/:keyword' element={<SearchScreen />} />
+            <Route
+              path='/categoryItems/new-Arrivals'
+              element={<HomeScreen />}
+            />
             <Route path='/' element={<HomeScreen />} exact />
           </Routes>
         </Container>
